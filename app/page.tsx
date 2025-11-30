@@ -1,6 +1,5 @@
-import { cn } from '@/lib/utils';
-import { Check, MoveRight } from "lucide-react";
-import Link from 'next/link';
+import { ApplicationButton } from '@/components/application-button';
+import { Check } from "lucide-react";
 
 export default function Home() {
   const benefits = [
@@ -35,10 +34,7 @@ export default function Home() {
 
           {/* CTA Button */}
           <div className="animate-fade-in-delay-3 mt-16 flex justify-start items-center sm:w-auto w-60">
-            <Link href="https://docs.google.com/forms/d/e/1FAIpQLSfHAg5p9clAxRhXVQg98FL6Frb7ZFZuxfRPjgM3z7VTl2T1Ng/viewform" className={cn("sm:text-xl text-lg font-bold shadow-button hover:shadow-glow transition-all bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-8 sm:py-4 py-3")}>
-              Apply Now
-              <MoveRight className="ml-4 inline-block size-8" />
-            </Link>
+            <ApplicationButton />
           </div>
         </div>
 
