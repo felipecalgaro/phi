@@ -2,7 +2,7 @@
 
 import { registerAnalyticsEvent } from '@/lib/google-analytics'
 import { Button } from './ui/button'
-import { MoveRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 export function ApplicationButton() {
@@ -17,7 +17,7 @@ export function ApplicationButton() {
       className="sm:text-xl text-lg font-bold shadow-button hover:shadow-glow transition-all bg-orange-500 hover:bg-orange-600 text-white rounded-xl py-8 sm:w-56 w-48 cursor-pointer"
     >
       Apply Now
-      <MoveRight className="ml-4 inline-block size-8" />
+      <ArrowRight className="ml-4 inline-block size-8" />
     </Button>
   )
 }

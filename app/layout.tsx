@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from 'next/script';
+import { Suspense } from 'react';
+import { AnalyticsPageTracker } from '@/components/analytics-page-tracker';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +34,9 @@ export default function RootLayout({
         gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}', {send_page_view: false});
         `}
       </Script>
+      <Suspense>
+        <AnalyticsPageTracker />
+      </Suspense>
     </html>
   );
 }

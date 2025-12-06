@@ -1,0 +1,59 @@
+[
+  {
+    "id": "019a7902-e4f5-71c0-8909-9ea295e54e44",
+    "statement": "Berechnen Sie die erste Ableitung folgender Funktionen (vollständig gekürzt / vereinfacht !): 1. $\\frac{x^2}{\\left(x^2+a^2\\right)^2}$ 2. $x \\cdot \\cos \\left(\\frac{1}{x}\\right)$ 3. $\\arctan (\\ln (\\sqrt{x+1}))$",
+    "publicId": 1,
+    "year": null,
+    "season": null,
+    "studienkollegId": "u1v2w3x4-y5z6-7a8b-9c0d-e1f2g3h4i5j6",
+    "topicsIds": ["s5t6u7v8-w9x0-1y2z-3a4b-c5d6e7f8g9h0"]
+  },
+  {
+    "id": "019a790d-1176-7c17-a5e1-7f0bd58bcd4a",
+    "statement": "Bestimmen Sie folgende Integrale exakt. 1. $\\int_1^4 \\frac{x^2 d x}{\\sqrt{x^3-1}}$ [Substitution] 2. $\\int x^2 \\cdot e^{-x} d x$ 3. $\\int x^3 \\cdot \\ln x d x$",
+    "publicId": 2,
+    "year": null,
+    "season": null,
+    "studienkollegId": "u1v2w3x4-y5z6-7a8b-9c0d-e1f2g3h4i5j6",
+    "topicsIds": ["t6u7v8w9-x0y1-2z3a-4b5c-d6e7f8g9h0i1"]
+  },
+  {
+    "id": "019a7914-c00e-71a5-b035-23d2cf2c409d",
+    "statement": "Eine Funktion $f$ ist bestimmt durch die Gleichung $f(x)=\\frac{1}{5} x^4+\\frac{3}{x^2}$. Die Ableitung dieser Funktion lautet $f^{\\prime}(x)=$",
+    "publicId": 3,
+    "year": 2007,
+    "season": "Winter",
+    "studienkollegId": "s9t0u1v2-w3x4-5y6z-7a8b-c9d0e1f2g3h4",
+    "topicsIds": ["s5t6u7v8-w9x0-1y2z-3a4b-c5d6e7f8g9h0"]
+  },
+  {
+    "id": "019a7925-7bab-7bdf-ad58-25b2a3f83d49",
+    "statement": "Berechnen Sie 1. $\\lim _{x \\rightarrow 0} \\frac{e^{2 x}-1-\\sin (2 x)}{x^2-1+\\cos x}$ 2. $\\lim _{x \\rightarrow 0}(\\arctan x)^{\\tan x}$",
+    "publicId": 4,
+    "year": null,
+    "season": null,
+    "studienkollegId": "u1v2w3x4-y5z6-7a8b-9c0d-e1f2g3h4i5j6",
+    "topicsIds": ["r4s5t6u7-v8w9-0x1y-2z3a-b4c5d6e7f8g9"]
+  },
+  {
+    "id": "019a792a-05d1-7db3-8237-d0a58e841513",
+    "statement": "Eine Mutter ist jetzt 6-mal so alt wie ihr Sohn. Vor zwei Jahren war die Mutter 7-mal so alt wie ihr Sohn. Wie alt ist der Sohn jetzt?",
+    "publicId": 5,
+    "year": null,
+    "season": null,
+    "studienkollegId": "t0u1v2w3-x4y5-6z7a-8b9c-d0e1f2g3h4i5",
+    "topicsIds": [
+      "b8c9d0e1-f2g3-4h5i-6j7k-l8m9n0o1p2q3",
+      "i5j6k7l8-m9n0-1o2p-3q4r-s5t6u7v8w9x0"
+    ]
+  },
+  {
+    "id": "019a792e-1357-75ab-8472-285572bd5f3c",
+    "statement": "Der Punkt $M$ ist Mittelpunkt der Strecke $[A B]$ und eines Kreises mit Radius $r=\\overline{M A}$. Der Punkt $C$ liegt auf der Kreislinie. $\\alpha$ ist der Innenwinkel des Dreiecks $A B C$ bei der Ecke $A$. Bestimmen Sie auf dem Blatt für Nebenrechnungen den Flächeninhalt des Dreiecks $A B C$ in Abhängigkeit vom Winkel $\\alpha$ und vom Radius $r$! Kreuzen Sie ein richtiges Ergebnis an!",
+    "publicId": 6,
+    "year": 2022,
+    "season": "Summer",
+    "studienkollegId": "v2w3x4y5-z6a7-8b9c-0d1e-f2g3h4i5j6k7",
+    "topicsIds": ["n0o1p2q3-r4s5-6t7u-8v9w-x0y1z2a3b4c5"]
+  }
+]
