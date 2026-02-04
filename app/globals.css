@@ -190,3 +190,20 @@
     opacity: 0;
   }
 }
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@theme {
+  --breakpoint-xs: 480px;
+}
+
+.katex mtd {
+  padding: 0.2em 0.2em;
+}
