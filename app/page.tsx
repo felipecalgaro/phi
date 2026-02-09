@@ -43,7 +43,7 @@ export default function Home() {
 
           <nav className="flex items-center gap-x-4 gap-y-2 flex-wrap">
             <Link href="/exercises" className={cn(buttonVariants(), "text-white/80 hover:text-white hover:bg-white/10 bg-transparent border border-white/20")}>Exercises</Link>
-            <Link href='/acing-aufnahmetest' className={cn(buttonVariants({ variant: 'outline' }), "bg-transparent border-secondary text-secondary hover:text-black shadow-button hover:shadow-glow transition-all cursor-pointer rounded-md sm:w-min w-min sm:px-4 px-4 sm:py-2 py-2 text-sm")}>
+            <Link href='/acing-aufnahmetest' className={cn(buttonVariants({ variant: 'outline' }), "bg-transparent border-primary text-primary hover:text-black shadow-button hover:shadow-glow transition-all cursor-pointer rounded-md sm:w-min w-min sm:px-4 px-4 sm:py-2 py-2 text-sm")}>
               Acing Aufnahmetest
             </Link>
           </nav>
@@ -55,7 +55,7 @@ export default function Home() {
 
               <h1 className="animate-fade-in max-[480px]:text-5xl max-[360px]:text-4xl text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white drop-shadow-lg w-min text-center">
                 Studienkolleg <br /> made&nbsp;
-                <span className="w-min bg-linear-to-r from-secondary to-accent bg-clip-text text-transparent lg:h-36 md:h-28 h-20 max-[320px]:h-12">
+                <span className="w-min bg-linear-to-r from-primary from-75% to-[hsl(42,94%,26%)] bg-clip-text text-transparent lg:h-36 md:h-28 h-20 max-[320px]:h-12">
                   simple.
                 </span>
               </h1>
@@ -81,7 +81,7 @@ export default function Home() {
               <p className={cn("sm:text-xl text-lg leading-relaxed", isEven ? "text-white/80" : "text-foreground/80")}>
                 {material.description}
               </p>
-              <Link href={material.link} className={cn(buttonVariants({ size: 'lg', variant: isEven ? 'gold' : undefined }), "group shadow-none")}>
+              <Link href={material.link} className={cn(buttonVariants({ size: 'lg', variant: isEven ? 'gold' : undefined }), "group shadow-none", !isEven ? 'text-white' : '')}>
                 {material.buttonText}
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>

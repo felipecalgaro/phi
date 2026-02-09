@@ -6,7 +6,6 @@ import { Suspense } from 'react';
 import { AnalyticsPageTracker } from '@/components/analytics-page-tracker';
 import Link from 'next/link';
 import { Navigation } from 'lucide-react';
-import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,7 +55,6 @@ export default function RootLayout({
             © {new Date().getFullYear()} Guide to Studienkolleg. All rights reserved.
           </div>
         </footer>
-        <Toaster richColors />
       </body>
       <Script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`} />
       <Script id='google-analytics' strategy="afterInteractive">
