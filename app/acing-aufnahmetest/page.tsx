@@ -1,4 +1,5 @@
-import { CTAButton } from '@/components/acing-aufnahmetest/cta-button';
+import { AccessCourseButton } from '@/components/acing-aufnahmetest/access-course-button';
+import { LoginButton } from '@/components/acing-aufnahmetest/login-button';
 import { Price } from '@/components/acing-aufnahmetest/price';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -9,8 +10,8 @@ import Link from 'next/link';
 const benefits = [
   "Straightforward lessons to pass the exam condensed in only a few hours",
   "Strategies to improve your score and stand out from competition",
-  "All the resources you need to prepare for the exam, including also mock Aufnahmetests",
-  "Direct help via WhatsApp through the whole admission process",
+  "All the resources you need to prepare for the exam",
+  "Access to direct help via WhatsApp through the whole admission process",
 ];
 
 const modules = {
@@ -41,7 +42,7 @@ export default function Home() {
 
             <h1 className="animate-fade-in max-[400px]:text-4xl max-[320px]:text-3xl text-5xl font-black tracking-tight text-white drop-shadow-lg sm:text-7xl md:text-8xl xl:text-7xl 2xl:text-8xl">
               Clear your
-              <span className="block bg-linear-to-r from-secondary to-accent bg-clip-text text-transparent md:h-28 sm:h-22 h-16 max-[320px]:h-12">
+              <span className="block text-primary md:h-28 sm:h-22 h-16 max-[320px]:h-12">
                 Aufnahmetest.
               </span>
             </h1>
@@ -51,7 +52,7 @@ export default function Home() {
             </p>
 
             <div className="animate-fade-in-delay-3 sm:mt-16 mt-8 flex justify-start items-center sm:w-auto w-60">
-              <CTAButton />
+              <AccessCourseButton />
             </div>
           </div>
 
@@ -64,7 +65,7 @@ export default function Home() {
               <ul className="sm:space-y-4 space-y-5 text-left">
                 {benefits.map((benefit, index) => (
                   <li key={index} className="flex items-start max-[320px]:gap-3 gap-4">
-                    <div className="sm:mt-0.5 mt-0 flex max-[320px]:size-5 size-6 shrink-0 items-center justify-center max-[320px]:rounded-sm rounded-md bg-secondary shadow-button">
+                    <div className="sm:mt-0.5 mt-0 flex max-[320px]:size-5 size-6 shrink-0 items-center justify-center max-[320px]:rounded-sm rounded-md bg-primary shadow-button">
                       <Check strokeWidth={3} className="max-[320px]:size-3 size-4 text-white font-bold" />
                     </div>
                     <span className="font-medium sm:text-lg text-base">
@@ -76,7 +77,7 @@ export default function Home() {
 
               <h2 className="mt-8 max-[400px]:text-2xl text-3xl font-bold inline text-start">
                 For&nbsp;
-                <span className="bg-linear-to-r from-secondary to-accent bg-clip-text text-transparent inline-block">
+                <span className="text-primary inline-block">
                   only <Price />
                 </span>
                 &nbsp;once.
@@ -93,8 +94,8 @@ export default function Home() {
             </Link>
           </div>
           <hr className='h-8 w-px border border-white/10' />
-          <nav className="flex items-center gap-x-6 gap-y-2 flex-wrap w-full">
-            <Link href="/acing-aufnahmetest/login" className={cn(buttonVariants(), "bg-white hover:bg-white/90 text-foreground")}>Login</Link>
+          <nav className="flex items-center gap-x-4 gap-y-2 flex-wrap w-full">
+            <LoginButton />
             <Link href="/exercises" className={cn(buttonVariants(), "text-white/80 hover:text-white hover:bg-white/10 bg-transparent border border-white/20")}>Exercises</Link>
           </nav>
         </nav>
@@ -117,7 +118,7 @@ export default function Home() {
                   <div key={index} className='flex justify-start items-start flex-col sm:space-y-2 space-y-3'>
                     {topicCol.map((topic) => (
                       <li key={topic} className="flex items-start max-[320px]:gap-3 gap-4">
-                        <div className="sm:mt-0.5 min-[320px]:mt-0 mt-0.5 flex max-[320px]:size-5 size-6 shrink-0 items-center justify-center max-[320px]:rounded-sm rounded-md bg-secondary shadow-button">
+                        <div className="sm:mt-0.5 min-[320px]:mt-0 mt-0.5 flex max-[320px]:size-5 size-6 shrink-0 items-center justify-center max-[320px]:rounded-sm rounded-md bg-primary shadow-button">
                           <Check strokeWidth={3} className="max-[320px]:size-3 size-4 text-white font-bold" />
                         </div>
                         <span className="font-medium sm:text-lg text-base">
