@@ -8,6 +8,7 @@ const queryParamsSchema = z.jwt({ alg: "HS256" });
 
 const temporaryTokenPayloadSchema = z.object({
   email: z.email(),
+  redirectToPurchase: z.boolean(),
 });
 
 export async function GET(request: NextRequest) {
@@ -40,7 +41,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const { email } = parsedPayload;
+  const { email, redirectToPurchase } = parsedPayload;
 
   let user = await prisma.user.findUnique({
     where: { email },
@@ -60,7 +61,16 @@ export async function GET(request: NextRequest) {
     userRole: user.role,
   });
 
+  if (user.role !== "BASIC") {
+    return NextResponse.redirect(
+      new URL("/acing-aufnahmetest/lessons", request.url),
+    );
+  }
+
   return NextResponse.redirect(
-    new URL("/acing-aufnahmetest/lessons", request.url),
+    new URL(
+      `/acing-aufnahmetest${redirectToPurchase ? "/purchase" : ""}`,
+      request.url,
+    ),
   );
 }

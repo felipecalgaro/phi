@@ -4,6 +4,7 @@ import z from "zod";
 import { resend } from "@/lib/resend";
 import { createToken } from "@/lib/jwt";
 import { env } from "@/lib/env";
+import { cookies } from "next/headers";
 
 const requestSchema = z.object({
   email: z.email("Please provide a valid e-mail"),
@@ -19,9 +20,19 @@ export async function sendMagicLinkEmail(request: unknown) {
     };
   }
 
+  const cookiesStore = await cookies();
+
+  const redirectToPurchase =
+    cookiesStore.get("redirect_to_purchase")?.value === "true";
+
   const { email } = result.data;
 
-  const temporaryToken = await createToken({ email }, "15min");
+  const temporaryToken = await createToken(
+    { email, redirectToPurchase },
+    "15min",
+  );
+
+  cookiesStore.set("redirect_to_purchase", "false");
 
   const magicLink = `${env.NEXT_PUBLIC_URL}/api/auth?token=${temporaryToken}`;
 
