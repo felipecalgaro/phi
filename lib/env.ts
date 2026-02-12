@@ -10,6 +10,9 @@ const envSchema = z.object({
   STRIPE_PRICE_ID: z.string(),
   STRIPE_SECRET_KEY: z.string(),
   STRIPE_WEBHOOK_SECRET: z.string(),
+  CLOUDFRONT_DOMAIN: z.string(),
+  CLOUDFRONT_PUBLIC_KEY: z.string(),
+  CLOUDFRONT_PRIVATE_KEY: z.string(),
 });
 
 export const env = envSchema.parse(process.env);

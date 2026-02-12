@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import { ResponseDataObject } from "@/utils/get-response-data-object";
 
 const checkoutSessionMetadataSchema = z.object({
   userId: z.uuid(),
@@ -73,7 +74,7 @@ export async function POST(req: NextRequest) {
       env.STRIPE_WEBHOOK_SECRET,
     );
   } catch {
-    return NextResponse.json(
+    return NextResponse.json<ResponseDataObject>(
       {
         success: false,
         error: "Error while verifying signature",
@@ -88,7 +89,7 @@ export async function POST(req: NextRequest) {
       try {
         await processStripeCheckout(event.data.object);
       } catch {
-        return NextResponse.json(
+        return NextResponse.json<ResponseDataObject>(
           {
             success: false,
             error: "Error while processing checkout session",

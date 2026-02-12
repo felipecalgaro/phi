@@ -3,6 +3,7 @@ import { createCookiesSession } from "@/utils/create-cookies-session";
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
 import { verifyToken } from "@/lib/jwt";
+import { ResponseDataObject } from "@/utils/get-response-data-object";
 
 const queryParamsSchema = z.jwt({ alg: "HS256" });
 
@@ -17,7 +18,7 @@ export async function GET(request: NextRequest) {
   );
 
   if (!result.success) {
-    return NextResponse.json(
+    return NextResponse.json<ResponseDataObject>(
       {
         success: false,
         error: "Invalid query parameters",
@@ -32,7 +33,7 @@ export async function GET(request: NextRequest) {
 
     parsedPayload = temporaryTokenPayloadSchema.parse(payload);
   } catch {
-    return NextResponse.json(
+    return NextResponse.json<ResponseDataObject>(
       {
         success: false,
         error: "Invalid token",
