@@ -4,9 +4,20 @@ import { LessonsSidebarTrigger } from '@/components/acing-aufnahmetest/lessons-s
 import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
 import { Suspense } from 'react'
+import lessons from '@/data/lessons.json'
+
+export async function generateStaticParams() {
+  return lessons.map((lesson) => ({
+    slug: lesson.slug,
+  }))
+}
+
+export const dynamicParams = false
 
 export default async function Lesson({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+
+  const lesson = lessons.find((lesson) => lesson.slug === slug)!
 
   return (
     <div className="flex flex-col bg-background min-h-screen justify-center items-center">
@@ -31,19 +42,19 @@ export default async function Lesson({ params }: { params: Promise<{ slug: strin
 
           <div className="px-5 md:px-8 py-14 flex-1 min-h-80 flex flex-col justify-start items-start gap-1.5">
             <span className="px-2 py-0.5 rounded-full bg-primary/80 text-foreground/70 font-medium text-xs mb-3">
-              MODULO
+              {lesson.module}
             </span>
 
             <h1 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
-              TITUERLO
+              {lesson.title}
             </h1>
 
             <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
-              In this lesson, you&apos;ll learn the key concepts and practical applications related to. Follow along with the video and try the exercises at the end.
+              {lesson.description}
             </p>
           </div>
         </div>
-        <LessonsSidebar currentLessonSlug={slug} />
+        <LessonsSidebar lessons={lessons} currentLessonSlug={slug} />
       </div>
     </div>
   )
