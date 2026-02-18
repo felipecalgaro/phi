@@ -81,7 +81,7 @@ export default function Home() {
               <p className={cn("sm:text-xl text-lg leading-relaxed", isEven ? "text-white/80" : "text-foreground/80")}>
                 {material.description}
               </p>
-              <Link href={material.link} className={cn(buttonVariants({ size: 'lg', variant: isEven ? 'gold' : undefined }), "group shadow-none", !isEven ? 'text-white' : '')}>
+              <Link href={material.link} className={cn(buttonVariants({ size: 'lg', variant: isEven ? 'gold' : 'secondary' }), "group shadow-none", !isEven ? 'text-white' : '')}>
                 {material.buttonText}
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>

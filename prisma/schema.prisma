@@ -20,13 +20,13 @@ enum Role {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String
-  createdAt DateTime @default(now())
-  image     String
-  slug      String   @unique
-  excerpt   String
+  id          Int      @id @default(autoincrement())
+  title       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  slug        String   @unique
+  excerpt     String
+  readingTime Int
 }
 
 model User {
