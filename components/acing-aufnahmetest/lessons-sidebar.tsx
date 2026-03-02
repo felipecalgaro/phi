@@ -6,22 +6,79 @@ import Link from 'next/link';
 import { ScrollArea } from '../ui/scroll-area';
 import { useContext } from 'react';
 import { LessonsSidebarContext } from './lessons-sidebar-provider';
+import { useQuery } from '@tanstack/react-query';
+import { getResponseDataSchema } from '@/utils/get-response-data-object';
+import { z } from 'zod';
+import { toast } from 'sonner';
+import { Skeleton } from '../ui/skeleton';
 
 interface LessonsSidebarProps {
   currentLessonSlug: string;
-  lessons: {
-    id: number;
-    title: string;
-    module: string;
-    slug: string;
-  }[]
 }
 
-export function LessonsSidebar({ currentLessonSlug, lessons }: LessonsSidebarProps) {
+const lessonsSchema = getResponseDataSchema(
+  z.object({
+    lessons: z.array(z.object({
+      title: z.string(),
+      module: z.string(),
+      slug: z.string(),
+      id: z.string(),
+    })),
+  }),
+);
+
+export function LessonsSidebar({ currentLessonSlug }: LessonsSidebarProps) {
+  const { data, isError, isPending } = useQuery({
+    queryKey: ['lessons'],
+    queryFn: async () => {
+      let parsedResponse: z.infer<typeof lessonsSchema>;
+      try {
+        const response = await fetch("/api/lessons");
+        parsedResponse = lessonsSchema.parse(await response.json());
+      } catch {
+        toast.error("Internal server error");
+        throw new Error("Internal server error");
+      }
+
+      if (!parsedResponse.success) {
+        throw new Error(parsedResponse.error);
+      }
+
+      return parsedResponse.data;
+    },
+  })
+  const [isOpen] = useContext(LessonsSidebarContext);
+
+  if (isError) {
+    return (
+      <div
+        className={cn("bg-white absolute inset-y-0 right-0 z-20 lg:relative lg:z-auto transition-transform duration-200", isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0")}
+      >
+        <p className="p-4 text-sm text-muted-foreground">Error loading course content</p>
+      </div>
+    )
+  }
+
+  if (isPending) {
+    return (
+      <div
+        className={cn("bg-white absolute inset-y-0 right-0 z-20 lg:relative lg:z-auto transition-transform duration-200", isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0")}
+      >
+        <ScrollArea className="xl:max-h-180 lg:max-h-140 h-full lg:w-[380px] w-70 shrink-0 border-l border-border bg-card flex flex-col px-0">
+          <div className="p-4">
+            <h2 className="text-sm font-semibold text-foreground">Course Content</h2>
+          </div>
+
+          <Skeleton className="w-full xs:h-180 lg:h-140 h-100 mx-2" />
+        </ScrollArea>
+      </div>
+    )
+  }
+
+  const { lessons } = data;
+
   const modules = [...new Set(lessons.map((l) => l.module))];
   const activeId = lessons.find((l) => l.slug === currentLessonSlug)?.id;
-
-  const [isOpen] = useContext(LessonsSidebarContext);
 
   return (
     <div

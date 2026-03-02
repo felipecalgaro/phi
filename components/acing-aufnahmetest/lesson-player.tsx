@@ -34,7 +34,8 @@ async function getVideoUrl(slug: string) {
     });
 
     return signedUrl
-  } catch {
+  } catch (error) {
+    console.log(error);
     return
   }
 }
@@ -59,6 +60,7 @@ export async function LessonPlayer({ slug }: LessonPlayerProps) {
         controls
         playsInline
         src={signedUrl}
+        preload='metadata'
       />
     </AspectRatio>
   );

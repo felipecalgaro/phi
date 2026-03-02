@@ -1,14 +1,16 @@
-import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
+import { env } from "./lib/env";
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "kytcbgiekrbhexujzfhh.supabase.co",
-      },
+      new URL(`https://${env.CLOUDFRONT_DOMAIN}/video-thumbnails/**`),
     ],
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX();
+
+export default withMDX(nextConfig);

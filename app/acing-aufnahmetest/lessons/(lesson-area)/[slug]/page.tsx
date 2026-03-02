@@ -4,20 +4,26 @@ import { LessonsSidebarTrigger } from '@/components/acing-aufnahmetest/lessons-s
 import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
 import { Suspense } from 'react'
-import lessons from '@/data/lessons.json'
-
-export async function generateStaticParams() {
-  return lessons.map((lesson) => ({
-    slug: lesson.slug,
-  }))
-}
-
-export const dynamicParams = false
+import prisma from '@/lib/prisma';
+import { notFound } from 'next/navigation'
 
 export default async function Lesson({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
 
-  const lesson = lessons.find((lesson) => lesson.slug === slug)!
+  const lesson = await prisma.lesson.findUnique({
+    where: {
+      slug,
+    },
+    select: {
+      title: true,
+      description: true,
+      module: true,
+    },
+  })
+
+  if (!lesson) {
+    return notFound()
+  }
 
   return (
     <div className="flex flex-col bg-background min-h-screen justify-center items-center">
@@ -54,7 +60,7 @@ export default async function Lesson({ params }: { params: Promise<{ slug: strin
             </p>
           </div>
         </div>
-        <LessonsSidebar lessons={lessons} currentLessonSlug={slug} />
+        <LessonsSidebar currentLessonSlug={slug} />
       </div>
     </div>
   )
