@@ -13,6 +13,8 @@ const envSchema = z.object({
   CLOUDFRONT_DOMAIN: z.string(),
   CLOUDFRONT_PUBLIC_KEY: z.string(),
   CLOUDFRONT_PRIVATE_KEY: z.string(),
+  UPSTASH_REDIS_REST_URL: z.string(),
+  UPSTASH_REDIS_REST_TOKEN: z.string(),
 });
 
 export const env = envSchema.parse(process.env);

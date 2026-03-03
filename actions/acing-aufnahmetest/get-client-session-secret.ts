@@ -2,10 +2,17 @@
 
 import { verifySession } from "@/lib/dal";
 import { env } from "@/lib/env";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
+import { applyRateLimiterBasedOnIP } from "@/utils/apply-rate-limiter-based-on-ip";
 
 export async function getClientSessionSecret() {
+  const { success } = await applyRateLimiterBasedOnIP();
+
+  if (!success) {
+    throw new Error("Too many requests, please try again later.");
+  }
+
   const { isAuthenticated, userId } = await verifySession();
 
   if (!isAuthenticated) {

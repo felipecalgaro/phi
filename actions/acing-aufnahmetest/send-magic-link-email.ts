@@ -5,12 +5,27 @@ import { resend } from "@/lib/resend";
 import { createToken } from "@/lib/jwt";
 import { env } from "@/lib/env";
 import { cookies } from "next/headers";
+import { emailRateLimiter } from "@/lib/rate-limiters";
+import { getUserIp } from "@/utils/get-user-ip";
 
 const requestSchema = z.object({
   email: z.email("Please provide a valid e-mail"),
 });
 
 export async function sendMagicLinkEmail(request: unknown) {
+  const ip = await getUserIp();
+
+  if (!ip) throw new Error("IP address not found");
+
+  const { success } = await emailRateLimiter.limit(ip);
+
+  if (!success) {
+    return {
+      success: false,
+      error: "Too many requests, please try again later.",
+    };
+  }
+
   const result = requestSchema.safeParse(request);
 
   if (!result.success) {

@@ -1,9 +1,10 @@
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { createCookiesSession } from "@/utils/create-cookies-session";
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
 import { verifyToken } from "@/lib/jwt";
 import { ResponseDataObject } from "@/utils/get-response-data-object";
+import { applyRateLimiterBasedOnIP } from "@/utils/apply-rate-limiter-based-on-ip";
 
 const queryParamsSchema = z.jwt({ alg: "HS256" });
 
@@ -13,6 +14,15 @@ const temporaryTokenPayloadSchema = z.object({
 });
 
 export async function GET(request: NextRequest) {
+  const { success } = await applyRateLimiterBasedOnIP();
+
+  if (!success) {
+    return NextResponse.json<ResponseDataObject>({
+      success: false,
+      error: "Too many requests, please try again later.",
+    });
+  }
+
   const result = queryParamsSchema.safeParse(
     request.nextUrl.searchParams.get("token"),
   );
