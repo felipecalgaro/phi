@@ -11,7 +11,21 @@ export function formatDateToMonth(date: Date) {
 }
 
 export function formatPublicId(publicId: number) {
-  return `#${publicId.toString().padStart(4, "0")}`;
+  return `#${publicId.toString().padStart(3, "0")}`;
+}
+
+export function formatSeasonAndYear(
+  season: string | null,
+  year: number | null,
+) {
+  if (season && year && ["SUMMER", "WINTER"].includes(season)) {
+    if (season === "SUMMER") {
+      return `(SoSe ${year.toString().slice(2)})`;
+    }
+    return `(WiSe ${year.toString().slice(2)}/${(year + 1).toString().slice(2)})`;
+  } else if (year) {
+    return year.toString();
+  }
 }
 
 export function formatTime(timeInSeconds: number) {
@@ -20,6 +34,6 @@ export function formatTime(timeInSeconds: number) {
 
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
     2,
-    "0"
+    "0",
   )}`;
 }
