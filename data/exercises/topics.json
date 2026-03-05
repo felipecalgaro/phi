@@ -1,0 +1,42 @@
+[
+  {
+    "id": "89596f5c-c451-48b6-8fb2-33c6625c3d37",
+    "name": "Algebraic Expressions"
+  },
+  {
+    "id": "b333ba49-08bc-4695-b4c3-42773a62a0a4",
+    "name": "Quadratic Equations"
+  },
+  { "id": "357a2c73-7610-47a7-99b2-f71245026e2f", "name": "Inequalities" },
+  { "id": "5be6e870-8431-469d-9f6b-8b264d23fea6", "name": "Absolute Value" },
+  {
+    "id": "ca02701d-f997-49c2-953a-cf00692caf28",
+    "name": "Functions and Graphs"
+  },
+  {
+    "id": "ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e",
+    "name": "Systems of Equations"
+  },
+  { "id": "95135a49-2bd5-4ff6-9965-3f7a642acd2b", "name": "Polynomials" },
+  { "id": "5a3f15a9-da4a-4043-bdaf-ac6578136eeb", "name": "Logarithms" },
+  {
+    "id": "60f8e0ed-70d4-401e-b00c-4ccaf3d200d6",
+    "name": "Exponential Equations"
+  },
+  {
+    "id": "99c2943e-42df-47c0-a2b7-047ca48b0f74",
+    "name": "Sequences and Series"
+  },
+  { "id": "a9e62522-31cf-47d1-bb1f-bd52c17a5d40", "name": "Logic" },
+  {
+    "id": "e02a99dc-6194-44b0-8b53-9649a76273b4",
+    "name": "Coordinate Geometry"
+  },
+  { "id": "f47d2d80-0d06-45a7-b617-dff8a6a1a490", "name": "Geometry" },
+  { "id": "d1bc74db-e387-482b-a2b7-99b1a40c2410", "name": "Trigonometry" },
+  { "id": "f904e066-5180-4ed2-b0b6-bbda773237bb", "name": "Matrices" },
+  { "id": "6337270d-bf3a-4659-af08-9c4fb720f155", "name": "Complex Numbers" },
+  { "id": "95dd55c1-bb44-4f53-b3d6-3a72ad53f923", "name": "Limits" },
+  { "id": "e6b87997-b34c-4743-9f34-777b155b1cb6", "name": "Derivatives" },
+  { "id": "7cda66c2-1455-495b-b0ff-d1655eb2742d", "name": "Integrals" }
+]

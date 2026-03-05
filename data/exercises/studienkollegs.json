@@ -1,0 +1,80 @@
+[
+  {
+    "id": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "name": "TUB Studienkolleg",
+    "city": "Berlin",
+    "state": "Berlin"
+  },
+  {
+    "id": "7d9de45a-9335-438a-a2e7-9be4446ae998",
+    "name": "Niedersächsisches Studienkolleg (Hannover)",
+    "city": "Hannover",
+    "state": "Niedersachsen"
+  },
+  {
+    "id": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "name": "Studienkolleg Kaiserslautern",
+    "city": "Kaiserslautern",
+    "state": "Rheinland-Pfalz"
+  },
+  {
+    "id": "ad041261-ba36-442d-b959-d0572f1b2d99",
+    "name": "FH Aachen",
+    "city": "Aachen",
+    "state": "Nordrhein-Westfalen"
+  },
+  {
+    "id": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "name": "KIT Studienkolleg",
+    "city": "Karlsruhe",
+    "state": "Baden-Württemberg"
+  },
+  {
+    "id": "33f6a639-2c4d-4aa1-9f19-1148273bea59",
+    "name": "Studienkolleg München",
+    "city": "München",
+    "state": "Bayern"
+  },
+  {
+    "id": "db3aebf4-def0-484d-bcd4-2dce47a16c52",
+    "name": "Studienkolleg Heidelberg",
+    "city": "Heidelberg",
+    "state": "Baden-Württemberg"
+  },
+  {
+    "id": "ca2fe06c-fdea-4b59-9824-7358c09b4ab7",
+    "name": "Studienkolleg Darmstadt",
+    "city": "Darmstadt",
+    "state": "Hessen"
+  },
+  {
+    "id": "d477b819-7670-495e-a382-9c26795671ee",
+    "name": "FUB Studienkolleg",
+    "city": "Berlin",
+    "state": "Berlin"
+  },
+  {
+    "id": "6f904b25-d434-4a69-af7d-8fdae4e520bb",
+    "name": "Studienkolleg Kassel",
+    "city": "Kassel",
+    "state": "Hessen"
+  },
+  {
+    "id": "be14fa9d-7e26-4238-b2e4-035584b66c4e",
+    "name": "Studienkolleg Mittelhessen (Marburg)",
+    "city": "Marburg",
+    "state": "Hessen"
+  },
+  {
+    "id": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "name": "Studienkolleg Nordhausen",
+    "city": "Nordhausen",
+    "state": "Thüringen"
+  },
+  {
+    "id": "b643c410-b0d9-4e25-85b9-abec292cff28",
+    "name": "Studienkolleg Sachsen (Leipzig)",
+    "city": "Leipzig",
+    "state": "Sachsen"
+  }
+]

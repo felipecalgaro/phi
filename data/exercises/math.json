@@ -1,0 +1,1307 @@
+[
+  {
+    "id": "e36b896c-30aa-46a6-81d6-7da65b24a327",
+    "statement": "Berechnen Sie die erste Ableitung folgender Funktionen (vollständig gekürzt / vereinfacht !): \n\n1. $\\frac{x^2}{\\left(x^2+a^2\\right)^2}$ \n\n2. $x \\cdot \\cos \\left(\\frac{1}{x}\\right)$ \n\n3. $\\arctan (\\ln (\\sqrt{x+1}))$",
+    "publicId": 1,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["e6b87997-b34c-4743-9f34-777b155b1cb6"]
+  },
+  {
+    "id": "a3c1581b-1308-44c5-9034-1a5b5fb24582",
+    "statement": "Bestimmen Sie folgende Integrale exakt. \n\n1. $\\int_1^4 \\frac{x^2 d x}{\\sqrt{x^3-1}}$ [Substitution] \n\n2. $\\int x^2 \\cdot e^{-x} d x$ \n\n3. $\\int x^3 \\cdot \\ln x d x$",
+    "publicId": 2,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["7cda66c2-1455-495b-b0ff-d1655eb2742d"]
+  },
+  {
+    "id": "3b501ebe-bc99-4764-b31a-4e1525052b09",
+    "statement": "Eine Funktion $f$ ist bestimmt durch die Gleichung $f(x)=\\frac{1}{5} x^4+\\frac{3}{x^2}$. Die Ableitung dieser Funktion lautet $f^{\\prime}(x)=$",
+    "publicId": 3,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["e6b87997-b34c-4743-9f34-777b155b1cb6"]
+  },
+  {
+    "id": "5f7ea1a0-799a-492d-a91a-437f23b3823c",
+    "statement": "Berechnen Sie \n\n1. $\\lim _{x \\rightarrow 0} \\frac{e^{2 x}-1-\\sin (2 x)}{x^2-1+\\cos x}$ \n\n2. $\\lim _{x \\rightarrow 0}(\\arctan x)^{\\tan x}$",
+    "publicId": 4,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["95dd55c1-bb44-4f53-b3d6-3a72ad53f923"]
+  },
+  {
+    "id": "2b1dbcc4-2be7-4f6d-a6ff-2d5b34318e02",
+    "statement": "Eine Mutter ist jetzt 6-mal so alt wie ihr Sohn. Vor zwei Jahren war die Mutter 7-mal so alt wie ihr Sohn. Wie alt ist der Sohn jetzt?",
+    "publicId": 5,
+    "year": null,
+    "season": null,
+    "studienkollegId": "ad041261-ba36-442d-b959-d0572f1b2d99",
+    "topicsIds": [
+      "ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e",
+      "a9e62522-31cf-47d1-bb1f-bd52c17a5d40"
+    ]
+  },
+  {
+    "id": "16018bd5-e951-43e3-a0a7-e3adfd417ca1",
+    "statement": "Der Punkt $M$ ist Mittelpunkt der Strecke $[A B]$ und eines Kreises mit Radius $r=\\overline{M A}$. Der Punkt $C$ liegt auf der Kreislinie. $\\alpha$ ist der Innenwinkel des Dreiecks $A B C$ bei der Ecke $A$. Bestimmen Sie auf dem Blatt für Nebenrechnungen den Flächeninhalt des Dreiecks $A B C$ in Abhängigkeit vom Winkel $\\alpha$ und vom Radius $r$! Kreuzen Sie ein richtiges Ergebnis an!",
+    "publicId": 6,
+    "year": 2022,
+    "season": "SUMMER",
+    "studienkollegId": "33f6a639-2c4d-4aa1-9f19-1148273bea59",
+    "topicsIds": ["f47d2d80-0d06-45a7-b617-dff8a6a1a490"]
+  },
+  {
+    "id": "370a3025-9fe4-4eb9-8924-d95c4f4f0fa7",
+    "statement": "Gegeben ist die Funktion $f$ mit $f(x)=\\frac{2 x-2}{x+1}$. Zeichnen Sie den Graphen (das Schaubild) von $f$.",
+    "publicId": 7,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["ca02701d-f997-49c2-953a-cf00692caf28"]
+  },
+  {
+    "id": "a14e9221-a8b2-469e-9294-e7845d0cc242",
+    "statement": "Für welche reellen $x$ gilt $\\frac{2 x}{x-2}>3$ ?",
+    "publicId": 8,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "357a2c73-7610-47a7-99b2-f71245026e2f",
+      "89596f5c-c451-48b6-8fb2-33c6625c3d37"
+    ]
+  },
+  {
+    "id": "b45ff12e-2ae2-4df6-9a53-8fc3b2af75f1",
+    "statement": "Bestimmen Sie $x$ und $y$ für $\\left\\{\\begin{array}{l}2 x+3 y=2 b+25 \\\\ 3 x-2 y=3 b-8\\end{array}\\right.$.",
+    "publicId": 9,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e"]
+  },
+  {
+    "id": "e8ddbe37-af91-497f-bb1e-7db5f584a823",
+    "statement": "$f(x)=2 x^3-x^2-7 x+6$; es gilt $f(-2)=0$. Für welche reellen $x$ gilt $f(x)=0$ ?",
+    "publicId": 10,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "95135a49-2bd5-4ff6-9965-3f7a642acd2b",
+      "ca02701d-f997-49c2-953a-cf00692caf28"
+    ]
+  },
+  {
+    "id": "73779e75-0c21-46ee-97a8-969b74a903b6",
+    "statement": "Bestimmen Sie Definitions- und Lösungsmenge: $\\sqrt{22-2 x}=2+\\sqrt{x+1}$",
+    "publicId": 11,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "cc1d9357-cf3f-4ad6-a793-0799213b3d32",
+    "statement": "Auf der Geraden g mit der Gleichung $\\mathrm{y}=-2 \\mathrm{x}+4$ liegt der Punkt $\\mathrm{P}\\left(\\mathrm{x}_{\\mathrm{p}} \\mid \\mathrm{y}_{\\mathrm{p}}\\right)$. Bestimmen Sie seine Koordinaten $x_p$ und $y_p$ so, daß der Flächeninhalt des eingezeichneten Rechtecks maximal wird.",
+    "publicId": 12,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "95dd55c1-bb44-4f53-b3d6-3a72ad53f923",
+      "e02a99dc-6194-44b0-8b53-9649a76273b4"
+    ]
+  },
+  {
+    "id": "e792101f-9a06-4a4f-9671-3e107586a64a",
+    "statement": "Vereinfachen Sie $\\frac{\\left[\\frac{x^2}{y}+\\frac{y^2+x^2}{x-y}\\right]}{\\frac{x^3}{y^2}+\\frac{y^2}{x+y}-\\frac{x^4}{y^3+x y^2}}=$",
+    "publicId": 13,
+    "year": null,
+    "season": null,
+    "studienkollegId": "d477b819-7670-495e-a382-9c26795671ee",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "e31d91f7-3c48-4f1d-b578-3afa3ce5c542",
+    "statement": "Vereinfachen Sie $\\sqrt{\\frac{x^3 y^{\\frac{2}{3}}(y-x)^2}{x^{\\frac{7}{3}} y^{-5} \\sqrt[3]{y^5 x^8}}}$",
+    "publicId": 14,
+    "year": null,
+    "season": null,
+    "studienkollegId": "d477b819-7670-495e-a382-9c26795671ee",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "285330c4-ee4a-4754-8656-269be93b5e34",
+    "statement": "Wenn $x$ die Lösung von $\\frac{3 x-1}{3 x+1}-2=0$ ist, dann ist $x^2+x=$",
+    "publicId": 15,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "58f99fbe-8aac-4552-8244-baaaa6c7f9e1",
+    "statement": "Wenn $x$ die größte Lösung von $(x+1)\\left(3 x^2-2 x-1\\right)=0$ ist, dann ist $x+\\frac{1}{x}=$",
+    "publicId": 16,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "df2089aa-8a61-4f10-891b-b89d9410be27",
+    "statement": "Das Dualsystem hat nur zwei Ziffern $0$ und $1$. Trotzdem kann man damit jede natürliche Zahl darstellen. Eine Zahl $z$ lautet im Dualsystem $11011$, im Dezimalsystem ist $z=$",
+    "publicId": 17,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["a9e62522-31cf-47d1-bb1f-bd52c17a5d40"]
+  },
+  {
+    "id": "4175bfde-da53-409b-9ad5-a14a5fb803b3",
+    "statement": "Eine Funktion $f$ ist bestimmt durch die Gleichung $f(x)=\\frac{1}{5}x^4+2\\cos(3x)$. Die Ableitung dieser Funktion lautet $f'(x)=$",
+    "publicId": 18,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["e6b87997-b34c-4743-9f34-777b155b1cb6"]
+  },
+  {
+    "id": "92d294a1-3e64-4103-8b66-26361712cc13",
+    "statement": "Die Kurve $y=f(x)=2-x^4$ wird an der Stelle $x=\\frac{1}{2}$ von einer Geraden $y=g(x)$ tangiert. Die Gleichung der Geraden ist $g(x)=$",
+    "publicId": 19,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": [
+      "e6b87997-b34c-4743-9f34-777b155b1cb6",
+      "ca02701d-f997-49c2-953a-cf00692caf28"
+    ]
+  },
+  {
+    "id": "ea1d5bec-afe2-4008-8ea1-ab82d7e406f0",
+    "statement": "Eine Reisegruppe mit fünf Personen plant eine Fahrt durch die Wüste und nimmt Wasser für $14$ Tage mit. Zu Beginn der Reise vergrößert sich die Reisegruppe um zwei Personen. Wie viele Tage reicht das Wasser jetzt?",
+    "publicId": 20,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["a9e62522-31cf-47d1-bb1f-bd52c17a5d40"]
+  },
+  {
+    "id": "46a9383f-6867-452c-bedb-6acd1fcdb61b",
+    "statement": "$2$ Liter Orangensaft mit einem Gehalt von $10\\%$ Zucker und $3$ Liter Orangensaft mit einem Gehalt von $15\\%$ Zucker werden miteinander gemischt. Wie viel Prozent $(\\%)$ Zucker enthält die Mischung?",
+    "publicId": 21,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["a9e62522-31cf-47d1-bb1f-bd52c17a5d40"]
+  },
+  {
+    "id": "48a09068-bcfb-4d84-b788-4e6747bef9bc",
+    "statement": "Sie kaufen neun CDs, sechs DVDs und fünf Blu-Ray-Discs zur Datenspeicherung. Eine CD kostet $50$ Cent, eine DVD einen Euro und eine Blu-Ray-Disc $3{,}90$ Euro. Geben Sie die Menge bzw. die Kosten der CDs, DVDs bzw. Blu-Ray-Discs im Verhältnis zur Gesamtmenge bzw. zu den Gesamtkosten aller Speichermedien in Prozent an.",
+    "publicId": 22,
+    "year": null,
+    "season": null,
+    "studienkollegId": "d477b819-7670-495e-a382-9c26795671ee",
+    "topicsIds": ["a9e62522-31cf-47d1-bb1f-bd52c17a5d40"]
+  },
+  {
+    "id": "0cf069ff-085a-47d1-a1c1-3387f9122ffd",
+    "statement": "Eine dreistellige Zahl besitzt die Quersumme $18$. Zieht man von der ersten Ziffer der Zahl die zweite Ziffer ab, so erhält man die dritte Ziffer. Die zweite Ziffer der Zahl ist doppelt so groß wie die dritte Ziffer. Um welche Zahl handelt es sich?",
+    "publicId": 23,
+    "year": null,
+    "season": null,
+    "studienkollegId": "d477b819-7670-495e-a382-9c26795671ee",
+    "topicsIds": [
+      "a9e62522-31cf-47d1-bb1f-bd52c17a5d40",
+      "ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e"
+    ]
+  },
+  {
+    "id": "18c553b5-11aa-4944-bbcd-36fba82475fc",
+    "statement": "Berechnen Sie \n\na) $12\\left(\\frac{3}{4}+\\frac{1}{8}\\right)=$ \n\nb) $\\frac{24 \\cdot \\frac{35}{18}}{14}=$ \n\nc) $\\frac{\\frac{13}{15}-\\frac{7}{10}}{\\frac{9}{7}-\\frac{5}{3}}=$",
+    "publicId": 24,
+    "year": null,
+    "season": null,
+    "studienkollegId": "d477b819-7670-495e-a382-9c26795671ee",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "b091e889-e191-4aa4-8a42-8a6f95e58472",
+    "statement": "Bestimmen Sie die Lösungen der folgenden Gleichungen: \n\na) $3 x-7=11$ \n\nb) $\\frac{1}{3} \\mathrm{x}^2-\\frac{7}{9} \\mathrm{x}+\\frac{5}{12}=0$ \n\nc) $x^6=-2 x^3$ \n\nd) $\\sqrt{4-6 x}=2 x$",
+    "publicId": 25,
+    "year": null,
+    "season": null,
+    "studienkollegId": "d477b819-7670-495e-a382-9c26795671ee",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "3832a865-03b8-4603-b5b4-3b0cfe2f5a13",
+    "statement": "Berechnen Sie die folgenden Integrale: \n\na) $\\int_{-1}^2 (3 x^2+2 x) dx$ \n\nb) $\\int_{-a}^a \\left(\\frac{3}{17} x^3\\right) dx$",
+    "publicId": 26,
+    "year": null,
+    "season": null,
+    "studienkollegId": "d477b819-7670-495e-a382-9c26795671ee",
+    "topicsIds": ["7cda66c2-1455-495b-b0ff-d1655eb2742d"]
+  },
+  {
+    "id": "64647b61-08fb-4d4c-ad9b-e416d717a7ff",
+    "statement": "Eine Gerade geht durch die Punkte $(2, 3)$ und $(4, 7)$. Bestimmen Sie eine Gleichung der Geraden in der Form $y=ax+b$.",
+    "publicId": 27,
+    "year": null,
+    "season": null,
+    "studienkollegId": "ad041261-ba36-442d-b959-d0572f1b2d99",
+    "topicsIds": ["e02a99dc-6194-44b0-8b53-9649a76273b4"]
+  },
+  {
+    "id": "93374128-2525-4711-b0a2-b8cda7efcdc5",
+    "statement": "Berechnen Sie x: $x=\\ln \\left(\\sqrt{e^{4\\left(\\ln \\left(e^2\\right)+\\ln \\left(e^4\\right)\\right)}}\\right)$",
+    "publicId": 28,
+    "year": null,
+    "season": null,
+    "studienkollegId": "ad041261-ba36-442d-b959-d0572f1b2d99",
+    "topicsIds": [
+      "60f8e0ed-70d4-401e-b00c-4ccaf3d200d6",
+      "5a3f15a9-da4a-4043-bdaf-ac6578136eeb"
+    ]
+  },
+  {
+    "id": "f06046c2-d865-4da9-a824-ac6b05edf15d",
+    "statement": "Vereinfachen Sie den folgenden Term so weit wie möglich und kreuzen Sie hier ein richtiges Ergebnis an! $ \\left(\\frac{1}{a b+b^2}+\\frac{1}{a^2-a b}-\\frac{2}{a^2-b^2}\\right):\\left(b^{-1}-a^{-1}\\right)=$",
+    "publicId": 29,
+    "year": 2022,
+    "season": "SUMMER",
+    "studienkollegId": "33f6a639-2c4d-4aa1-9f19-1148273bea59",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "9b14232b-581f-49b5-b5ac-61aa0c0ac8f5",
+    "statement": "Bestimmen Sie auf dem Blatt für Nebenrechnungen die Lösungsmenge $L$ der folgenden Ungleichung und kreuzen Sie hier ein richtiges Ergebnis an! \n\n$x^2+|x-5|>x+4$",
+    "publicId": 30,
+    "year": 2022,
+    "season": "SUMMER",
+    "studienkollegId": "33f6a639-2c4d-4aa1-9f19-1148273bea59",
+    "topicsIds": [
+      "b333ba49-08bc-4695-b4c3-42773a62a0a4",
+      "357a2c73-7610-47a7-99b2-f71245026e2f",
+      "5be6e870-8431-469d-9f6b-8b264d23fea6"
+    ]
+  },
+  {
+    "id": "a70a2a54-1eea-44e8-a710-37173293a310",
+    "statement": "Bestimmen Sie alle Werte $x\\in[0;2\\pi[$, für die gilt: $2\\sin^2x-3=3\\cos x$",
+    "publicId": 31,
+    "year": 2022,
+    "season": "SUMMER",
+    "studienkollegId": "33f6a639-2c4d-4aa1-9f19-1148273bea59",
+    "topicsIds": [
+      "d1bc74db-e387-482b-a2b7-99b1a40c2410",
+      "b333ba49-08bc-4695-b4c3-42773a62a0a4"
+    ]
+  },
+  {
+    "id": "1095b6ce-564a-4ea4-a52d-c2a474078284",
+    "statement": "Untersuchen Sie, für welche Werte des Parameters $k\\in\\mathbb{R}$ die folgende Gleichung genau zwei reelle Lösungen hat: $x^2-kx+k+3=0$",
+    "publicId": 32,
+    "year": 2022,
+    "season": "SUMMER",
+    "studienkollegId": "33f6a639-2c4d-4aa1-9f19-1148273bea59",
+    "topicsIds": ["b333ba49-08bc-4695-b4c3-42773a62a0a4"]
+  },
+  {
+    "id": "4790ce22-c0d6-4768-bfb9-3858dbe54d5f",
+    "statement": "Berechnen Sie auf dem Blatt für Nebenrechnungen und kreuzen Sie hier ein richtiges Ergebnis an! $3\\left(\\log_{10} 5 + \\log_{6} \\frac{1}{3}\\right) - \\left(\\log_{10} \\frac{5}{4} + \\log_{6} \\frac{4}{3}\\right) =$",
+    "publicId": 33,
+    "year": 2022,
+    "season": "SUMMER",
+    "studienkollegId": "33f6a639-2c4d-4aa1-9f19-1148273bea59",
+    "topicsIds": [
+      "5a3f15a9-da4a-4043-bdaf-ac6578136eeb",
+      "89596f5c-c451-48b6-8fb2-33c6625c3d37"
+    ]
+  },
+  {
+    "id": "da18ab9b-979f-4d4d-ae95-c40dd9db5202",
+    "statement": "Es sei $a \\in \\mathbb R\\setminus\\left\\{0\\right\\}$. Bestimmen Sie (auf diesem Blatt) die Lösungsmenge $L$ der Ungleichung in Abhängigkeit von $a$! \n\n$\\dfrac{x}{x-a} \\le 0$",
+    "publicId": 34,
+    "year": null,
+    "season": null,
+    "studienkollegId": "33f6a639-2c4d-4aa1-9f19-1148273bea59",
+    "topicsIds": ["357a2c73-7610-47a7-99b2-f71245026e2f"]
+  },
+  {
+    "id": "ef64a1ff-0589-4a25-9e53-c7b02437d068",
+    "statement": "Es gilt für den freien Fall eines Körpers ohne Berücksichtigung des Luftwiderstands das Gesetz $s\\left(t\\right) = 4{,}9 t^2$, $t$ in Sekunden, $s\\left(t\\right)$ in Meter.  Berechnen Sie die Geschwindigkeit in $\\left[\\dfrac{m}{s}\\right]$ des Körpers nach den ersten $5s$ auf eine Nachkommastelle genau.",
+    "publicId": 35,
+    "year": 2022,
+    "season": "SUMMER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["e6b87997-b34c-4743-9f34-777b155b1cb6"]
+  },
+  {
+    "id": "9b8ea6ac-7ffc-4098-b9d5-9a86cea81c09",
+    "statement": "Addiert man zwei Zahlen, so erhält man als Summe $72$. Die erste Zahl $x$ ist um $12$ größer als die zweite Zahl $y$. Wie heißen die beiden Zahlen?",
+    "publicId": 36,
+    "year": 2022,
+    "season": "SUMMER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e"]
+  },
+  {
+    "id": "f923b15e-2b17-4f31-923b-c0655cdcd8ed",
+    "statement": "Ein Auto fährt auf der Autobahn von $12:05$ Uhr bis $12:15$ Uhr mit der durchschnittlichen Geschwindigkeit von $120 \\dfrac{km}{h}$. Um $12:15$ Uhr zeigt der Kilometerstand $549 km$ an. Bestimmen Sie, wie hoch der Kilometerstand in $\\left[km\\right]$ um $12:05$ Uhr war. Geben Sie Ihr Ergebnis als ganze Zahl ohne Einheit an.",
+    "publicId": 37,
+    "year": 2022,
+    "season": "SUMMER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["a9e62522-31cf-47d1-bb1f-bd52c17a5d40"]
+  },
+  {
+    "id": "29d82ca6-e666-40b0-9724-4402057305c5",
+    "statement": "Berechnen Sie den folgenden Grenzwert: $\\lim _{x \\rightarrow \\infty} -xe^{-2x}$",
+    "publicId": 38,
+    "year": 2021,
+    "season": "WINTER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["95dd55c1-bb44-4f53-b3d6-3a72ad53f923"]
+  },
+  {
+    "id": "0c5e7d7d-1840-4ecf-883b-a149e2e2f3c3",
+    "statement": "Bestimmen Sie den Anstieg $m$ der Geraden $g: 5x - 4y = -3$",
+    "publicId": 39,
+    "year": 2021,
+    "season": "WINTER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["e02a99dc-6194-44b0-8b53-9649a76273b4"]
+  },
+  {
+    "id": "435f01c0-058a-4305-926b-76459a1d3b0a",
+    "statement": "Berechnen Sie die eingeschlossene Fläche zwischen der Parabel $y = -2x^2 + 8$, der x-Achse und den Grenzen $x = 1$ und $x = 3$. Geben Sie nur die natürliche Zahl in Ziffernform an!",
+    "publicId": 40,
+    "year": 2021,
+    "season": "WINTER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": [
+      "7cda66c2-1455-495b-b0ff-d1655eb2742d",
+      "ca02701d-f997-49c2-953a-cf00692caf28"
+    ]
+  },
+  {
+    "id": "fc131e32-8b4f-496b-834e-47f3dd0ea8e1",
+    "statement": "Die Kerzen $A$, $B$, $C$ und $D$ brennen. Die Funktionsgleichungen geben jeweils die Höhe $h$ (in $cm$) einer Kerze in Abhängigkeit von ihrer Brenndauer $t$ (in Stunden) an. $A: h\\left(t\\right) = -t + 22$ $B: h\\left(t\\right) = -1{,}5t + 30$ $C: h\\left(t\\right) = -0{,}8t + 15$ $D: h\\left(t\\right) = -0{,}8t + 12$ Wie lang ist die Kerze $A$ vor dem Anzünden? Welche Länge hat die Kerze $C$ nach $38$ Stunden? Wann haben Kerze $B$ und Kerze $C$ die gleiche Länge?",
+    "publicId": 41,
+    "year": 2021,
+    "season": "WINTER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["ca02701d-f997-49c2-953a-cf00692caf28"]
+  },
+  {
+    "id": "ba8eb127-fab7-478c-b75e-27860942b7f1",
+    "statement": "Berechnen Sie die eingeschlossene Fläche zwischen der Geraden $y = 2x + 4$, der $x$-Achse und den Grenzen $x = 1$ und $x = 3$. Geben Sie nur die natürliche Zahl in Ziffernform an!",
+    "publicId": 42,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": [
+      "ca02701d-f997-49c2-953a-cf00692caf28",
+      "e02a99dc-6194-44b0-8b53-9649a76273b4"
+    ]
+  },
+  {
+    "id": "06c65a92-2a48-40d3-84cb-69ed37f58eab",
+    "statement": "Geben Sie das nächste Folgeglied an: $\\left(1; 1; 2; 3; 5; 8; \\ldots\\right)$. Geben Sie die natürliche Zahl in Ziffernform an!",
+    "publicId": 43,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["99c2943e-42df-47c0-a2b7-047ca48b0f74"]
+  },
+  {
+    "id": "86f185ff-21fc-47c3-8649-1509534e8aa8",
+    "statement": "Addiert man $3$ zu einer Zahl und multipliziert die Summe mit $4$, so soll sich dasselbe ergeben, wie wenn man zu dem Doppelten der Zahl $24$ addiert. Wie lautet die Zahl? Geben Sie die natürliche Zahl in Ziffernform an!",
+    "publicId": 44,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": [
+      "89596f5c-c451-48b6-8fb2-33c6625c3d37",
+      "a9e62522-31cf-47d1-bb1f-bd52c17a5d40"
+    ]
+  },
+  {
+    "id": "8e79087e-6082-4a33-9d0e-e4b901287d02",
+    "statement": "Gegeben sind die Mengen $A = \\left\\{2; 6; 7; 8\\right\\}$ und $B = \\left\\{1; 3; 6\\right\\}$. Geben Sie die Schnittmenge $C$ und die Vereinigungsmenge $D$ an.",
+    "publicId": 45,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["a9e62522-31cf-47d1-bb1f-bd52c17a5d40"]
+  },
+  {
+    "id": "258b7c51-dda4-4764-865c-409b6af60b31",
+    "statement": "Bestimmen Sie für die folgende Funktion die $1.$ Ableitung: $y = \\ln\\left(x\\right) \\cdot x$",
+    "publicId": 46,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["e6b87997-b34c-4743-9f34-777b155b1cb6"]
+  },
+  {
+    "id": "89922f0d-0f73-4030-a990-3025e06195d6",
+    "statement": "Horst und Helga sind heute zusammen $28$ Jahre alt. Nächstes Jahr ist Horst doppelt so alt wie Helga. Wie alt sind die beiden heute?",
+    "publicId": 47,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e"]
+  },
+  {
+    "id": "facbbbfc-3b23-4276-b8d0-39d3b9429751",
+    "statement": "Vereinfachen Sie soweit wie möglich: $\\dfrac{7^3 \\cdot 12^5 \\cdot 3^7 \\cdot \\left(-5\\right)^4}{27 \\cdot 49^2 \\cdot 6^{10} \\cdot 25^{-2} \\cdot 125^2}$",
+    "publicId": 48,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "779eabbc-8363-49e2-843c-c5f443fa2454",
+    "statement": "Vereinfachen Sie soweit wie möglich: $\\sqrt[3]{\\dfrac{1}{x^2} \\cdot y^2 \\cdot \\sqrt[4]{\\dfrac{2^{10} \\cdot x^7 \\cdot y^{13}}{x^{-3} \\cdot y^9 \\cdot 4^{-1}}}} =$",
+    "publicId": 49,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "773da7dd-4cba-47d0-8a7b-d90d7348c090",
+    "statement": "Vereinfachen Sie soweit wie möglich: $\\dfrac{10}{17} + \\dfrac{\\dfrac{1}{2} - \\dfrac{2}{3} + \\dfrac{3}{4}}{\\dfrac{5}{4} - \\dfrac{4}{3} + \\dfrac{3}{2}} =$",
+    "publicId": 50,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "9f7da3ec-74bc-4d1c-a3b8-fa9737f5a790",
+    "statement": "Zeichnen Sie die Graphen von $f\\left(x\\right) = \\left(x - 1\\right)^2 - 1$ und $g\\left(x\\right) = \\ln\\left(x - 1\\right)$.",
+    "publicId": 51,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": [
+      "ca02701d-f997-49c2-953a-cf00692caf28",
+      "5a3f15a9-da4a-4043-bdaf-ac6578136eeb"
+    ]
+  },
+  {
+    "id": "c9d9545a-324c-4890-bd33-8dc06cb9d6f0",
+    "statement": "Bestimmen Sie die Lösungsmenge $L$: $x + \\sqrt{2 - x} > 2$. $L =$",
+    "publicId": 52,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["357a2c73-7610-47a7-99b2-f71245026e2f"]
+  },
+  {
+    "id": "0ab25866-0660-4b80-8f4b-3fda3939d8dc",
+    "statement": "Vereinfachen Sie soweit wie möglich: $\\dfrac{x^3y - x^2y^2 - x + y}{x - y} =$",
+    "publicId": 53,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "32893de2-7f2d-4d95-9bdb-35a92720b9ec",
+    "statement": "Vereinfachen Sie soweit wie möglich: $\\dfrac{3a^2 + ab - a \\cdot \\left(a - b\\right) - 3ab - b^2 - b \\cdot \\left(b - a\\right)}{a^2 - b^2} =$",
+    "publicId": 54,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "a155cbeb-9e19-4055-96b4-49d898111880",
+    "statement": "Vereinfachen Sie soweit wie möglich: $\\dfrac{n^3 - 6n^2x + 12nx^2 - 8x^3}{n^2 - 4nx + 4x^2} =$",
+    "publicId": 55,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "1f8fc2ed-c728-485a-b0b1-4b99c81188f7",
+    "statement": "Berechnen Sie alle Schnittpunkte von $f\\left(x\\right) = x^2 - 2x - 8$ und $g\\left(x\\right) = 1 - x^2 + x$:",
+    "publicId": 56,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": [
+      "b333ba49-08bc-4695-b4c3-42773a62a0a4",
+      "ca02701d-f997-49c2-953a-cf00692caf28"
+    ]
+  },
+  {
+    "id": "2875e980-fe28-4ea5-b9fe-2f77d7b4cd97",
+    "statement": "Addiert man $16$ zum Vierfachen einer „Zahl $x$“, so erhält man dasselbe, wie wenn man vom Siebenfachen der Zahl $2$ subtrahiert. Berechne die Zahl: $x =$",
+    "publicId": 57,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e"]
+  },
+  {
+    "id": "3ccc8e38-86b6-4fd1-a25d-f5d2800a0705",
+    "statement": "Eine Gerade geht durch die Punkte $A\\left(-1 / -2\\right)$ und $B\\left(\\dfrac{1}{2} / 2\\right)$. Geben Sie ihre Funktionsvorschrift an. $f\\left(x\\right) =$",
+    "publicId": 58,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["e02a99dc-6194-44b0-8b53-9649a76273b4"]
+  },
+  {
+    "id": "3271cf1b-3b2d-469d-9325-7d706248dc7a",
+    "statement": "Zeigen Sie:\n\na) für alle $n \\ge 5:\\ \\sum_{k=3}^{n-2} \\dfrac{k^2}{2^{k+2}} = \\dfrac{9}{8} - \\dfrac{n^2 + 2}{2^n}$\n\nb) für alle $n \\in \\mathbb{N}:\\ 2\\sqrt{n+1} - 2 \\le \\sum_{k=1}^{n} \\dfrac{1}{\\sqrt{k}}$",
+    "publicId": 59,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["99c2943e-42df-47c0-a2b7-047ca48b0f74"]
+  },
+  {
+    "id": "cf65262b-254a-4458-b46b-26c41293cd3f",
+    "statement": "Gegeben ist die (reelle) Funktion $f$ mit $f\\left(x\\right)=\\dfrac{4x}{x^2+4}$. Der Graph von $f$ sei $G$.\n\na) 1. Bestimmen Sie die Koordinaten des Hochpunktes von $G$.\n\n2. Bestimmen Sie die Koordinaten aller Wendepunkte von $G$.\n\n3. Zeichnen Sie sorgfältig den Graphen von $f$ für $|x|<7$.\n\n4. Best. Sie alle Schnittpunkte samt Schnittwinkel der Geraden $h:\\ y=\\dfrac{x}{2}$ mit $G$.\n\nb) Die positive x-Achse, die Gerade $x=2$ und $G$ begrenzen (im ersten Quadranten) die (dreiecksähnliche) Fläche $A$. Bestimmen Sie den Inhalt der Fläche $A$.",
+    "publicId": 60,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "ca02701d-f997-49c2-953a-cf00692caf28",
+      "e02a99dc-6194-44b0-8b53-9649a76273b4"
+    ]
+  },
+  {
+    "id": "3c527802-2921-4be3-bab0-9e16484a80b4",
+    "statement": "a) Bestimmen Sie die Lösung des folgenden Gleichungssystems für $r \\ne 0$:\n\n$3x - 10y + z = 5$\n\n$2x \\ \\ \\ \\ \\ \\ \\ + 2z = r$\n\n$x + ry + z = 2$\n\nb) Welche Lösung hat das obige Gleichungssystem für $r = 0$?\n\nc) Matrix $M = \\left(\\begin{matrix}1 & 1 & b\\\\ 1 & 0 & 1\\\\ b & 1 & 1\\end{matrix}\\right)$, $b \\ne 1$. Bestimmen Sie $M^2$ und $M^{-1}$.",
+    "publicId": 61,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e",
+      "f904e066-5180-4ed2-b0b6-bbda773237bb"
+    ]
+  },
+  {
+    "id": "fb911223-3777-4c51-b801-6ef69e6eac0d",
+    "statement": "Gegeben ist die (reelle) Funktion $f$ mit $f\\left(x\\right) = x^2 \\cdot e^{-x}$. Der Graph von $f$ sei $G$.\n\na) 1. Berechnen Sie $\\lim_{x\\to\\infty} f\\left(x\\right)$.\n\n2. Bestimmen Sie die Koordinaten aller Extrempunkte von $G$.\n\n3. Bestimmen Sie die Koordinaten aller Wendepunkte von $G$.\n\n4. Zeichnen Sie sorgfältig den Graphen von $f$ für $|x| < 5$.\n\nb) Die positive x-Achse und $G$ begrenzen (im ersten Quadranten) die Fläche $A$, die nach rechts ins Unendliche reicht. Bestimmen Sie ihren Inhalt!",
+    "publicId": 62,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "ca02701d-f997-49c2-953a-cf00692caf28",
+      "95dd55c1-bb44-4f53-b3d6-3a72ad53f923",
+      "7cda66c2-1455-495b-b0ff-d1655eb2742d"
+    ]
+  },
+  {
+    "id": "99f392e7-83f8-4e17-b3d6-cfb953d90244",
+    "statement": "Gegeben ist die (reelle) Funktion $g$ mit $g\\left(x\\right)=\\dfrac{2x}{|x|+1}$.\n\na) 1. Bestimmen Sie für den Graphen von $g$ alle Asymptoten.\n\n2. Zeichnen Sie sorgfältig den Graphen von $g$ für $|x| \\le 7$.\n\n3. Skizzieren Sie den Graphen der Umkehrfunktion $g^{-1}$ (im gleiche Diagramm wie der Graph von $g$, anderer Farbe!).\n\n4. Bestimmen Sie alle Schnittpunkte der Graphen von $g$ und $g^{-1}$.\n\nb) 1. Für welche $x \\in \\mathbb{R}$ gilt $g\\left(x\\right) \\le x$?\n\n2. Für welche $x \\in \\mathbb{R}$ gilt $|g\\left(x\\right)| \\le \\dfrac{3}{2}$?",
+    "publicId": 63,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "ca02701d-f997-49c2-953a-cf00692caf28",
+      "357a2c73-7610-47a7-99b2-f71245026e2f",
+      "e02a99dc-6194-44b0-8b53-9649a76273b4"
+    ]
+  },
+  {
+    "id": "8d545e41-9c7a-437b-bdc3-24d0711f403d",
+    "statement": "1. Für welche reellen $x$ gilt $|x+2| < 2x - 1$?\n\n2. Bestimmen Sie $x$ und $y$ für $\\left\\{\\begin{matrix}x - 2y = 5\\\\ 2x + 3y = 3\\end{matrix}\\right.$.",
+    "publicId": 64,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "5be6e870-8431-469d-9f6b-8b264d23fea6",
+      "ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e"
+    ]
+  },
+  {
+    "id": "2f2b5b90-ce09-40f6-9dee-4bdac18938dd",
+    "statement": "1. Bestimmen Sie alle Lösungen der Gleichung $2x^2 + 3x - 20 = 0$.\n\n2. Bestimmen Sie alle Lösungen der Gleichung $x^2 + \\left(2a-1\\right)x - 2a = 0$.",
+    "publicId": 65,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["b333ba49-08bc-4695-b4c3-42773a62a0a4"]
+  },
+  {
+    "id": "accca494-51f3-4bc4-92fc-d1d090bdd095",
+    "statement": "Berechnen Sie $x$: $\\sqrt{8 - 2x} = 4 - \\sqrt{2x + 2}$.",
+    "publicId": 66,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e",
+      "357a2c73-7610-47a7-99b2-f71245026e2f"
+    ]
+  },
+  {
+    "id": "9d481676-c1a9-44ec-84c4-79fc59f0d792",
+    "statement": "1. Berechnen Sie $x$: $2^x = \\dfrac{32}{\\sqrt{8}}$;\n\n2. Berechnen Sie $x$: $x = \\dfrac{\\ln\\left(a^2 \\cdot \\sqrt{a}\\right)}{\\ln a}$.",
+    "publicId": 67,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "60f8e0ed-70d4-401e-b00c-4ccaf3d200d6",
+      "5a3f15a9-da4a-4043-bdaf-ac6578136eeb"
+    ]
+  },
+  {
+    "id": "e3220530-25f2-45bf-9f45-98118ece49c2",
+    "statement": "1. Für welche reellen $x$ gilt $5^{\\left(x^2+\\frac{1}{2}\\right)} = \\sqrt{125}$?\n\n2. Berechnen Sie $x$: $x = \\log_{10}\\left(b\\right) \\cdot \\log_{b}\\left(10\\right)$",
+    "publicId": 68,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "60f8e0ed-70d4-401e-b00c-4ccaf3d200d6",
+      "5a3f15a9-da4a-4043-bdaf-ac6578136eeb"
+    ]
+  },
+  {
+    "id": "e16a2164-e1c4-44d3-acbc-ce26f0627300",
+    "statement": "Gegeben ist die Funktion $f$ mit $f\\left(x\\right) = \\dfrac{2x+2}{x-1}$.\n\nZeichnen Sie den Graphen (das Schaubild) von $f$.",
+    "publicId": 69,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["ca02701d-f997-49c2-953a-cf00692caf28"]
+  },
+  {
+    "id": "5d2fc7bd-c58f-43e8-b7d9-e1c2d4657ef0",
+    "statement": "a) Gegeben ist die Zahlenfolge $\\left(a_n\\right)$ mit $a_n = \\dfrac{n+7}{n^2+3}$, $n \\in \\mathbb{N}$.\n\n1. Berechnen Sie die ersten $7$ Glieder der Folge.\n\n2. Untersuchen Sie $\\left(a_n\\right)$ auf Monotonie, Beschränktheit und Konvergenz.\n\n3. Bestimmen Sie eine Zahl $K$ so, daß für alle $n > K$ gilt: $|a_n| < 0{,}07$ (\"abschätzen\").\n\nb) Untersuchen Sie folgende Zahlenfolgen auf Monotonie, Beschränktheit und Konvergenz (auch Grenzwert, Häufungswert(e), ...).\n\n1. $b_n = \\left(\\dfrac{-e}{\\pi}\\right)^{3n+4}$\n\n2. $d_n = \\dfrac{4n}{3 + 2 \\cdot n \\cdot \\cos\\left(n \\cdot \\pi\\right)}$",
+    "publicId": 70,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "99c2943e-42df-47c0-a2b7-047ca48b0f74",
+      "95dd55c1-bb44-4f53-b3d6-3a72ad53f923",
+      "60f8e0ed-70d4-401e-b00c-4ccaf3d200d6"
+    ]
+  },
+  {
+    "id": "f68acc5e-684a-4066-b82e-166e98a13435",
+    "statement": "Gegeben ist die (reelle) Funktion $f$ mit $f\\left(x\\right) = \\dfrac{x^3}{3} + x^2 + \\dfrac{1}{3}$. Der Graph von $f$ sei $G$.\n\na) 1. Bestimmen Sie die Koordinaten aller Extrempunkte von $G$ (Art und Nachweis!).\n\n2. Bestimmen Sie die Koordinaten aller Wendepunkte von $G$.\n\n3. Zeichnen Sie sorgfältig den Graphen von $f$ für $|x| < 5$.\n\n4. $n$ sei die Normale in $P\\left(-1|1\\right)$. Finden Sie alle Schnittp. von $n$ und $G$ samt Winkel.\n\nb) Die Koordinatenachsen, die Gerade $x = 1$ und $G$ begrenzen (im ersten Quadranten) die Fläche $A$. Bestimmen Sie ihren Inhalt!",
+    "publicId": 71,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "ca02701d-f997-49c2-953a-cf00692caf28",
+      "e6b87997-b34c-4743-9f34-777b155b1cb6",
+      "7cda66c2-1455-495b-b0ff-d1655eb2742d"
+    ]
+  },
+  {
+    "id": "61b726a6-08ba-4413-9f0f-694723533ff7",
+    "statement": "Im Euklidischen Raum sind die Ebenen $E_1: \\left(\\begin{matrix}2\\\\-1\\\\2\\end{matrix}\\right) \\cdot \\vec{x} = 0$ und $E_2: \\vec{x} = r\\left(\\begin{matrix}0\\\\0\\\\1\\end{matrix}\\right) + s\\left(\\begin{matrix}1\\\\2\\\\0\\end{matrix}\\right)$\n\nsowie die Geraden $g_q: \\vec{x} = \\left(\\begin{matrix}0\\\\0\\\\1\\end{matrix}\\right) + t\\left(\\begin{matrix}1\\\\2\\\\-q\\end{matrix}\\right)$ und $k: \\vec{x} = u\\left(\\begin{matrix}1\\\\2\\\\0\\end{matrix}\\right)$ gegeben.\n\na) 1. Bestimmen Sie (für ein bestimmtes $q$) den Schnittpunkt $S_q$ von $g_q$ und $E_1$.\n\n2. Zeigen Sie, daß $S_q$ auf $k$ liegt.\n\n3. Für welchen Wert von $q$ ist $g_q$ parallel zu $E_1$?\n\nb) 1. Zeigen Sie, daß alle Geraden $g_q$ in $E_2$ liegen.\n\n2. Welchen Winkel bilden $E_1$ und $E_2$?\n\n3. Bestimmen Sie die Gleichung der Schnittgeraden $h$ von $E_1$ und $E_2$.\n\n4. Welche gegenseitige Lage haben $h$ und $k$?\n\nc) 1. Welchen Abstand hat $g_0$ von $E_1$?\n\n2. Welchen Abstand haben $g_0$ und $k$?",
+    "publicId": 72,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "e02a99dc-6194-44b0-8b53-9649a76273b4",
+      "a9e62522-31cf-47d1-bb1f-bd52c17a5d40"
+    ]
+  },
+  {
+    "id": "57f0036a-4e74-4695-8ca4-dc5201f2c2e6",
+    "statement": "Differenzieren Sie folgende Funktionen zweimal, d. h. berechnen Sie $f'$ und $f''$.\n\n1. $f\\left(x\\right) = 4x^5 + 3x^2 - \\dfrac{7}{x}$;\n\n2. $f\\left(x\\right) = \\dfrac{2x-1}{x^2+1}$;\n\n3. $f\\left(x\\right) = e^{\\tan x}$.",
+    "publicId": 73,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["e6b87997-b34c-4743-9f34-777b155b1cb6"]
+  },
+  {
+    "id": "fb652490-7b18-4c4e-88c0-7df884c28d81",
+    "statement": "Differenzieren Sie folgende Funktionen zweimal, d. h. berechnen Sie $f'$ und $f''$.\n\n9.1 $f\\left(x\\right) = 5x^7 + bx^3 - \\dfrac{7}{x} + \\dfrac{8}{x^2}$;\n\n9.2 $f\\left(x\\right) = \\dfrac{2x^2}{x^2-1}$;\n\n9.3 $f\\left(x\\right) = \\ln\\left(\\sin x\\right)$.",
+    "publicId": 74,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["e6b87997-b34c-4743-9f34-777b155b1cb6"]
+  },
+  {
+    "id": "18dcd72a-fdd8-4fed-ad27-b7fc2aead6cd",
+    "statement": "Wenn $x^2 - y^2 = 1$ und $x + y = 2$, dann ist $x - y =$",
+    "publicId": 75,
+    "year": 2011,
+    "season": "SUMMER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "0b53925a-7b7a-419b-a44e-dfa496b70ca2",
+    "statement": "Wenn $x$ die Lösung von $\\dfrac{2}{x+1}=\\dfrac{3}{x-2}$ ist, dann ist $x^2-1 =$",
+    "publicId": 76,
+    "year": 2011,
+    "season": "SUMMER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "336672af-edad-4544-bb80-b6bbb07fed98",
+    "statement": "Wenn $x_1$ und $x_2$ die Lösungen von $\\dfrac{12}{x-1} = 2x$ sind, dann ist $x_1 \\cdot x_2 =$",
+    "publicId": 77,
+    "year": 2011,
+    "season": "SUMMER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "f7b3b8aa-598a-4887-8b01-87a54ffaf2d3",
+    "statement": "Auf einem Blatt sitzen Käfer mit 7 oder 2 Punkten. Insgesamt sind es 10 Käfer und 40 Punkte.\n\nWenn $s$ die Zahl der Käfer mit 7 Punkten und $z$ die Zahl der Käfer mit 2 Punkten ist, dann ist $s - z =$",
+    "publicId": 78,
+    "year": 2011,
+    "season": "SUMMER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e"]
+  },
+  {
+    "id": "6c0e89c4-3cba-4cf9-a936-26162c75a1fd",
+    "statement": "In einem Kondensator beträgt die elektrische Feldstärke $E = 10^4\\ \\dfrac{\\mathrm{V}}{\\mathrm{m}}$.\n\nWelchen Wert hat $E$ in der Einheit $\\dfrac{\\mathrm{kV}}{\\mathrm{cm}}$?",
+    "publicId": 79,
+    "year": 2011,
+    "season": "SUMMER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["f904e066-5180-4ed2-b0b6-bbda773237bb"]
+  },
+  {
+    "id": "1202e9cd-1746-4f57-bd14-e6fb196d8024",
+    "statement": "$\\dfrac{\\cos 30^\\circ}{\\sin 30^\\circ}=$",
+    "publicId": 80,
+    "year": 2011,
+    "season": "SUMMER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["h4i5j6k7-l8m9-0n1o-2p3q-r4s5t6u7v8w9"]
+  },
+  {
+    "id": "2fbc220e-75da-4708-9f58-62a1df9e9ad2",
+    "statement": "2 Maschinen produzieren in 3 Stunden 300 Kunststoffbecher.\n\nWie viele Kunststoffbecher produzieren 3 Maschinen in 5 Stunden?",
+    "publicId": 81,
+    "year": 2011,
+    "season": "SUMMER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["f904e066-5180-4ed2-b0b6-bbda773237bb"]
+  },
+  {
+    "id": "8aa50f42-270c-4b41-a009-ad925d2285fd",
+    "statement": "Im Jahr 2007 beträgt die Mehrwertsteuer $15\\%$. In diesem Jahr kostet ein Auto einschließlich Mehrwertsteuer 11.500,- €.\n\nIm Jahr 2008 wird die Mehrwertsteuer auf $17\\%$ erhöht.\n\nWie viel kostet das Auto im Jahr 2008?",
+    "publicId": 82,
+    "year": 2011,
+    "season": "SUMMER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["f904e066-5180-4ed2-b0b6-bbda773237bb"]
+  },
+  {
+    "id": "923af6d7-9f40-4f24-9458-8b01b76f2c34",
+    "statement": "Eine Funktion $f$ ist gegeben durch $f(x)=-(x+1)^2+3$.\n\na) Bestimmen Sie die Nullstellen $f(x)=0$.\n\nb) Zeichnen Sie den Graph $y=f(x)$.",
+    "publicId": 83,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": [
+      "ca02701d-f997-49c2-953a-cf00692caf28",
+      "b333ba49-08bc-4695-b4c3-42773a62a0a4"
+    ]
+  },
+  {
+    "id": "d7253ed4-2a96-4e98-a5f5-d791111cb379",
+    "statement": "Die ersten vier Zahlen einer Zahlenfolge sind $(a_n)=2,-6,18,-54,\\dots$.\n\nWie heißt die fünfte Zahl?",
+    "publicId": 84,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["99c2943e-42df-47c0-a2b7-047ca48b0f74"]
+  },
+  {
+    "id": "c2a9a411-fb1d-45ff-83b2-0c092f6ba586",
+    "statement": "Ein Hotel hat Zimmer mit einem oder mit zwei Betten. Insgesamt gibt es $19$ Zimmer und $31$ Betten. Wenn $e$ die Zahl der Zimmer mit einem Bett und $z$ die Zahl der Zimmer mit zwei Betten ist, dann ist $e-z=$",
+    "publicId": 85,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e"]
+  },
+  {
+    "id": "1f854099-3dea-42ff-ab12-250e4cee91a0",
+    "statement": "Eisen $(\\mathrm{Fe})$ hat die Dichte $\\rho=7{,}87\\,\\mathrm{g\\,cm^{-3}}$. Welchen Wert hat $\\rho$ in der Einheit $\\mathrm{kg\\cdot m^{-3}}$?",
+    "publicId": 86,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "72ca0587-4cbe-4685-8243-f71dabf643dd",
+    "statement": "Bestimmen Sie zwei Zahlen so, dass ihre Summe $25$ und ihr Quotient $\\frac{3}{2}$ ist.",
+    "publicId": 87,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": [
+      "ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e",
+      "89596f5c-c451-48b6-8fb2-33c6625c3d37"
+    ]
+  },
+  {
+    "id": "46403f2f-674a-4d84-af92-0dd38c461e23",
+    "statement": "Bestimmen Sie die Lösung $x$ der Gleichung $\\frac{8}{2-x}+1=3$.",
+    "publicId": 88,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": [
+      "ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e",
+      "89596f5c-c451-48b6-8fb2-33c6625c3d37"
+    ]
+  },
+  {
+    "id": "84f802e7-26eb-4175-be74-75bc67df97f1",
+    "statement": "Berechnen Sie:\n\n$\\log_2\\left(\\frac{3}{8}\\right)-\\log_2(3)=$",
+    "publicId": 89,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["5a3f15a9-da4a-4043-bdaf-ac6578136eeb"]
+  },
+  {
+    "id": "fdb69941-52f4-4019-b90a-a5da17a697a7",
+    "statement": "Berechnen Sie:\n\n$\\frac{\\sqrt{4}\\cdot 5^3\\cdot 5^{1/2}}{2\\cdot 5^{-1}}=$",
+    "publicId": 90,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "ac455e1f-5801-4ad4-8aba-fe87dafb93b7",
+    "statement": "Berechnen Sie für die Funktion $f(x)=4x^3+2\\sin(x)$\n\na) die erste Ableitung $f'(x)$,\n\nb) die zweite Ableitung $f''(x)$.",
+    "publicId": 91,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["e6b87997-b34c-4743-9f34-777b155b1cb6"]
+  },
+  {
+    "id": "2014e31d-1bc2-4c46-95ea-55b56bc928c7",
+    "statement": "Berechnen Sie für die komplexen Zahlen $z_1=1+2i$ und $z_2=2-3i$\n\na) die Summe $z_1+z_2$,\n\nb) das Produkt $z_1\\cdot z_2$.",
+    "publicId": 92,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["6337270d-bf3a-4659-af08-9c4fb720f155"]
+  },
+  {
+    "id": "f36864a4-d0e5-4447-ae2f-bebee36a2949",
+    "statement": "Zwei Vektoren haben die Koordinaten $\\vec{a}=\\begin{pmatrix}-2\\\\-3\\\\1\\end{pmatrix}$ und $\\vec{b}=\\begin{pmatrix}3\\\\-1\\\\2\\end{pmatrix}$. Berechnen Sie\n\na) die Vektorsumme $\\vec{a}+\\vec{b}$,\n\nb) das Skalarprodukt $\\vec{a}\\cdot\\vec{b}$.",
+    "publicId": 93,
+    "year": 2007,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["e02a99dc-6194-44b0-8b53-9649a76273b4"]
+  },
+  {
+    "id": "5cbc9421-409e-4671-9815-730566845208",
+    "statement": "Zeichnen Sie die Lösungsmenge der Ungleichung $|x-1|\\leq 2$ auf der Zahlengerade ein:",
+    "publicId": 94,
+    "year": 2005,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": [
+      "357a2c73-7610-47a7-99b2-f71245026e2f",
+      "5be6e870-8431-469d-9f6b-8b264d23fea6"
+    ]
+  },
+  {
+    "id": "d0191ff9-c0af-4984-8c21-d59c0c2ece33",
+    "statement": "In zwei Läden haben $2\\,\\mathrm{kg}$ Bananen folgende Preise:\n\nLaden A: 2,00 Euro\n\nLaden B: 1,60 Euro\n\na) Wieviel Prozent $(\\%)$ sind die Bananen im Laden A teurer als im Laden B?\n\nb) Wieviel Prozent $(\\%)$ sind die Bananen im Laden B billiger als im Laden A?",
+    "publicId": 95,
+    "year": 2005,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "45f0d95d-cb9d-453f-8c81-f28825b9c1ec",
+    "statement": "Bestimmen Sie für die Mengen $A=\\{1,-2,3,4\\}$ und $B=\\{5,-4,3\\}$\n\na) die Vereinigungsmenge $A\\cup B$,\n\nb) die Schnittmenge $A\\cap B$.",
+    "publicId": 96,
+    "year": 2005,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["a9e62522-31cf-47d1-bb1f-bd52c17a5d40"]
+  },
+  {
+    "id": "9342e25e-ad0d-4260-9331-a68eca579afd",
+    "statement": "Auf einem Bankkonto befinden sich am Anfang $10.000$ Euro. Die Bank zahlt pro Jahr $5\\%$ Zinsen auf das Bankkonto.\n\nWieviel Euro befinden sich nach zwei Jahren auf dem Bankkonto?",
+    "publicId": 97,
+    "year": 2005,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["60f8e0ed-70d4-401e-b00c-4ccaf3d200d6"]
+  },
+  {
+    "id": "40e5d667-4345-4118-8723-9af819c450d4",
+    "statement": "Berechnen Sie das Matrixprodukt:\n\n$\\begin{pmatrix}1&2\\\\-2&1\\end{pmatrix}\\cdot\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}=$",
+    "publicId": 98,
+    "year": 2005,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["f904e066-5180-4ed2-b0b6-bbda773237bb"]
+  },
+  {
+    "id": "1bd8d2e9-6553-487f-a875-53ed93d0ad55",
+    "statement": "Berechnen Sie für die Funktion $f(x)=4x^3+\\frac{3}{x^2}$\n\na) die erste Ableitung $f'(x)$,\n\nb) die zweite Ableitung $f''(x)$.",
+    "publicId": 99,
+    "year": 2005,
+    "season": "WINTER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["e6b87997-b34c-4743-9f34-777b155b1cb6"]
+  },
+  {
+    "id": "6c7fca79-c7aa-4fe1-b857-ffa16930f15c",
+    "statement": "Wir definieren die Folge $fac(0), fac(1), fac(2), \\ldots$ so:\n\nWenn $fac(n)=\\begin{cases}1 & \\text{für } n=0\\\\ n\\cdot fac(n-1) & \\text{für } n\\ge 1\\end{cases}$,\n\ndann $fac(3)=$",
+    "publicId": 100,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["99c2943e-42df-47c0-a2b7-047ca48b0f74"]
+  },
+  {
+    "id": "3ac3178e-4df8-41d4-98a2-1e56c325993a",
+    "statement": "Wenn $f(x)=2x^x$, dann ist die Ableitung $f'(x)=a\\,x^x\\,(\\ln(x)+b)$ mit $a+b=$",
+    "publicId": 101,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": [
+      "e6b87997-b34c-4743-9f34-777b155b1cb6",
+      "5a3f15a9-da4a-4043-bdaf-ac6578136eeb"
+    ]
+  },
+  {
+    "id": "ca9ccd19-5742-4872-a030-bb7cccdc5fc1",
+    "statement": "Eine Krankheit breitet sich ungehindert aus auf einem Kreuzfahrtschiff, das in Quarantäne liegt. Jeden Tag gebe es doppelt so viele Kranke wie am Vortage. Nach $11$ Tagen sei die Hälfte aller Menschen auf dem Schiff krank.\n\nDann sind nach mindestens wieviel Tagen alle Menschen auf dem Schiff krank?",
+    "publicId": 102,
+    "year": 2021,
+    "season": "SUMMER",
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["60f8e0ed-70d4-401e-b00c-4ccaf3d200d6"]
+  },
+  {
+    "id": "b0de110d-0584-4686-8695-eb0edd880e39",
+    "statement": "Für positive reelle Zahlen $C$ und $R$ ist die Gleichung\n\n$R\\,q'(t)+\\frac{1}{C}\\,q(t)=0$\n\nlösbar durch die Funktion $q(t)=K$ mit der Konstanten $K=$",
+    "publicId": 103,
+    "year": null,
+    "season": null,
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": [
+      "60f8e0ed-70d4-401e-b00c-4ccaf3d200d6",
+      "e6b87997-b34c-4743-9f34-777b155b1cb6"
+    ]
+  },
+  {
+    "id": "65fbc9c4-d80a-4bc8-b2ac-474dcf414b8f",
+    "statement": "$f(x)=2x\\,e^{3x+4}$\n\ndann ist die Ableitung\n\n$f'(x)=(a+bx)\\,e^{3x+4}$\n\nmit $a+b=$",
+    "publicId": 104,
+    "year": null,
+    "season": null,
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": [
+      "e6b87997-b34c-4743-9f34-777b155b1cb6",
+      "60f8e0ed-70d4-401e-b00c-4ccaf3d200d6"
+    ]
+  },
+  {
+    "id": "90828f2f-3193-483e-a097-cde75981b1c0",
+    "statement": "Der Mast eines Segelbootes werfe einen waagrechten Schatten. Dessen Länge hängt ab vom Stand der Sonne. Um wie viel Grad steht die Sonne über dem Horizont, wenn der Schatten genauso lang ist wie der Mast?",
+    "publicId": 105,
+    "year": null,
+    "season": null,
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": [
+      "f47d2d80-0d06-45a7-b617-dff8a6a1a490",
+      "d1bc74db-e387-482b-a2b7-99b1a40c2410"
+    ]
+  },
+  {
+    "id": "5f9a1372-fc70-49b5-a6fe-a414c7da7d79",
+    "statement": "$\\lim\\limits_{n\\to\\infty}\\left(\\sqrt{4n^2+n}-2n\\right)=\\frac{1}{a}$\n\n$a=$",
+    "publicId": 106,
+    "year": null,
+    "season": null,
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["95dd55c1-bb44-4f53-b3d6-3a72ad53f923"]
+  },
+  {
+    "id": "b8c83105-953a-4fb9-8f1a-c2d9aea20103",
+    "statement": "Ein Polynom fünften Grades hat folgende Eigenschaften:\n\n• Der Graph ist symmetrisch zum Nullpunkt.\n\n• $W(-1\\mid k)$ ist Wendepunkt mit der Tangentensteigung $m=3$.\n\nBestimmen Sie $f(x)$ (4 Punkte).",
+    "publicId": 107,
+    "year": null,
+    "season": null,
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": [
+      "ca02701d-f997-49c2-953a-cf00692caf28",
+      "e6b87997-b34c-4743-9f34-777b155b1cb6"
+    ]
+  },
+  {
+    "id": "2ea634d9-a955-48f6-94c1-4d2b9102473a",
+    "statement": "$\\int_{1}^{e}\\frac{2}{x}\\,dx=$",
+    "publicId": 108,
+    "year": null,
+    "season": null,
+    "studienkollegId": "740c8bd3-3b7a-49cd-a9ce-0592ddd65f14",
+    "topicsIds": ["7cda66c2-1455-495b-b0ff-d1655eb2742d"]
+  },
+  {
+    "id": "f78c75b7-912a-443f-8f98-5ca9ace02843",
+    "statement": "Für welche $x\\in[0;2\\pi]$ in $y=\\frac{1}{\\sqrt{\\cos x}}$ existiert ein $y\\in\\mathbb{R}$?",
+    "publicId": 109,
+    "year": null,
+    "season": null,
+    "studienkollegId": "b643c410-b0d9-4e25-85b9-abec292cff28",
+    "topicsIds": [
+      "d1bc74db-e387-482b-a2b7-99b1a40c2410",
+      "ca02701d-f997-49c2-953a-cf00692caf28"
+    ]
+  },
+  {
+    "id": "9c7cf877-a36f-46b1-8f45-68e68310ad5b",
+    "statement": "Lösen Sie die folgenden Integrale!\n\n$\\int\\left(x^2+e^x-\\frac{1}{x}\\right)\\,dx$\n\n$\\int_{-1}^{1} x^2\\,dx=\\frac{2}{3}$",
+    "publicId": 110,
+    "year": null,
+    "season": null,
+    "studienkollegId": "b643c410-b0d9-4e25-85b9-abec292cff28",
+    "topicsIds": [
+      "7cda66c2-1455-495b-b0ff-d1655eb2742d",
+      "5a3f15a9-da4a-4043-bdaf-ac6578136eeb"
+    ]
+  },
+  {
+    "id": "70a2970e-c99d-4ea8-8668-aca8efc39e5e",
+    "statement": "Lösen Sie die Gleichung $R_0\\cdot q^n=r\\cdot\\frac{q^n-1}{q-1}$ nach $n$ auf!",
+    "publicId": 111,
+    "year": null,
+    "season": null,
+    "studienkollegId": "b643c410-b0d9-4e25-85b9-abec292cff28",
+    "topicsIds": [
+      "60f8e0ed-70d4-401e-b00c-4ccaf3d200d6",
+      "5a3f15a9-da4a-4043-bdaf-ac6578136eeb"
+    ]
+  },
+  {
+    "id": "836f3b9e-3057-4e38-b8b4-dd29bbf78464",
+    "statement": "Wenn Famke ihr Mobiltelefon lädt, lädt es $2\\%$ pro Minute. Wenn Famke ihr Mobile benutzt, entlädt es sich mit $5\\%$ pro Minute.\n\nFamke hat einmal ihr Mobiltelefon für eine gewisse Zeitdauer benutzt und danach doppelt so lange geladen. Zum Schluss ist ihr Mobiltelefon $10\\%$ weniger geladen.\n\nWie lange hat Famke ihr Mobiltelefon benutzt und wie lange hat sie es geladen?",
+    "publicId": 112,
+    "year": null,
+    "season": null,
+    "studienkollegId": "7d9de45a-9335-438a-a2e7-9be4446ae998",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "560818b1-b872-4c69-a3ed-7167432f6b14",
+    "statement": "Ermitteln Sie die Grenzwerte:\n\n$\\lim\\limits_{n\\to\\infty}\\left(\\frac{n^4-1}{2-n^4}\\right)=$\n\n$\\lim\\limits_{n\\to\\infty}\\left(\\frac{2n}{n^2+1}\\right)=$\n\n$\\lim\\limits_{n\\to\\infty}\\left((-n)^{-1}\\right)=$\n\n$\\lim\\limits_{n\\to\\infty}\\left(5+\\frac{2}{\\sqrt[3]{n}}\\right)=$\n\n$\\lim\\limits_{n\\to\\infty}\\left(\\frac{n^2(2-n)}{n^3(n-1)}\\right)=$\n\n$\\lim\\limits_{n\\to\\infty}\\left(\\frac{3\\sqrt{n}+9}{15\\sqrt{n}-4}\\right)=$",
+    "publicId": 113,
+    "year": 2022,
+    "season": "SUMMER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["95dd55c1-bb44-4f53-b3d6-3a72ad53f923"]
+  },
+  {
+    "id": "6542d213-f792-403b-afb5-45d25b8fd0f7",
+    "statement": "Wenn ein Bestand sich um jährlich $5\\%$ vermehrt, dann vermehrt er sich in $10$ Jahren um $50\\%$.\n\nStimmt das?",
+    "publicId": 114,
+    "year": 2021,
+    "season": "WINTER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["60f8e0ed-70d4-401e-b00c-4ccaf3d200d6"]
+  },
+  {
+    "id": "74898c4a-98e9-45dd-b972-5a4e4b1ff310",
+    "statement": "In einem gleichschenkligen Trapez sind die parallelen Seiten $a=13\\,\\mathrm{cm}$ und $c=7\\,\\mathrm{cm}$ lang. Sein Umfang $u=30\\,\\mathrm{cm}$. Berechnen Sie die Länge der Schenkel des Trapezes in cm.",
+    "publicId": 115,
+    "year": 2020,
+    "season": "WINTER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": [
+      "d1bc74db-e387-482b-a2b7-99b1a40c2410",
+      "ca02701d-f997-49c2-953a-cf00692caf28"
+    ]
+  },
+  {
+    "id": "12edfcf7-2b51-4bba-9541-d1164802d059",
+    "statement": "Ein Bauer erntete im vorigen Jahr $1{,}50\\,t$ Kartoffeln und in diesem Jahr wegen des besonders guten Wetter $2{,}10\\,t$ Kartoffeln. Um wie viel $\\%$ ist die Ernte gestiegen?",
+    "publicId": 116,
+    "year": 2020,
+    "season": "WINTER",
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "6402a3f4-ac53-4935-9a67-68a710bb0d1e",
+    "statement": "Vereinfachen Sie die Terme $(a,x,y\\ge 0,\\ y\\ne\\{0;1\\})$\n\n$T_1:\\ \\frac{y+1}{y^2-y}-\\frac{y-1}{y^2+y}+\\frac{1}{y}+\\frac{4}{y^2-1}$",
+    "publicId": 117,
+    "year": null,
+    "season": null,
+    "studienkollegId": "8e3c896a-82c3-41cc-ba7b-8216bad163db",
+    "topicsIds": ["89596f5c-c451-48b6-8fb2-33c6625c3d37"]
+  },
+  {
+    "id": "c8cbbb80-90d8-4c68-a09a-c020a9fe7da0",
+    "statement": "Geben Sie zwei weitere Folgeglieder und den Grenzwert der Folge an.\n\n$(a_n)_{n\\in\\mathbb{N}}=\\left\\{\\frac{2}{7},\\frac{3}{10},\\frac{4}{13},\\ldots\\right\\}$\n\n$\\lim\\limits_{n\\to\\infty}(a_n)=$",
+    "publicId": 118,
+    "year": 2020,
+    "season": "WINTER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": [
+      "99c2943e-42df-47c0-a2b7-047ca48b0f74",
+      "95dd55c1-bb44-4f53-b3d6-3a72ad53f923"
+    ]
+  },
+  {
+    "id": "c15f321a-35a5-44e5-a4a0-60a2b8cdcefd",
+    "statement": "Bestimmen Sie die Lösungsmenge $L$:\n\n$\\frac{2x+1}{x-1}\\ge 2$.",
+    "publicId": 119,
+    "year": 2019,
+    "season": "WINTER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["357a2c73-7610-47a7-99b2-f71245026e2f"]
+  },
+  {
+    "id": "3ef91329-841b-4a91-8d9e-53b0175269bf",
+    "statement": "Bei einer archäologischen Grabung wird eine Mumie gefunden. Sie enthält $25\\%$ der $C^{14}$-Atome im Vergleich zu einem lebenden Menschen. Wir wissen, dass $C^{14}$ exponentiell zerfällt: $N(t)=N(0)\\cdot e^{-kt}$, $k>0$. Alle $5730$ Jahre zerfallen $50\\%$ der jeweils vorhandenen $C^{14}$-Atome.\n\nDie Mumie wurde vor ________ Jahren vergraben.",
+    "publicId": 120,
+    "year": 2019,
+    "season": "WINTER",
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["60f8e0ed-70d4-401e-b00c-4ccaf3d200d6"]
+  },
+  {
+    "id": "9c846567-9c76-42bb-b529-4a2f9a076426",
+    "statement": "Es sei $G=\\{0,2,4,6,\\ldots\\}$, $U=\\{1,3,5,\\ldots\\}$, $V=\\{4,8,12,\\ldots\\}$. Bilden Sie $\\mathbb{N}\\setminus G$, $\\mathbb{N}\\setminus U$, $\\mathbb{N}\\setminus V$, $G\\setminus V$, $U\\setminus U$.",
+    "publicId": 121,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["a9e62522-31cf-47d1-bb1f-bd52c17a5d40"]
+  },
+  {
+    "id": "258342cd-1a82-4682-bdb0-ea7335277d81",
+    "statement": "Es sei $A=\\{3,6,12,24,48\\}$, $B=\\{4,8,12,16,\\ldots,60\\}$ und $P$ die Menge aller Primzahlen. Bestimmen Sie:\n\na) $A\\cap B$\n\nb) $A\\cap P$\n\nc) $A\\cap \\mathbb{N}$\n\nd) $B\\cap P$\n\ne) $B\\cap \\mathbb{N}$\n\nf) $P\\cap \\mathbb{N}$",
+    "publicId": 122,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a0cacd91-9143-49df-972a-20ebea1f60d6",
+    "topicsIds": ["a9e62522-31cf-47d1-bb1f-bd52c17a5d40"]
+  },
+  {
+    "id": "c7d4e2f1-3a8b-4c9d-b5e6-7f0a1b2c3d4e",
+    "statement": "Bestimmen Sie alle reellen Lösungen der Gleichung $x^2 + (2a - 1) \\cdot x - 2a = 0$.",
+    "publicId": 123,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "b333ba49-08bc-4695-b4c3-42773a62a0a4",
+      "89596f5c-c451-48b6-8fb2-33c6625c3d37"
+    ]
+  },
+  {
+    "id": "f3a1b2c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+    "statement": "$|x + 2| < 2x - 1$ gilt für $a < x < b$",
+    "publicId": 124,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "357a2c73-7610-47a7-99b2-f71245026e2f",
+      "5be6e870-8431-469d-9f6b-8b264d23fea6"
+    ]
+  },
+  {
+    "id": "a1b2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6",
+    "statement": "Lösen Sie die folgenden Ungleichungen:\n\na) $(3 - x) \\cdot (2 - x) < 1 + x$\n\nb) $(3 - x) \\cdot |2 - x| < 1 + x$\n\nc) $3 - x < \\dfrac{1 + x}{2 - x}$",
+    "publicId": 125,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "357a2c73-7610-47a7-99b2-f71245026e2f",
+      "5be6e870-8431-469d-9f6b-8b264d23fea6"
+    ]
+  },
+  {
+    "id": "b7e3f1a2-c4d5-6e7f-8a9b-0c1d2e3f4a5b",
+    "statement": "Bestimmen Sie $A$, $B$, $C$ so, dass gilt: $1 + \\dfrac{1}{1 - \\dfrac{3}{2 + \\dfrac{1}{3 + x}}} = \\dfrac{A \\cdot x + B}{C \\cdot x - 2}$",
+    "publicId": 126,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "89596f5c-c451-48b6-8fb2-33c6625c3d37",
+      "95135a49-2bd5-4ff6-9965-3f7a642acd2b"
+    ]
+  },
+  {
+    "id": "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
+    "statement": "Bestimmen Sie alle reellen Lösungen der Gleichung $\\sqrt{8 - 2x} = 4 - \\sqrt{2x + 2}$.",
+    "publicId": 127,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "89596f5c-c451-48b6-8fb2-33c6625c3d37",
+      "b333ba49-08bc-4695-b4c3-42773a62a0a4"
+    ]
+  },
+  {
+    "id": "e9f0a1b2-c3d4-5e6f-7a8b-9c0d1e2f3a4b",
+    "statement": "\n\na) Bestimmen Sie $x$ und $y$: $\\left\\{\\begin{array}{l} x - 2y = 5 \\\\ 2x + 3y = 3 \\end{array}\\right.$\n\nb) Bestimmen Sie $x$: $\\quad 2^x = \\dfrac{32}{\\sqrt{8}}$\n\nc) Bestimmen Sie $x$: $\\quad x = \\dfrac{\\ln\\left(a^2 \\cdot \\sqrt{a}\\right)}{\\ln a}$",
+    "publicId": 128,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": [
+      "ed55f328-2ec1-4022-a8e2-ea9aab4c9c8e",
+      "60f8e0ed-70d4-401e-b00c-4ccaf3d200d6",
+      "5a3f15a9-da4a-4043-bdaf-ac6578136eeb"
+    ]
+  },
+  {
+    "id": "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d",
+    "statement": "Differenzieren Sie die folgenden Funktionen. Berechnen Sie anschließend die entsprechenden Werte.\n\na) Gegeben: $f(x) = 2x^5 - 3x^2 + \\dfrac{7}{x}$. Berechnen Sie $f'(1)$.\n\nb) Gegeben: $f(x) = \\dfrac{4x - 2}{x^2 + 1}$. Berechnen Sie $f'(1)$.\n\nc) Gegeben: $f(x) = e^{\\tan(3x)}$. Berechnen Sie $f'(0)$.",
+    "publicId": 129,
+    "year": null,
+    "season": null,
+    "studienkollegId": "a5e33eee-d0ab-4dc1-9810-b5fb18177714",
+    "topicsIds": ["e6b87997-b34c-4743-9f34-777b155b1cb6"]
+  }
+]
