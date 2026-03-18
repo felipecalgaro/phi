@@ -40,7 +40,7 @@ export function LoginForm() {
   }
 
   return (
-    <form action={handleLogin} className='flex justify-between items-center flex-col w-full min-h-44'>
+    <form action={handleLogin} className='flex justify-between items-center flex-col w-full'>
       <div className='flex justify-center items-start flex-col w-full gap-2'>
         <Label htmlFor='email' className='ml-2 text-base'>E-mail</Label>
         <Input placeholder="Type your e-mail here" className='w-full p-6 text-sm' name='email' />
@@ -50,7 +50,7 @@ export function LoginForm() {
           )}
         </div>
       </div>
-      <Button variant='primary' type='submit' disabled={isSubmitting} className='px-14 py-5 rounded-sm cursor-pointer w-full'>Login</Button>
+      <Button type='submit' disabled={isSubmitting} className='px-14 py-5 rounded-sm cursor-pointer w-full'>Login</Button>
     </form>
   )
 }

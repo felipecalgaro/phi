@@ -28,22 +28,27 @@ export async function getClientSessionSecret() {
     },
   });
 
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        quantity: 1,
-        price: env.STRIPE_PRICE_ID,
+  const session = await stripe.checkout.sessions.create(
+    {
+      line_items: [
+        {
+          quantity: 1,
+          price: env.STRIPE_PRICE_ID,
+        },
+      ],
+      customer_email: email,
+      ui_mode: "embedded",
+      mode: "payment",
+      return_url: `${env.NEXT_PUBLIC_URL}/api/webhooks/stripe?session_id={CHECKOUT_SESSION_ID}`,
+      payment_method_types: ["card"],
+      metadata: {
+        userId,
       },
-    ],
-    customer_email: email,
-    ui_mode: "embedded",
-    mode: "payment",
-    return_url: `${process.env.NEXT_PUBLIC_URL}/api/webhooks/stripe?session_id={CHECKOUT_SESSION_ID}`,
-    payment_method_types: ["card"],
-    metadata: {
-      userId,
     },
-  });
+    {
+      idempotencyKey: userId,
+    },
+  );
 
   if (session.client_secret === null) {
     throw new Error("Unexpected error");
