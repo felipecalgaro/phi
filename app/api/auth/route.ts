@@ -5,12 +5,14 @@ import z from "zod";
 import { verifyToken } from "@/lib/jwt";
 import { ResponseDataObject } from "@/utils/get-response-data-object";
 import { applyRateLimiterBasedOnIP } from "@/utils/apply-rate-limiter-based-on-ip";
+import { redis } from "@/lib/redis";
 
 const queryParamsSchema = z.jwt({ alg: "HS256" });
 
 const temporaryTokenPayloadSchema = z.object({
   email: z.email(),
   redirectToPurchase: z.boolean(),
+  jti: z.uuid(),
 });
 
 export async function GET(request: NextRequest) {
@@ -52,16 +54,50 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const { email, redirectToPurchase } = parsedPayload;
+  const { email, redirectToPurchase, jti } = parsedPayload;
+
+  const consumedMarkerKey = `magic_link_consumed:${jti}`;
+  const pendingKey = `magic_link:${jti}`;
+
+  const consumeAttempt = await redis.set(consumedMarkerKey, "1", {
+    nx: true,
+    ex: 60 * 15,
+  });
+
+  if (consumeAttempt !== "OK") {
+    return NextResponse.json<ResponseDataObject>(
+      {
+        success: false,
+        error: "Invalid token",
+      },
+      { status: 400 },
+    );
+  }
+
+  const pendingToken = await redis.get<string>(pendingKey);
+
+  if (!pendingToken) {
+    return NextResponse.json<ResponseDataObject>(
+      {
+        success: false,
+        error: "Invalid token",
+      },
+      { status: 400 },
+    );
+  }
+
+  await redis.del(pendingKey);
+
+  const normalizedEmail = email.trim().toLowerCase();
 
   let user = await prisma.user.findUnique({
-    where: { email },
+    where: { email: normalizedEmail },
   });
 
   if (!user) {
     user = await prisma.user.create({
       data: {
-        email,
+        email: normalizedEmail,
         role: "BASIC",
       },
     });

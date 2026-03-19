@@ -5,9 +5,7 @@ import "server-only";
 export async function applyRateLimiterBasedOnIP() {
   const ip = await getUserIp();
 
-  if (!ip) throw new Error("IP address not found");
-
-  const { success } = await rateLimiter.limit(ip);
+  const { success } = await rateLimiter.limit(ip ? `ip:${ip}` : "ip:unknown");
 
   return { success };
 }

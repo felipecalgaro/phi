@@ -7,25 +7,13 @@ import { env } from "@/lib/env";
 import { cookies } from "next/headers";
 import { emailRateLimiter } from "@/lib/rate-limiters";
 import { getUserIp } from "@/utils/get-user-ip";
+import { redis } from "@/lib/redis";
 
 const requestSchema = z.object({
   email: z.email("Please provide a valid e-mail"),
 });
 
 export async function sendMagicLinkEmail(request: unknown) {
-  const ip = await getUserIp();
-
-  if (!ip) throw new Error("IP address not found");
-
-  const { success } = await emailRateLimiter.limit(ip);
-
-  if (!success) {
-    return {
-      success: false,
-      error: "Too many requests, please try again later.",
-    };
-  }
-
   const result = requestSchema.safeParse(request);
 
   if (!result.success) {
@@ -35,17 +23,39 @@ export async function sendMagicLinkEmail(request: unknown) {
     };
   }
 
+  const email = result.data.email.trim().toLowerCase();
+
+  const ip = await getUserIp();
+  const rateLimitKey = ip ? `ip:${ip}` : `email:${email}`;
+
+  const { success } = await emailRateLimiter.limit(rateLimitKey);
+
+  if (!success) {
+    return {
+      success: false,
+      error: "Too many requests, please try again later.",
+    };
+  }
+
   const cookiesStore = await cookies();
 
   const redirectToPurchase =
     cookiesStore.get("redirect_to_purchase")?.value === "true";
 
-  const { email } = result.data;
+  const magicLinkJti = crypto.randomUUID();
 
   const temporaryToken = await createToken(
-    { email, redirectToPurchase },
+    {
+      email,
+      redirectToPurchase,
+      jti: magicLinkJti,
+    },
     "15min",
   );
+
+  await redis.set(`magic_link:${magicLinkJti}`, "pending", {
+    ex: 60 * 15,
+  });
 
   cookiesStore.set("redirect_to_purchase", "false");
 
@@ -88,4 +98,8 @@ export async function sendMagicLinkEmail(request: unknown) {
       error: "Error sending email. Please try again later",
     };
   }
+
+  return {
+    success: true,
+  };
 }

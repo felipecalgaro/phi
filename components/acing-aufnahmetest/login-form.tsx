@@ -29,7 +29,7 @@ export function LoginForm() {
     const response = await sendMagicLinkEmail({ email: result.data })
     setIsSubmitting(false)
 
-    if (response && !response.success) {
+    if (!response.success) {
       toast.error(response.error)
 
       return
