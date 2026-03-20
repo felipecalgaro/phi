@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Play } from "lucide-react";
 import Link from 'next/link';
 import { ScrollArea } from '../ui/scroll-area';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { LessonsSidebarContext } from './lessons-sidebar-provider';
 import { useQuery } from '@tanstack/react-query';
 import { getResponseDataSchema } from '@/utils/get-response-data-object';
@@ -36,7 +36,6 @@ export function LessonsSidebar({ currentLessonSlug }: LessonsSidebarProps) {
         const response = await fetch("/api/lessons");
         parsedResponse = lessonsSchema.parse(await response.json());
       } catch {
-        toast.error("Internal server error");
         throw new Error("Internal server error");
       }
 
@@ -47,6 +46,20 @@ export function LessonsSidebar({ currentLessonSlug }: LessonsSidebarProps) {
       return parsedResponse.data;
     },
   })
+
+  const hasShownErrorToastRef = useRef(false);
+
+  useEffect(() => {
+    if (isError && !hasShownErrorToastRef.current) {
+      toast.error('Failed to load course content');
+      hasShownErrorToastRef.current = true;
+    }
+
+    if (!isError) {
+      hasShownErrorToastRef.current = false;
+    }
+  }, [isError]);
+
   const [isOpen] = useContext(LessonsSidebarContext);
 
   if (isError) {

@@ -14,6 +14,7 @@ const envSchema = z.object({
   CLOUDFRONT_DOMAIN: z.string(),
   CLOUDFRONT_PUBLIC_KEY: z.string(),
   CLOUDFRONT_PRIVATE_KEY: z.string(),
+  CLOUDFRONT_SIGNED_URL_TTL_SECONDS: z.coerce.number().default(600),
   UPSTASH_REDIS_REST_URL: z.string(),
   UPSTASH_REDIS_REST_TOKEN: z.string(),
 });
