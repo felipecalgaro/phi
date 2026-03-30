@@ -7,13 +7,22 @@ import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { useState } from 'react';
+import { useFormStatus } from 'react-dom';
+
+function LoginSubmitButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <Button type='submit' disabled={pending} className='px-14 py-5 rounded-sm cursor-pointer w-full'>
+      {pending ? 'Sending...' : 'Login'}
+    </Button>
+  )
+}
 
 export function LoginForm() {
   const [error, setError] = useState<string>()
-  const [isSubmitting, setIsSubmitting] = useState(false)
 
   async function handleLogin(data: FormData) {
-    setIsSubmitting(true)
     const result = z.email('Please provide a valid e-mail').safeParse(data.get('email'))
 
     if (!result.success) {
@@ -21,13 +30,11 @@ export function LoginForm() {
 
       setError(message)
       toast.error(message)
-      setIsSubmitting(false)
 
       return
     }
 
     const response = await sendMagicLinkEmail({ email: result.data })
-    setIsSubmitting(false)
 
     if (!response.success) {
       toast.error(response.error)
@@ -50,7 +57,7 @@ export function LoginForm() {
           )}
         </div>
       </div>
-      <Button type='submit' disabled={isSubmitting} className='px-14 py-5 rounded-sm cursor-pointer w-full'>Login</Button>
+      <LoginSubmitButton />
     </form>
   )
 }

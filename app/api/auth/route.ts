@@ -8,6 +8,24 @@ import { applyRateLimiterBasedOnIP } from "@/utils/apply-rate-limiter-based-on-i
 import { redis } from "@/lib/redis";
 
 const queryParamsSchema = z.jwt({ alg: "HS256" });
+const MAGIC_LINK_MARKER_TTL_SECONDS = 60 * 15;
+
+type MagicLinkConsumeResult = "OK" | "PENDING_MISSING" | "ALREADY_CONSUMED";
+
+const consumeMagicLinkScript = redis.createScript<MagicLinkConsumeResult>(`
+  local pending = redis.call("GET", KEYS[1])
+  if not pending then
+    return "PENDING_MISSING"
+  end
+
+  local claimed = redis.call("SET", KEYS[2], "1", "NX", "EX", ARGV[1])
+  if not claimed then
+    return "ALREADY_CONSUMED"
+  end
+
+  redis.call("DEL", KEYS[1])
+  return "OK"
+`);
 
 const temporaryTokenPayloadSchema = z.object({
   email: z.email(),
@@ -59,12 +77,12 @@ export async function GET(request: NextRequest) {
   const consumedMarkerKey = `magic_link_consumed:${jti}`;
   const pendingKey = `magic_link:${jti}`;
 
-  const consumeAttempt = await redis.set(consumedMarkerKey, "1", {
-    nx: true,
-    ex: 60 * 15,
-  });
+  const consumeResult = await consumeMagicLinkScript.exec(
+    [pendingKey, consumedMarkerKey],
+    [String(MAGIC_LINK_MARKER_TTL_SECONDS)],
+  );
 
-  if (consumeAttempt !== "OK") {
+  if (consumeResult !== "OK") {
     return NextResponse.json<ResponseDataObject>(
       {
         success: false,
@@ -73,20 +91,6 @@ export async function GET(request: NextRequest) {
       { status: 400 },
     );
   }
-
-  const pendingToken = await redis.get<string>(pendingKey);
-
-  if (!pendingToken) {
-    return NextResponse.json<ResponseDataObject>(
-      {
-        success: false,
-        error: "Invalid token",
-      },
-      { status: 400 },
-    );
-  }
-
-  await redis.del(pendingKey);
 
   const normalizedEmail = email.trim().toLowerCase();
 
