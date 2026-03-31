@@ -6,6 +6,16 @@ import prisma from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
 import { applyRateLimiterBasedOnIP } from "@/utils/apply-rate-limiter-based-on-ip";
 
+const CHECKOUT_IDEMPOTENCY_WINDOW_SECONDS = 30;
+
+function getCheckoutSessionIdempotencyKey(userId: string) {
+  const windowBucket = Math.floor(
+    Date.now() / (CHECKOUT_IDEMPOTENCY_WINDOW_SECONDS * 1000),
+  );
+
+  return `checkout:${userId}:${env.STRIPE_PRICE_ID}:${windowBucket}`;
+}
+
 export async function getClientSessionSecret() {
   const { success } = await applyRateLimiterBasedOnIP();
 
@@ -46,7 +56,7 @@ export async function getClientSessionSecret() {
       },
     },
     {
-      idempotencyKey: userId,
+      idempotencyKey: getCheckoutSessionIdempotencyKey(userId),
     },
   );
 
