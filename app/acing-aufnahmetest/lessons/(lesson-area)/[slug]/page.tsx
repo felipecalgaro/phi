@@ -45,11 +45,11 @@ export default async function Lesson({ params }: { params: Promise<{ slug: strin
     },
   })
 
-  const signedVideoUrl = await getVideoUrl(slug);
-
   if (!lesson) {
     return notFound()
   }
+
+  const signedVideoUrl = await getVideoUrl(slug);
 
   return (
     <div className="flex flex-col bg-background min-h-screen justify-center items-center">

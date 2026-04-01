@@ -1,4 +1,5 @@
 import { verifySession } from "@/lib/dal";
+import prisma from "@/lib/prisma";
 import { applyRateLimiterBasedOnIP } from "@/utils/apply-rate-limiter-based-on-ip";
 import { getSignedLessonVideoUrl } from "@/utils/get-signed-lesson-video-url";
 import { ResponseDataObject } from "@/utils/get-response-data-object";
@@ -42,12 +43,28 @@ export async function GET(
   const { slug } = await params;
 
   try {
+    const lesson = await prisma.lesson.findUnique({ where: { slug } });
+
+    if (!lesson) {
+      return NextResponse.json<ResponseDataObject>(
+        {
+          success: false,
+          error: "Lesson not found",
+        },
+        { status: 404 },
+      );
+    }
+
     const signedVideoUrl = getSignedLessonVideoUrl(slug);
 
-    return NextResponse.json<ResponseDataObject>({
+    const response = NextResponse.json<ResponseDataObject>({
       success: true,
       data: signedVideoUrl,
     });
+
+    response.headers.set("Cache-Control", "private, no-store");
+
+    return response;
   } catch (error) {
     console.error("Failed to generate signed lesson video URL", {
       slug,
