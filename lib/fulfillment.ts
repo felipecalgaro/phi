@@ -18,7 +18,7 @@ interface FulfillmentError extends Error {
   isRetryable?: boolean;
 }
 
-function verifyCheckoutSessionPrice(
+export function verifyCheckoutSessionPrice(
   checkoutSession: Stripe.Checkout.Session,
 ): void {
   if (

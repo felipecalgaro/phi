@@ -49,7 +49,7 @@ export async function getClientSessionSecret() {
       customer_email: email,
       ui_mode: "embedded",
       mode: "payment",
-      return_url: `${env.NEXT_PUBLIC_URL}/api/webhooks/stripe?session_id={CHECKOUT_SESSION_ID}`,
+      return_url: `${env.NEXT_PUBLIC_URL}/acing-aufnahmetest/purchase/result?session_id={CHECKOUT_SESSION_ID}`,
       payment_method_types: ["card"],
       metadata: {
         userId,
