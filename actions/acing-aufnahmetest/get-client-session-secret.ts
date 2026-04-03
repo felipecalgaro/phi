@@ -4,7 +4,7 @@ import { verifySession } from "@/lib/dal";
 import { env } from "@/lib/env";
 import prisma from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
-import { applyRateLimiterBasedOnIP } from "@/utils/apply-rate-limiter-based-on-ip";
+import { applyRateLimiter } from "@/utils/apply-rate-limiter";
 
 const CHECKOUT_IDEMPOTENCY_WINDOW_SECONDS = 30;
 
@@ -17,16 +17,19 @@ function getCheckoutSessionIdempotencyKey(userId: string) {
 }
 
 export async function getClientSessionSecret() {
-  const { success } = await applyRateLimiterBasedOnIP();
-
-  if (!success) {
-    throw new Error("Too many requests, please try again later.");
-  }
-
   const { isAuthenticated, userId } = await verifySession();
 
   if (!isAuthenticated) {
     throw new Error("User is not authenticated");
+  }
+
+  const { success } = await applyRateLimiter({
+    failureMode: "fail-closed",
+    userId,
+  });
+
+  if (!success) {
+    throw new Error("Too many requests, please try again later.");
   }
 
   const { email } = await prisma.user.findUniqueOrThrow({

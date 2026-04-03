@@ -1,6 +1,6 @@
 import { verifySession } from "@/lib/dal";
 import prisma from "@/lib/prisma";
-import { applyRateLimiterBasedOnIP } from "@/utils/apply-rate-limiter-based-on-ip";
+import { applyRateLimiter } from "@/utils/apply-rate-limiter";
 import { getSignedLessonVideoUrl } from "@/utils/get-signed-lesson-video-url";
 import { ResponseDataObject } from "@/utils/get-response-data-object";
 import { NextResponse } from "next/server";
@@ -9,7 +9,9 @@ export async function GET(
   _: Request,
   { params }: { params: Promise<{ slug: string }> },
 ) {
-  const { success } = await applyRateLimiterBasedOnIP();
+  const { success } = await applyRateLimiter({
+    failureMode: "fail-open",
+  });
 
   if (!success) {
     return NextResponse.json<ResponseDataObject>({

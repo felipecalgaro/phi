@@ -5,7 +5,7 @@ import { resend } from "@/lib/resend";
 import { createToken } from "@/lib/jwt";
 import { env } from "@/lib/env";
 import { cookies } from "next/headers";
-import { emailRateLimiter } from "@/lib/rate-limiters";
+import { emailRateLimiter, rateLimiter } from "@/lib/rate-limiters";
 import { getUserIp } from "@/utils/get-user-ip";
 import { redis } from "@/lib/redis";
 
@@ -26,15 +26,43 @@ export async function sendMagicLinkEmail(request: unknown) {
   const email = result.data.email.trim().toLowerCase();
 
   const ip = await getUserIp();
-  const rateLimitKey = ip ? `ip:${ip}` : `email:${email}`;
 
-  const { success } = await emailRateLimiter.limit(rateLimitKey);
+  const checks = [
+    {
+      limit: async function () {
+        return await emailRateLimiter.limit(this.key);
+      },
+      key: `email:${email}`,
+    },
+    {
+      limit: async function () {
+        return await rateLimiter.limit(this.key);
+      },
+      key: `ip:${ip ?? "unknown"}`,
+    },
+  ];
 
-  if (!success) {
-    return {
-      success: false,
-      error: "Too many requests, please try again later.",
-    };
+  for (const check of checks) {
+    try {
+      const { success } = await check.limit();
+
+      if (!success) {
+        return {
+          success: false,
+          error: "Too many requests, please try again later.",
+        };
+      }
+    } catch (error) {
+      console.error("Rate limiter check failed", {
+        rateLimitKey: check.key,
+        errorMessage: error instanceof Error ? error.message : "unknown_error",
+      });
+
+      return {
+        success: false,
+        error: "Error processing request. Please try again later.",
+      };
+    }
   }
 
   const cookiesStore = await cookies();

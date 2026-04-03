@@ -1,11 +1,13 @@
 "use server";
 
-import { applyRateLimiterBasedOnIP } from "@/utils/apply-rate-limiter-based-on-ip";
+import { applyRateLimiter } from "@/utils/apply-rate-limiter";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function logoutUser() {
-  const { success } = await applyRateLimiterBasedOnIP();
+  const { success } = await applyRateLimiter({
+    failureMode: "fail-closed",
+  });
 
   if (!success) {
     return {

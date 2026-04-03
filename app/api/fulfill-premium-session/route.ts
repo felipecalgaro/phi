@@ -1,4 +1,4 @@
-import { applyRateLimiterBasedOnIP } from "@/utils/apply-rate-limiter-based-on-ip";
+import { applyRateLimiter } from "@/utils/apply-rate-limiter";
 import z from "zod";
 import { NextRequest, NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
@@ -19,15 +19,6 @@ const queryParamsSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
-  const { success } = await applyRateLimiterBasedOnIP();
-
-  if (!success) {
-    return NextResponse.json<ResponseDataObject>({
-      success: false,
-      error: "Too many requests, please try again later.",
-    });
-  }
-
   const { isAuthenticated, userId: authenticatedUserId } =
     await verifySession();
 
@@ -35,6 +26,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json<ResponseDataObject>({
       success: false,
       error: "User not authenticated",
+    });
+  }
+
+  const { success } = await applyRateLimiter({
+    failureMode: "fail-closed",
+    userId: authenticatedUserId,
+  });
+
+  if (!success) {
+    return NextResponse.json<ResponseDataObject>({
+      success: false,
+      error: "Too many requests, please try again later.",
     });
   }
 

@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
 import { verifyToken } from "@/lib/jwt";
 import { ResponseDataObject } from "@/utils/get-response-data-object";
-import { applyRateLimiterBasedOnIP } from "@/utils/apply-rate-limiter-based-on-ip";
+import { applyRateLimiter } from "@/utils/apply-rate-limiter";
 import { redis } from "@/lib/redis";
 
 const queryParamsSchema = z.jwt({ alg: "HS256" });
@@ -34,15 +34,6 @@ const temporaryTokenPayloadSchema = z.object({
 });
 
 export async function GET(request: NextRequest) {
-  const { success } = await applyRateLimiterBasedOnIP();
-
-  if (!success) {
-    return NextResponse.json<ResponseDataObject>({
-      success: false,
-      error: "Too many requests, please try again later.",
-    });
-  }
-
   const result = queryParamsSchema.safeParse(
     request.nextUrl.searchParams.get("token"),
   );
@@ -73,6 +64,18 @@ export async function GET(request: NextRequest) {
   }
 
   const { email, redirectToPurchase, jti } = parsedPayload;
+
+  const { success } = await applyRateLimiter({
+    failureMode: "fail-closed",
+    email,
+  });
+
+  if (!success) {
+    return NextResponse.json<ResponseDataObject>({
+      success: false,
+      error: "Too many requests, please try again later.",
+    });
+  }
 
   const consumedMarkerKey = `magic_link_consumed:${jti}`;
   const pendingKey = `magic_link:${jti}`;
