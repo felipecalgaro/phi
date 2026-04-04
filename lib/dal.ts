@@ -2,7 +2,6 @@ import { Role } from "@/generated/prisma/enums";
 import { cookies } from "next/headers";
 import { cache } from "react";
 import { tokenPayloadSchema, verifyToken } from "./jwt";
-import { redirect } from "next/navigation";
 
 type VerifySessionResult = Promise<
   | {
@@ -39,6 +38,10 @@ export const verifySession = cache<() => VerifySessionResult>(async () => {
       userRole: payload.userRole,
     };
   } catch {
-    redirect("/acing-aufnahmetest/login");
+    return {
+      isAuthenticated: false,
+      userId: null,
+      userRole: null,
+    };
   }
 });

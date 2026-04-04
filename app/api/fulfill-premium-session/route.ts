@@ -23,10 +23,13 @@ export async function POST(request: NextRequest) {
     await verifySession();
 
   if (!isAuthenticated) {
-    return NextResponse.json<ResponseDataObject>({
-      success: false,
-      error: "User not authenticated",
-    });
+    return NextResponse.json<ResponseDataObject>(
+      {
+        success: false,
+        error: "Unauthenticated",
+      },
+      { status: 401 },
+    );
   }
 
   const { success } = await applyRateLimiter({
@@ -35,10 +38,13 @@ export async function POST(request: NextRequest) {
   });
 
   if (!success) {
-    return NextResponse.json<ResponseDataObject>({
-      success: false,
-      error: "Too many requests, please try again later.",
-    });
+    return NextResponse.json<ResponseDataObject>(
+      {
+        success: false,
+        error: "Too many requests, please try again later.",
+      },
+      { status: 429 },
+    );
   }
 
   let sessionId: string;
@@ -47,10 +53,13 @@ export async function POST(request: NextRequest) {
     const result = queryParamsSchema.parse(body);
     sessionId = result.sessionId;
   } catch {
-    return NextResponse.json<ResponseDataObject>({
-      success: false,
-      error: "Invalid request body",
-    });
+    return NextResponse.json<ResponseDataObject>(
+      {
+        success: false,
+        error: "Invalid request body",
+      },
+      { status: 400 },
+    );
   }
 
   let checkoutSession: Stripe.Checkout.Session;
@@ -59,10 +68,13 @@ export async function POST(request: NextRequest) {
       expand: ["line_items"],
     });
   } catch {
-    return NextResponse.json<ResponseDataObject>({
-      success: false,
-      error: "Error retrieving checkout session",
-    });
+    return NextResponse.json<ResponseDataObject>(
+      {
+        success: false,
+        error: "Error retrieving checkout session",
+      },
+      { status: 502 },
+    );
   }
 
   if (checkoutSession.payment_status === "paid") {
@@ -73,19 +85,25 @@ export async function POST(request: NextRequest) {
     );
 
     if (!result.success) {
-      return NextResponse.json<ResponseDataObject>({
-        success: false,
-        error: "Invalid checkout session metadata",
-      });
+      return NextResponse.json<ResponseDataObject>(
+        {
+          success: false,
+          error: "Invalid checkout session metadata",
+        },
+        { status: 422 },
+      );
     }
 
     const { userId } = result.data;
 
     if (userId !== authenticatedUserId) {
-      return NextResponse.json<ResponseDataObject>({
-        success: false,
-        error: "User not authorized",
-      });
+      return NextResponse.json<ResponseDataObject>(
+        {
+          success: false,
+          error: "Unauthorized",
+        },
+        { status: 403 },
+      );
     }
 
     await createCookiesSession({
@@ -100,9 +118,12 @@ export async function POST(request: NextRequest) {
   } else {
     (await cookies()).delete("token");
 
-    return NextResponse.json<ResponseDataObject>({
-      success: false,
-      error: "Payment not completed",
-    });
+    return NextResponse.json<ResponseDataObject>(
+      {
+        success: false,
+        error: "Payment not completed",
+      },
+      { status: 402 },
+    );
   }
 }

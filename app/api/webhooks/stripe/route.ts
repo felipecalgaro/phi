@@ -16,7 +16,6 @@ import {
 } from "@/lib/fulfillment";
 
 export async function POST(req: NextRequest) {
-  console.log("object");
   let event: Stripe.Event;
   const timestamp = new Date().toISOString();
 

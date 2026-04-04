@@ -14,10 +14,13 @@ export async function GET(
   });
 
   if (!success) {
-    return NextResponse.json<ResponseDataObject>({
-      success: false,
-      error: "Too many requests, please try again later.",
-    });
+    return NextResponse.json<ResponseDataObject>(
+      {
+        success: false,
+        error: "Too many requests, please try again later.",
+      },
+      { status: 429 },
+    );
   }
 
   const { isAuthenticated, userRole } = await verifySession();
@@ -59,10 +62,13 @@ export async function GET(
 
     const signedVideoUrl = getSignedLessonVideoUrl(slug);
 
-    const response = NextResponse.json<ResponseDataObject>({
-      success: true,
-      data: signedVideoUrl,
-    });
+    const response = NextResponse.json<ResponseDataObject>(
+      {
+        success: true,
+        data: signedVideoUrl,
+      },
+      { status: 200 },
+    );
 
     response.headers.set("Cache-Control", "private, no-store");
 

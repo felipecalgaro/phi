@@ -9,10 +9,13 @@ export async function GET() {
   });
 
   if (!success) {
-    return NextResponse.json<ResponseDataObject>({
-      success: false,
-      error: "Too many requests, please try again later.",
-    });
+    return NextResponse.json<ResponseDataObject>(
+      {
+        success: false,
+        error: "Too many requests, please try again later.",
+      },
+      { status: 429 },
+    );
   }
 
   const { isAuthenticated, userRole } = await verifySession();
