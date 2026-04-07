@@ -1,24 +1,57 @@
 import { NextRequest, NextResponse } from "next/server";
+import { setRequestId } from "@/lib/sentry-context";
 import { tokenPayloadSchema, verifyToken } from "./lib/jwt";
 
+function getRequestId(request: NextRequest) {
+  return request.headers.get("x-request-id") ?? crypto.randomUUID();
+}
+
+function nextWithRequestId(request: NextRequest, requestId: string) {
+  const headers = new Headers(request.headers);
+  headers.set("x-request-id", requestId);
+
+  const response = NextResponse.next({
+    request: {
+      headers,
+    },
+  });
+
+  response.headers.set("x-request-id", requestId);
+
+  return response;
+}
+
+function withRequestId(response: NextResponse, requestId: string) {
+  response.headers.set("x-request-id", requestId);
+
+  return response;
+}
+
 export async function proxy(req: NextRequest) {
+  const requestId = getRequestId(req);
+  setRequestId(requestId);
+
   const token = req.cookies.get("token")?.value;
   const path = req.nextUrl.pathname;
 
   if (token && path === "/acing-aufnahmetest/login") {
     try {
       await verifyToken(token);
-      return NextResponse.redirect(
-        new URL("/acing-aufnahmetest/lessons", req.url),
+      return withRequestId(
+        NextResponse.redirect(new URL("/acing-aufnahmetest/lessons", req.url)),
+        requestId,
       );
     } catch {
-      const res = NextResponse.next();
+      const res = nextWithRequestId(req, requestId);
 
       res.cookies.delete("token");
       return res;
     }
   } else if (!token && path.startsWith("/acing-aufnahmetest/lessons")) {
-    return NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url));
+    return withRequestId(
+      NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+      requestId,
+    );
   } else if (token && path.startsWith("/acing-aufnahmetest/lessons")) {
     try {
       const { payload } = await verifyToken(token);
@@ -26,15 +59,19 @@ export async function proxy(req: NextRequest) {
       const { userRole } = tokenPayloadSchema.parse(payload);
 
       if (userRole === "BASIC") {
-        return NextResponse.redirect(
-          new URL("/acing-aufnahmetest/purchase", req.url),
+        return withRequestId(
+          NextResponse.redirect(
+            new URL("/acing-aufnahmetest/purchase", req.url),
+          ),
+          requestId,
         );
       }
 
-      return NextResponse.next();
+      return nextWithRequestId(req, requestId);
     } catch {
-      const res = NextResponse.redirect(
-        new URL("/acing-aufnahmetest/login", req.url),
+      const res = withRequestId(
+        NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+        requestId,
       );
 
       res.cookies.delete("token");
@@ -42,8 +79,9 @@ export async function proxy(req: NextRequest) {
     }
   } else if (!token && path === "/acing-aufnahmetest/purchase") {
     if (!token) {
-      const res = NextResponse.redirect(
-        new URL("/acing-aufnahmetest/login", req.url),
+      const res = withRequestId(
+        NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+        requestId,
       );
 
       res.cookies.set("redirect_to_purchase", "true");
@@ -56,15 +94,19 @@ export async function proxy(req: NextRequest) {
       const { userRole } = tokenPayloadSchema.parse(payload);
 
       if (userRole !== "BASIC") {
-        return NextResponse.redirect(
-          new URL("/acing-aufnahmetest/lessons", req.url),
+        return withRequestId(
+          NextResponse.redirect(
+            new URL("/acing-aufnahmetest/lessons", req.url),
+          ),
+          requestId,
         );
       }
 
-      return NextResponse.next();
+      return nextWithRequestId(req, requestId);
     } catch {
-      const res = NextResponse.redirect(
-        new URL("/acing-aufnahmetest/login", req.url),
+      const res = withRequestId(
+        NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+        requestId,
       );
 
       res.cookies.delete("token");
@@ -72,9 +114,12 @@ export async function proxy(req: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  return nextWithRequestId(req, requestId);
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|images|favicon.ico).*)"],
+  matcher: [
+    "/api/:path*",
+    "/((?!api|_next/static|_next/image|images|favicon.ico).*)",
+  ],
 };

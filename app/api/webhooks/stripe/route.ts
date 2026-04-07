@@ -14,8 +14,18 @@ import {
   fulfillPremiumAccess,
   sendPurchaseConfirmationEmail,
 } from "@/lib/fulfillment";
+import * as Sentry from "@sentry/nextjs";
+import { captureCriticalPathError } from "@/lib/sentry-errors";
+import {
+  setRequestId,
+  setStripeEventId,
+  setUserId,
+} from "@/lib/sentry-context";
 
 export async function POST(req: NextRequest) {
+  const requestId = req.headers.get("x-request-id") ?? crypto.randomUUID();
+  setRequestId(requestId);
+
   let event: Stripe.Event;
   const timestamp = new Date().toISOString();
 
@@ -25,7 +35,16 @@ export async function POST(req: NextRequest) {
       req.headers.get("stripe-signature") as string,
       env.STRIPE_WEBHOOK_SECRET,
     );
-  } catch {
+  } catch (error) {
+    captureCriticalPathError({
+      error,
+      path: "stripe_webhook",
+      requestId,
+      tags: {
+        error_type: "signature_invalid",
+      },
+    });
+
     return NextResponse.json<ResponseDataObject>(
       {
         success: false,
@@ -34,6 +53,9 @@ export async function POST(req: NextRequest) {
       { status: 400 },
     );
   }
+
+  setStripeEventId(event.id);
+  Sentry.setTag("event_type", event.type);
 
   switch (event.type) {
     case "checkout.session.completed":
@@ -55,6 +77,10 @@ export async function POST(req: NextRequest) {
         }
 
         if (claimResult === "already_processing") {
+          Sentry.captureMessage("webhook_already_processing", {
+            level: "warning",
+          });
+
           logWebhookEvent({
             eventId: event.id,
             eventType: event.type,
@@ -80,6 +106,10 @@ export async function POST(req: NextRequest) {
           checkoutSession,
           true,
         );
+
+        if (checkoutSession.metadata?.userId) {
+          setUserId(checkoutSession.metadata.userId);
+        }
 
         if (fulfillmentResult.userEmail) {
           try {
@@ -109,23 +139,20 @@ export async function POST(req: NextRequest) {
 
         await markWebhookProcessed(event.id);
 
+        Sentry.setTag(
+          "fulfillment_result",
+          fulfillmentResult.roleUpdated ? "granted" : "already_paid",
+        );
+
+        if (fulfillmentResult.roleUpdated) {
+          Sentry.captureMessage("webhook_processed", { level: "info" });
+        }
+
         return new Response(null, { status: 200 });
       } catch (error) {
         const err = error instanceof Error ? error : new Error(String(error));
         const isRetryable = isRetryableError(err);
         const statusCode = isRetryable ? 500 : 200;
-
-        try {
-          await releaseWebhookProcessing(event.id);
-        } catch (lockReleaseError) {
-          console.error("Failed to release webhook processing lock:", {
-            error:
-              lockReleaseError instanceof Error
-                ? lockReleaseError.message
-                : String(lockReleaseError),
-            eventId: event.id,
-          });
-        }
 
         logWebhookEvent({
           eventId: event.id,
@@ -138,6 +165,35 @@ export async function POST(req: NextRequest) {
             : "Stored as non-retryable; manual review required",
           timestamp,
         });
+
+        captureCriticalPathError({
+          error: err,
+          path: "stripe_webhook",
+          requestId,
+          tags: {
+            event_type: event.type,
+            retryable: String(isRetryable),
+          },
+          extra: {
+            stripeEventId: event.id,
+          },
+        });
+
+        try {
+          if (isRetryable) {
+            await releaseWebhookProcessing(event.id);
+          } else {
+            await markWebhookProcessed(event.id);
+          }
+        } catch (lockReleaseError) {
+          console.error("Failed to update webhook processing state:", {
+            error:
+              lockReleaseError instanceof Error
+                ? lockReleaseError.message
+                : String(lockReleaseError),
+            eventId: event.id,
+          });
+        }
 
         return new Response(null, { status: statusCode });
       }

@@ -6,6 +6,7 @@ import { getResponseDataSchema } from '@/utils/get-response-data-object';
 import { z } from 'zod';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import * as Sentry from '@sentry/nextjs';
 
 type LessonVideoPlayerProps = {
   slug: string;
@@ -27,6 +28,7 @@ export function LessonVideoPlayer({
   initialSignedUrl,
   initialExpiresAt,
 }: LessonVideoPlayerProps) {
+  const requestIdRef = useRef<string>(crypto.randomUUID());
   const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
   const refreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -49,7 +51,15 @@ export function LessonVideoPlayer({
         });
 
         parsedResponse = signedVideoUrlResponseSchema.parse(await response.json());
-      } catch {
+      } catch (error) {
+        Sentry.captureException(error, {
+          tags: {
+            request_id: requestIdRef.current,
+            lesson_slug: slug,
+            error_type: 'video_url_fetch_error',
+          },
+        });
+
         throw new Error('Internal server error');
       }
 
@@ -90,17 +100,13 @@ export function LessonVideoPlayer({
         if (currentTime > 0) {
           try {
             videoElement.currentTime = currentTime;
-          } catch {
-            // Ignore seek restoration failures and continue playback.
-          }
+          } catch { }
         }
 
         if (!wasPaused) {
           try {
             await videoElement.play();
-          } catch {
-            // Ignore autoplay rejection; user can resume manually.
-          }
+          } catch { }
         }
 
         resolve();
@@ -136,11 +142,27 @@ export function LessonVideoPlayer({
           return;
         }
 
+        Sentry.captureException(response.error, {
+          tags: {
+            request_id: requestIdRef.current,
+            lesson_slug: slug,
+            error_type: 'video_url_refresh_error',
+          },
+        });
+
         setHasFatalError(true);
         return;
       }
 
       if (!response.data) {
+        Sentry.captureException(new Error('video_url_response_missing_data'), {
+          tags: {
+            request_id: requestIdRef.current,
+            lesson_slug: slug,
+            error_type: 'video_url_refresh_error',
+          },
+        });
+
         setHasFatalError(true);
         return;
       }
@@ -150,12 +172,20 @@ export function LessonVideoPlayer({
         response.data.expiresAt,
       );
       setHasFatalError(false);
-    } catch {
+    } catch (error) {
+      Sentry.captureException(error, {
+        tags: {
+          request_id: requestIdRef.current,
+          lesson_slug: slug,
+          error_type: 'video_url_refresh_error',
+        },
+      });
+
       setHasFatalError(true);
     } finally {
       isRefreshingRef.current = false;
     }
-  }, [refetchSignedVideoUrl, router, swapVideoSourcePreservingTime]);
+  }, [refetchSignedVideoUrl, router, slug, swapVideoSourcePreservingTime]);
 
   useEffect(() => {
     clearRefreshTimer();
@@ -189,6 +219,17 @@ export function LessonVideoPlayer({
         src={videoSrc}
         preload='metadata'
         onError={() => {
+          Sentry.captureException(new Error('video_playback_error'), {
+            tags: {
+              request_id: requestIdRef.current,
+              lesson_slug: slug,
+              error_type: 'video_playback_error',
+            },
+            extra: {
+              mediaErrorCode: videoRef.current?.error?.code,
+            },
+          });
+
           void refreshVideoUrl();
         }}
       />

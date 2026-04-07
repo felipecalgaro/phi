@@ -6,6 +6,13 @@ import { verifyToken } from "@/lib/jwt";
 import { ResponseDataObject } from "@/utils/get-response-data-object";
 import { applyRateLimiter } from "@/utils/apply-rate-limiter";
 import { redis } from "@/lib/redis";
+import * as Sentry from "@sentry/nextjs";
+import { captureCriticalPathError } from "@/lib/sentry-errors";
+import {
+  setRateLimitContext,
+  setRequestId,
+  setUserId,
+} from "@/lib/sentry-context";
 
 const queryParamsSchema = z.jwt({ alg: "HS256" });
 const MAGIC_LINK_MARKER_TTL_SECONDS = 60 * 15;
@@ -34,11 +41,17 @@ const temporaryTokenPayloadSchema = z.object({
 });
 
 export async function GET(request: NextRequest) {
+  const requestId = request.headers.get("x-request-id") ?? crypto.randomUUID();
+  setRequestId(requestId);
+
   const result = queryParamsSchema.safeParse(
     request.nextUrl.searchParams.get("token"),
   );
 
   if (!result.success) {
+    Sentry.setTag("error_type", "invalid_token");
+    Sentry.captureMessage("token_invalid", { level: "warning" });
+
     return NextResponse.json<ResponseDataObject>(
       {
         success: false,
@@ -53,7 +66,16 @@ export async function GET(request: NextRequest) {
     const { payload } = await verifyToken(result.data);
 
     parsedPayload = temporaryTokenPayloadSchema.parse(payload);
-  } catch {
+  } catch (error) {
+    captureCriticalPathError({
+      error,
+      path: "auth_consume_magic_link",
+      requestId,
+      tags: {
+        flow: "consume_magic_link",
+      },
+    });
+
     return NextResponse.json<ResponseDataObject>(
       {
         success: false,
@@ -64,6 +86,7 @@ export async function GET(request: NextRequest) {
   }
 
   const { email, redirectToPurchase, jti } = parsedPayload;
+  setRateLimitContext("email", jti);
 
   const { success } = await applyRateLimiter({
     failureMode: "fail-closed",
@@ -71,6 +94,9 @@ export async function GET(request: NextRequest) {
   });
 
   if (!success) {
+    Sentry.setTag("error_type", "rate_limit");
+    Sentry.captureMessage("auth_rate_limited", { level: "warning" });
+
     return NextResponse.json<ResponseDataObject>(
       {
         success: false,
@@ -89,6 +115,16 @@ export async function GET(request: NextRequest) {
   );
 
   if (consumeResult !== "OK") {
+    if (consumeResult === "ALREADY_CONSUMED") {
+      Sentry.setTag("error_type", "replay_detected");
+      Sentry.captureMessage("concurrent_consume_attempt", {
+        level: "warning",
+      });
+    } else {
+      Sentry.setTag("error_type", "invalid_token");
+      Sentry.captureMessage("token_invalid", { level: "warning" });
+    }
+
     return NextResponse.json<ResponseDataObject>(
       {
         success: false,
@@ -117,6 +153,8 @@ export async function GET(request: NextRequest) {
     userId: user.id,
     userRole: user.role,
   });
+
+  setUserId(user.id);
 
   if (user.role !== "BASIC") {
     return NextResponse.redirect(

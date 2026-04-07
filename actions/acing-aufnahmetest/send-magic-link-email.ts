@@ -8,15 +8,28 @@ import { cookies } from "next/headers";
 import { emailRateLimiter, rateLimiter } from "@/lib/rate-limiters";
 import { getUserIp } from "@/utils/get-user-ip";
 import { redis } from "@/lib/redis";
+import * as Sentry from "@sentry/nextjs";
+import prisma from "@/lib/prisma";
+import { captureCriticalPathError } from "@/lib/sentry-errors";
+import {
+  setRateLimitContext,
+  setRequestId,
+  setUserId,
+} from "@/lib/sentry-context";
 
 const requestSchema = z.object({
   email: z.email("Please provide a valid e-mail"),
 });
 
 export async function sendMagicLinkEmail(request: unknown) {
+  const requestId = crypto.randomUUID();
+  setRequestId(requestId);
+
   const result = requestSchema.safeParse(request);
 
   if (!result.success) {
+    Sentry.setTag("error_type", "invalid_payload");
+
     return {
       success: false,
       error: "Invalid request data",
@@ -24,6 +37,15 @@ export async function sendMagicLinkEmail(request: unknown) {
   }
 
   const email = result.data.email.trim().toLowerCase();
+
+  const existingUser = await prisma.user.findUnique({
+    where: { email },
+    select: { id: true },
+  });
+
+  if (existingUser) {
+    setUserId(existingUser.id);
+  }
 
   const ip = await getUserIp();
 
@@ -43,16 +65,38 @@ export async function sendMagicLinkEmail(request: unknown) {
   ];
 
   for (const check of checks) {
+    const keyType = check.key.startsWith("email:")
+      ? "email"
+      : check.key.startsWith("ip:")
+        ? "ip"
+        : "user";
+
+    setRateLimitContext(keyType, check.key);
+
     try {
       const { success } = await check.limit();
 
       if (!success) {
+        Sentry.setTag("error_type", "rate_limit");
+        Sentry.captureMessage("magic_link_rate_limited", {
+          level: "warning",
+        });
+
         return {
           success: false,
           error: "Too many requests, please try again later.",
         };
       }
     } catch (error) {
+      captureCriticalPathError({
+        error,
+        path: "send_magic_link_email",
+        requestId,
+        tags: {
+          rate_limit_key_type: keyType,
+        },
+      });
+
       console.error("Rate limiter check failed", {
         rateLimitKey: check.key,
         errorMessage: error instanceof Error ? error.message : "unknown_error",
@@ -120,7 +164,16 @@ export async function sendMagicLinkEmail(request: unknown) {
         </p>
       `,
     });
-  } catch {
+  } catch (error) {
+    captureCriticalPathError({
+      error,
+      path: "send_magic_link_email",
+      requestId,
+      tags: {
+        error_type: "email_provider",
+      },
+    });
+
     return {
       success: false,
       error: "Error sending email. Please try again later",
