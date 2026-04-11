@@ -7,7 +7,10 @@
     "typecheck": "tsc --noEmit",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:magic-link-replay": "node tests/magic-link-replay.mjs",
+    "test:stripe-webhook-replay": "node tests/stripe-webhook-replay.mjs",
+    "test:checkout-e2e": "node tests/checkout-e2e.mjs"
   },
   "dependencies": {
     "@sentry/nextjs": "^10.19.0",
