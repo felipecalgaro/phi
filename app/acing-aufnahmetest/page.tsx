@@ -1,5 +1,5 @@
 import { AccessCourseButton } from '@/components/acing-aufnahmetest/access-course-button';
-import { LoginButton } from '@/components/acing-aufnahmetest/login-button';
+import { LogInOutButton } from '@/components/acing-aufnahmetest/log-in-out-button';
 import { Price } from '@/components/acing-aufnahmetest/price';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -95,7 +95,7 @@ export default function Home() {
           </div>
           <hr className='h-8 w-px border border-white/10' />
           <nav className="flex items-center gap-x-4 gap-y-2 flex-wrap w-full">
-            <LoginButton />
+            <LogInOutButton />
             <Link href="/exercises" className={cn(buttonVariants(), "text-white/80 hover:text-white hover:bg-white/10 bg-transparent border border-white/20")}>Exercises</Link>
           </nav>
         </nav>
