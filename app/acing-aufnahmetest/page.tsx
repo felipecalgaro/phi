@@ -8,15 +8,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const benefits = [
-  "Straightforward lessons to pass the exam condensed in only a few hours",
+  "Straightforward guidance to pass the exam condensed in a few lessons",
   "Strategies to improve your score and stand out from competition",
   "All the resources you need to prepare for the exam",
-  "Access to direct help via WhatsApp through the whole admission process",
+  "Access to direct help via WhatsApp, answering questions and providing guidance",
 ];
 
 const modules = {
-  'From Zero to Exam-Ready': [['Aufnahmetest full overview', 'Straightforward study plan and resources for preparation', 'Mistakes to avoid before and during exam day'], ['Most common math topics and problems', 'Most common German exercises', 'Useful strategies during the exam', 'Approaching C-Tests the right way']],
-  'BONUS': [['Access to direct help via WhatsApp through the whole admission process, answering questions and providing guidance', 'Mock Aufnahmetests from various Studienkollegs with solutions and explanations']],
+  'From Zero to Exam-Ready': [['Aufnahmetest full overview', 'Straightforward study plan and resources for preparation', 'Mistakes to avoid before and during exam day'], ['Most common math topics and problems', 'Most common German problems and grammar', 'Approaching C-Tests the right way', 'Useful strategies during the exam']],
+  'BONUS': [['Access to direct help via WhatsApp through the whole admission process, answering questions and providing guidance', 'Mock Aufnahmetests from multiple Studienkollegs', 'PDFs of Grammar topics with real examples from Aufnahmetests']],
 }
 
 export default function Home() {
@@ -98,7 +98,7 @@ export default function Home() {
             What&apos;s Inside the Course
           </h2>
           <p className="text-xl leading-relaxed text-white/80 text-center max-w-3xl">
-            A comprehensive guide to clearing the Aufnahmetest in 3 modules and multiple video lessons, plus additional study materials to maximize your preparation:
+            A comprehensive guide to clearing the Aufnahmetest in video lessons, plus additional study materials to maximize your preparation:
           </p>
         </div>
         <div className='flex flex-col gap-6 justify-center items-center max-w-240 sm:px-3 px-0'>
