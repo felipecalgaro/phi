@@ -3,7 +3,7 @@ import { LogInOutButton } from '@/components/acing-aufnahmetest/log-in-out-butto
 import { Price } from '@/components/acing-aufnahmetest/price';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Check, Download, Navigation, Target } from 'lucide-react';
+import { Check, Navigation, Target } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -18,14 +18,6 @@ const modules = {
   'From Zero to Exam-Ready': [['Aufnahmetest full overview', 'Straightforward study plan and resources for preparation', 'Mistakes to avoid before and during exam day'], ['Most common math topics and problems', 'Most common German exercises', 'Useful strategies during the exam', 'Approaching C-Tests the right way']],
   'BONUS': [['Access to direct help via WhatsApp through the whole admission process, answering questions and providing guidance', 'Mock Aufnahmetests from various Studienkollegs with solutions and explanations']],
 }
-
-const mockTests = [
-  'Aufnahmetest of Hochschule Kaiserslautern (1)',
-  'Aufnahmetest of Hochschule Kaiserslautern (2)',
-  'Aufnahmetest of Universität Heidelberg',
-  'Aufnahmetest of Technische Universität Berlin',
-  'Aufnahmetest of Universität Nordhausen',
-]
 
 export default function Home() {
   return (
@@ -146,21 +138,6 @@ export default function Home() {
         </div>
 
         <Image src='/me.png' alt='Picture of me' width={286} height={400} className='rounded-lg' />
-      </section>
-      <section id='mock-tests' className="bg-(image:--gradient-gold) flex justify-center items-center w-full gap-x-10 gap-y-18 py-36 px-3 lg:px-6 flex-nowrap max-[900px]:flex-wrap">
-        <div className="flex flex-col justify-center items-center gap-16 max-w-lg w-full">
-          <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-foreground text-center">
-            (FREE) Mock Aufnahmetests
-          </h2>
-          <div className='flex flex-col justify-center items-center gap-4'>
-            {mockTests.map((test, index) => (
-              <Link download href={`/${test}.pdf`} key={index} className='flex justify-between items-center gap-6 backdrop-blur-sm border border-black/40 hover:bg-white/5 bg-white/10 transition-all duration-200 rounded-xl px-8 py-4 w-full text-foreground'>
-                {test}
-                <Download strokeWidth={1.5} className='size-6 text-foreground shrink-0' />
-              </Link>
-            ))}
-          </div>
-        </div>
       </section>
     </>
   );

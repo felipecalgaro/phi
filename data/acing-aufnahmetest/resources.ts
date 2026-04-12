@@ -29,5 +29,26 @@ export const RESOURCES = {
       slug: "pronouns",
     },
   ],
-  "Mock Exams": [],
+  "Mock Exams": [
+    {
+      name: "Mock Aufnahmetest Hochschule Kaiserslautern (1)",
+      slug: "mock-at-hs-kl-1",
+    },
+    {
+      name: "Mock Aufnahmetest Hochschule Kaiserslautern (2)",
+      slug: "mock-at-hs-kl-2",
+    },
+    {
+      name: "Mock Aufnahmetest Universität Heidelberg",
+      slug: "mock-at-uni-heidelberg",
+    },
+    {
+      name: "Mock Aufnahmetest Technische Universität Berlin",
+      slug: "mock-at-tub",
+    },
+    {
+      name: "Mock Aufnahmetest Universität Nordhausen",
+      slug: "mock-at-uni-nordhausen",
+    },
+  ],
 };
