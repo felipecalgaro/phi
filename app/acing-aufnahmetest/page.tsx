@@ -2,6 +2,7 @@ import { AccessCourseButton } from '@/components/acing-aufnahmetest/access-cours
 import { LogInOutButton } from '@/components/acing-aufnahmetest/log-in-out-button';
 import { Price } from '@/components/acing-aufnahmetest/price';
 import { buttonVariants } from '@/components/ui/button';
+import { env } from '@/lib/env';
 import { cn } from '@/lib/utils';
 import { Check, Navigation, Target } from 'lucide-react';
 import Image from 'next/image';
@@ -138,6 +139,18 @@ export default function Home() {
         </div>
 
         <Image src='/me.png' alt='Picture of me' width={286} height={400} className='rounded-lg' />
+      </section>
+      <section id='contact' className="bg-foreground flex justify-center items-end gap-x-10 gap-y-18 py-36 px-3 lg:px-6 flex-nowrap max-[900px]:flex-wrap">
+        <div className="space-y-12 max-w-lg">
+          <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-white">
+            Contact
+          </h2>
+          <p className="text-lg text-white/80">
+            Feel free to reach out if you have any questions!
+            <br /><br />
+            You can reach me at <a href={`mailto:onboarding@${env.EMAIL_DOMAIN}`} className="text-primary underline">{`onboarding@${env.EMAIL_DOMAIN}`}</a>
+          </p>
+        </div>
       </section>
     </>
   );
