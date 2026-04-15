@@ -47,15 +47,17 @@ export default async function Lessons() {
               <Link
                 key={lesson.id}
                 href={`/acing-aufnahmetest/lessons/${lesson.slug}`}
-                className="text-left rounded-xl overflow-hidden bg-card border border-border"
+                className="flex justify-center items-center"
               >
-                <Image width={316} height={178} src={imageUrl} alt={lesson.slug} className="aspect-video bg-muted relative" />
+                <div className='text-left rounded-xl overflow-hidden bg-card border border-border w-full'>
+                  <Image width={316} height={178} src={imageUrl} alt={lesson.slug} className="aspect-video bg-muted relative w-full" />
 
-                <div className="p-3">
-                  <p className="text-sm font-medium text-foreground leading-snug line-clamp-2">
-                    {lesson.title}
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">{lesson.module}</p>
+                  <div className="p-3">
+                    <p className="text-sm font-medium text-foreground leading-snug line-clamp-2">
+                      {lesson.title}
+                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">{lesson.module}</p>
+                  </div>
                 </div>
               </Link>
             )
