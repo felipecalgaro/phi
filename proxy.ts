@@ -36,7 +36,17 @@ export async function proxy(req: NextRequest) {
 
   if (token && path === "/acing-aufnahmetest/login") {
     try {
-      await verifyToken(token);
+      const { payload } = await verifyToken(token);
+
+      const { userRole } = tokenPayloadSchema.parse(payload);
+
+      if (userRole === "BASIC") {
+        return withRequestId(
+          NextResponse.redirect(new URL("/acing-aufnahmetest", req.url)),
+          requestId,
+        );
+      }
+
       return withRequestId(
         NextResponse.redirect(new URL("/acing-aufnahmetest/lessons", req.url)),
         requestId,
@@ -78,15 +88,13 @@ export async function proxy(req: NextRequest) {
       return res;
     }
   } else if (!token && path === "/acing-aufnahmetest/purchase") {
-    if (!token) {
-      const res = withRequestId(
-        NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
-        requestId,
-      );
+    const res = withRequestId(
+      NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+      requestId,
+    );
 
-      res.cookies.set("redirect_to_purchase", "true");
-      return res;
-    }
+    res.cookies.set("redirect_to_purchase", "true");
+    return res;
   } else if (token && path === "/acing-aufnahmetest/purchase") {
     try {
       const { payload } = await verifyToken(token);
