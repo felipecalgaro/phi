@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import * as Sentry from '@sentry/nextjs';
+import { registerAnalyticsEvent } from '@/lib/google-analytics';
 
 type LessonVideoPlayerProps = {
   slug: string;
@@ -33,6 +34,9 @@ export function LessonVideoPlayer({
   const videoRef = useRef<HTMLVideoElement>(null);
   const refreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isRefreshingRef = useRef(false);
+  const watched25Ref = useRef(false);
+  const watched50Ref = useRef(false);
+  const watched90Ref = useRef(false);
 
   const [videoSrc, setVideoSrc] = useState(initialSignedUrl);
   const [expiresAt, setExpiresAt] = useState(initialExpiresAt);
@@ -188,6 +192,40 @@ export function LessonVideoPlayer({
   }, [refetchSignedVideoUrl, router, slug, swapVideoSourcePreservingTime]);
 
   useEffect(() => {
+    registerAnalyticsEvent('lesson_opened', { lesson_slug: slug })
+    watched25Ref.current = false
+    watched50Ref.current = false
+    watched90Ref.current = false
+  }, [slug])
+
+  const handleVideoTimeUpdate = useCallback(() => {
+    const videoElement = videoRef.current
+
+    if (!videoElement || !videoElement.duration || Number.isNaN(videoElement.duration)) {
+      return
+    }
+
+    const progress = videoElement.currentTime / videoElement.duration
+
+    if (!watched25Ref.current && progress >= 0.25) {
+      watched25Ref.current = true
+      registerAnalyticsEvent('lesson_watched_25', { lesson_slug: slug })
+    }
+
+    if (!watched50Ref.current && progress >= 0.5) {
+      watched50Ref.current = true
+      registerAnalyticsEvent('lesson_watched_50', { lesson_slug: slug })
+    }
+
+    if (!watched90Ref.current && progress >= 0.9) {
+      watched90Ref.current = true
+      registerAnalyticsEvent('lesson_watched_90', { lesson_slug: slug })
+      registerAnalyticsEvent('lesson_completed', { lesson_slug: slug })
+    }
+
+  }, [slug])
+
+  useEffect(() => {
     clearRefreshTimer();
 
     const msUntilRefresh = Math.max(expiresAt - Date.now() - REFRESH_BUFFER_MS, 5_000);
@@ -218,6 +256,7 @@ export function LessonVideoPlayer({
         playsInline
         src={videoSrc}
         preload='metadata'
+        onTimeUpdate={handleVideoTimeUpdate}
         onError={() => {
           Sentry.captureException(new Error('video_playback_error'), {
             tags: {

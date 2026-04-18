@@ -135,7 +135,7 @@ export async function sendMagicLinkEmail(request: unknown) {
 
   try {
     await resend.emails.send({
-      from: `Felipe Calgaro <onboarding@${env.EMAIL_DOMAIN}>`,
+      from: `Felipe Calgaro <onboarding@${env.NEXT_PUBLIC_EMAIL_DOMAIN}>`,
       to: email,
       subject: "Login to Guide to Studienkolleg",
       html: `

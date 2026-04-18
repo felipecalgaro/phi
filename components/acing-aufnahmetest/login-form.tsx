@@ -8,6 +8,7 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 import { useFormStatus } from 'react-dom';
+import { registerAnalyticsEvent } from '@/lib/google-analytics';
 
 function LoginSubmitButton() {
   const { pending } = useFormStatus()
@@ -23,6 +24,8 @@ export function LoginForm() {
   const [error, setError] = useState<string>()
 
   async function handleLogin(data: FormData) {
+    registerAnalyticsEvent('send_magic_link_click')
+
     const result = z.email('Please provide a valid e-mail').safeParse(data.get('email'))
 
     if (!result.success) {

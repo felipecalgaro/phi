@@ -2,41 +2,14 @@
 
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
-import { useEffect, useRef } from 'react'
 import { registerAnalyticsEvent } from '@/lib/google-analytics'
 import { useRouter } from 'next/navigation'
 
 export function CTAButton() {
-  const ref = useRef<HTMLButtonElement | null>(null);
-  const fired = useRef(false);
   const router = useRouter()
-
-  useEffect(() => {
-    if (!ref.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !fired.current) {
-          fired.current = true;
-
-          registerAnalyticsEvent('buy_course_view');
-
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 1.0,
-      }
-    );
-
-    observer.observe(ref.current);
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <Button
-      ref={ref}
       onClick={(e) => {
         e.preventDefault()
         registerAnalyticsEvent('buy_course_click')

@@ -148,7 +148,7 @@ export default function Home() {
           <p className="text-lg text-white/80">
             Feel free to reach out if you have any questions!
             <br /><br />
-            You can reach me at <a href={`mailto:onboarding@${env.EMAIL_DOMAIN}`} className="text-primary underline">{`onboarding@${env.EMAIL_DOMAIN}`}</a>
+            You can reach me at <a href={`mailto:onboarding@${env.NEXT_PUBLIC_EMAIL_DOMAIN}`} className="text-primary underline">{`onboarding@${env.NEXT_PUBLIC_EMAIL_DOMAIN}`}</a>
           </p>
         </div>
       </section>

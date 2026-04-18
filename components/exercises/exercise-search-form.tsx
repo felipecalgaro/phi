@@ -30,7 +30,7 @@ export function ExerciseSearchForm({ type }: ExerciseSearchFormProps) {
 
     const stkName = stks.find(stk => stk.id === selectedSTK)?.name || 'Unknown'
 
-    registerAnalyticsEvent(type === 'MATH' ? 'exercise_search_B' : 'c_test_search_B', {
+    registerAnalyticsEvent(type === 'MATH' ? 'math_search' : 'c_test_search', {
       studienkolleg: stkName,
     })
 

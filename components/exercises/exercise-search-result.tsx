@@ -38,7 +38,7 @@ export function ExerciseSearchResult({ exercises, type }: ExerciseSearchResultPr
         <Button key={exercise.id} onClick={(e) => {
           e.preventDefault()
 
-          registerAnalyticsEvent(type === 'MATH' ? 'exercise_access_studienkolleg_B' : 'c_test_access_studienkolleg_B', {
+          registerAnalyticsEvent(type === 'MATH' ? 'math_access_studienkolleg' : 'c_test_access_studienkolleg', {
             studienkolleg: stks.find(s => s.id === exercise.studienkollegId)?.name,
           })
 

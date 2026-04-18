@@ -6,7 +6,7 @@ const envSchema = z.object({
   NEXT_PUBLIC_URL: z.string(),
   NEXT_PUBLIC_GA_TRACKING_ID: z.string(),
   DATABASE_URL: z.string(),
-  EMAIL_DOMAIN: z.string(),
+  NEXT_PUBLIC_EMAIL_DOMAIN: z.string(),
   STRIPE_PRICE_ID: z.string(),
   STRIPE_SECRET_KEY: z.string(),
   STRIPE_WEBHOOK_SECRET: z.string(),

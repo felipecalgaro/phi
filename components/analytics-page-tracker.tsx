@@ -10,7 +10,8 @@ export function AnalyticsPageTracker() {
 
   useEffect(() => {
     if (pathname) {
-      const url = pathname + searchParams.toString()
+      const queryString = searchParams.toString()
+      const url = queryString ? `${pathname}?${queryString}` : pathname
       registerPageView(url)
     }
   }, [pathname, searchParams])
