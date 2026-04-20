@@ -8,7 +8,7 @@ export function LessonsSidebarTrigger() {
   const [isOpen, toggleIsOpen] = useContext(LessonsSidebarContext);
 
   return (
-    <button className="lg:hidden rounded-md hover:bg-accent transition-colors text-muted-foreground" onClick={toggleIsOpen}>
+    <button className="lg:hidden rounded-md hover:text-accent transition-colors text-muted-foreground cursor-pointer" onClick={toggleIsOpen}>
       {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
     </button>
   )
