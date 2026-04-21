@@ -87,9 +87,10 @@ export default function Home() {
             </Link>
           </div>
           <hr className='h-8 w-px border border-white/10' />
-          <nav className="flex items-center gap-x-4 gap-y-2 flex-wrap w-full">
+          <nav className="flex md:items-center items-start gap-x-4 gap-y-2 flex-wrap w-full md:flex-row flex-col">
             <LogInOutButton />
             <Link href="/exercises" className={cn(buttonVariants(), "text-white/80 hover:text-white hover:bg-white/10 bg-transparent border border-white/20")}>Exercises</Link>
+            <Link href="/blog" className={cn(buttonVariants(), "text-white/80 hover:text-white hover:bg-white/10 bg-transparent border border-white/20")}>Blog</Link>
           </nav>
         </nav>
       </section>

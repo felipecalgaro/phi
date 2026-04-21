@@ -4,33 +4,6 @@ import { ArrowRight, Navigation } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
 
-const materials = [
-  {
-    title: "Acing Aufnahmetest",
-    description: "Comprehensive course designed to help you pass your Studienkolleg entrance exam with expert guidance and practice resources.",
-    image: {
-      src: '/passing-exam.png',
-      alt: 'Blog Image',
-      width: 620,
-      height: 597
-    },
-    buttonText: "View Course",
-    link: "/acing-aufnahmetest"
-  },
-  {
-    title: "Exercises for Aufnahmetest",
-    description: "Access a variety of math exercises and C-Tests from real Aufnahmetests to help you in your preparation.",
-    image: {
-      src: '/book-germany.png',
-      alt: 'Exercises Image',
-      width: 887,
-      height: 863
-    },
-    buttonText: "Explore Exercises",
-    link: "/exercises"
-  }
-]
-
 export default function Home() {
   return (
     <>
@@ -41,7 +14,8 @@ export default function Home() {
             <span>Guide to Studienkolleg</span>
           </Link>
 
-          <nav className="flex items-center gap-x-4 gap-y-2 flex-wrap">
+          <nav className="flex xs:items-center items-start xs:gap-4 gap-3 flex-wrap xs:flex-row flex-col">
+            <Link href="/blog" className={cn(buttonVariants(), "text-white/80 hover:text-white hover:bg-white/10 bg-transparent border border-white/20")}>Blog</Link>
             <Link href="/exercises" className={cn(buttonVariants(), "text-white/80 hover:text-white hover:bg-white/10 bg-transparent border border-white/20")}>Exercises</Link>
             <Link href='/acing-aufnahmetest' className={cn(buttonVariants({ variant: 'outline' }), "bg-transparent border-primary text-primary hover:text-black shadow-button hover:shadow-glow transition-all cursor-pointer rounded-md sm:w-min w-min sm:px-4 px-4 sm:py-2 py-2 text-sm")}>
               Acing Aufnahmetest
@@ -67,28 +41,60 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {materials.map((material, index) => {
-        const isEven = index % 2 === 0
+      <section className="py-24 px-6 lg:px-12 flex justify-center items-center bg-(image:--gradient-red)">
+        <div className="flex justify-center items-center max-w-7xl gap-x-10 gap-y-18 sm:flex-nowrap flex-wrap">
+          <Image src='/passing-exam.png' alt="Passing Exam" width={620} height={597} className='lg:w-md md:w-sm w-xs' />
 
-        return <section key={index} className={cn("py-24 px-6 lg:px-12 flex justify-center items-center", isEven ? "bg-(image:--gradient-red)" : "bg-(image:--gradient-gold)")}>
-          <div className="flex justify-center items-center max-w-7xl gap-x-10 gap-y-18 sm:flex-nowrap flex-wrap">
-            <Image src={material.image.src} alt={material.image.alt} width={material.image.width} height={material.image.height} className={cn('lg:w-md md:w-sm w-xs', isEven ? 'order-1' : 'order-2')} />
-
-            <div className={cn("space-y-6 max-w-lg", isEven ? "order-2" : "order-1")}>
-              <h2 className={cn("sm:text-4xl text-3xl font-black lg:text-5xl", isEven ? "text-white" : "text-foreground")}>
-                {material.title}
-              </h2>
-              <p className={cn("sm:text-xl text-lg leading-relaxed", isEven ? "text-white/80" : "text-foreground/80")}>
-                {material.description}
-              </p>
-              <Link href={material.link} className={cn(buttonVariants({ size: 'lg', variant: isEven ? 'gold' : 'secondary' }), "group shadow-none", !isEven ? 'text-white' : '')}>
-                {material.buttonText}
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
+          <div className="space-y-6 max-w-lg order-2">
+            <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-white">
+              Acing Aufnahmetest
+            </h2>
+            <p className={cn("sm:text-xl text-lg leading-relaxed text-white/80")}>
+              Comprehensive course designed to help you pass your Studienkolleg entrance exam with expert guidance and practice resources.
+            </p>
+            <Link href="/acing-aufnahmetest" className={cn(buttonVariants({ size: 'lg', variant: 'gold' }), "group shadow-none")}>
+              View Course
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
-        </section>
-      })}
+        </div>
+      </section>
+      <section className="py-24 px-6 lg:px-12 flex justify-center items-center bg-(image:--gradient-gold)">
+        <div className="flex justify-center items-center max-w-7xl gap-x-10 gap-y-18 sm:flex-nowrap flex-wrap">
+          <Image src='/book-germany.png' alt="Book about Germany" width={887} height={863} className='lg:w-md md:w-sm w-xs order-2' />
+
+          <div className="space-y-6 max-w-lg">
+            <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-foreground">
+              Acing Aufnahmetest
+            </h2>
+            <p className="sm:text-xl text-lg leading-relaxed text-foreground/80">
+              Access a variety of math exercises and C-Tests from real Aufnahmetests to help you in your preparation.
+            </p>
+            <Link href="/acing-aufnahmetest" className={cn(buttonVariants({ size: 'lg', variant: 'secondary' }), "group shadow-none text-white")}>
+              View Course
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </div>
+      </section>
+      <section className="py-24 px-6 lg:px-12 flex justify-center items-center bg-(image:--gradient-hero)">
+        <div className="flex justify-center items-center max-w-7xl gap-x-10 gap-y-18 sm:flex-nowrap flex-wrap">
+          <Image src='/blog-posts.png' alt="Blog Posts" width={800} height={743} className='lg:w-md md:w-sm w-xs shadow-xl shadow-white/15 rounded-lg border border-gray-700' />
+
+          <div className="space-y-6 max-w-lg order-2">
+            <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-white">
+              Studienkolleg Blog
+            </h2>
+            <p className={cn("sm:text-xl text-lg leading-relaxed text-white/80")}>
+              Here you will find tutorials, tips, common misunderstandings, and every information you need for Studienkolleg and the admission process.
+            </p>
+            <Link href="/blog" className={cn(buttonVariants({ size: 'lg' }), "group shadow-none text-black bg-white hover:bg-white cursor-pointer")}>
+              View Blog
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -48,6 +48,9 @@ export default function RootLayout({
                   <Link href="/exercises" className="text-background/70 hover:text-background transition-colors text-sm">
                     Exercises
                   </Link>
+                  <Link href="/blog" className="text-background/70 hover:text-background transition-colors text-sm">
+                    Blog
+                  </Link>
                   <Link href="/" className="text-background/70 hover:text-background transition-colors text-sm">
                     Home
                   </Link>
