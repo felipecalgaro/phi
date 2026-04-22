@@ -1,5 +1,6 @@
 import prisma from '@/lib/prisma';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -9,9 +10,27 @@ export async function generateStaticParams() {
   })
 }
 
+type PostParams = Promise<{ slug: string }>
+
 export const dynamicParams = false
 
-export default async function Post({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata(
+  { params }: { params: PostParams },
+): Promise<Metadata> {
+  const { slug } = await params;
+
+  const post = await prisma.post.findUniqueOrThrow({
+    where: { slug },
+  })
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+  }
+}
+
+
+export default async function Post({ params }: { params: PostParams }) {
   const { slug } = await params;
 
   const post = await prisma.post.findUniqueOrThrow({
@@ -51,7 +70,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
         </header>
 
         <div className="mb-12">
-          <Image src={`/blog-images/${post.slug}.png`} alt={post.slug} width={1050} height={600} className="rounded-xs object-cover w-full" />
+          <Image src={`/blog-images/${post.slug}.png`} alt={post.slug} width={1050} height={600} loading='eager' className="rounded-xs object-cover w-full" />
         </div>
 
         <PostContent />
