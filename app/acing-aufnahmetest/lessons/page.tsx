@@ -5,19 +5,39 @@ import { Download, FileText, MoveLeft } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { RESOURCES } from '@/data/acing-aufnahmetest/resources';
+import { redirect } from 'next/navigation';
+import { verifySession } from '@/lib/dal';
 
-export const revalidate = 3600
+async function getLessons() {
+  try {
+    return await prisma.lesson.findMany({
+      select: {
+        id: true,
+        slug: true,
+        title: true,
+        module: true,
+        description: true,
+      },
+    })
+  } catch (error) {
+    console.error('Failed to fetch lessons', {
+      errorMessage: error instanceof Error ? error.message : 'unknown_error',
+    });
+  }
+}
 
 export default async function Lessons() {
-  const lessons = await prisma.lesson.findMany({
-    select: {
-      id: true,
-      slug: true,
-      title: true,
-      module: true,
-      description: true,
-    },
-  })
+  const { isAuthenticated, userRole } = await verifySession();
+
+  if (!isAuthenticated) {
+    redirect("/acing-aufnahmetest/login");
+  }
+
+  if (userRole === "BASIC") {
+    redirect("/acing-aufnahmetest/purchase");
+  }
+
+  const lessons = await getLessons();
 
   return (
     <div className="min-h-screen bg-background pb-40 flex justify-center items-center flex-col">
@@ -40,7 +60,7 @@ export default async function Lessons() {
           </h1>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {lessons.map((lesson) => {
+          {lessons ? lessons.map((lesson) => {
             const imageUrl = `https://${env.CLOUDFRONT_DOMAIN}/video-thumbnails/${lesson.slug}.png`
 
             return (
@@ -61,7 +81,11 @@ export default async function Lessons() {
                 </div>
               </Link>
             )
-          })}
+          }) : (
+            <div className="col-span-full flex flex-col items-center justify-center gap-4 py-10">
+              <p className="text-sm text-muted-foreground">Failed to load lessons. Please try again later.</p>
+            </div>
+          )}
         </div>
         <div className="max-w-5xl px-6 py-10 mt-16">
           <h1 className="text-2xl font-semibold text-foreground tracking-tight text-center">

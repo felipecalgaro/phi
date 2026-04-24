@@ -62,31 +62,6 @@ export async function proxy(req: NextRequest) {
       NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
       requestId,
     );
-  } else if (token && path.startsWith("/acing-aufnahmetest/lessons")) {
-    try {
-      const { payload } = await verifyToken(token);
-
-      const { userRole } = tokenPayloadSchema.parse(payload);
-
-      if (userRole === "BASIC") {
-        return withRequestId(
-          NextResponse.redirect(
-            new URL("/acing-aufnahmetest/purchase", req.url),
-          ),
-          requestId,
-        );
-      }
-
-      return nextWithRequestId(req, requestId);
-    } catch {
-      const res = withRequestId(
-        NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
-        requestId,
-      );
-
-      res.cookies.delete("token");
-      return res;
-    }
   } else if (!token && path === "/acing-aufnahmetest/purchase") {
     const res = withRequestId(
       NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
