@@ -30,5 +30,5 @@ export function Price() {
     return () => observer.disconnect();
   }, []);
 
-  return <span ref={ref}>€19</span>;
+  return <span ref={ref}>€9</span>;
 }
