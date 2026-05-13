@@ -76,5 +76,11 @@
     "name": "Studienkolleg Sachsen (Leipzig)",
     "city": "Leipzig",
     "state": "Sachsen"
+  },
+  {
+    "id": "e643c410-b0d9-4e25-85b9-abec292cff28",
+    "name": "Studienkolleg Kiel",
+    "city": "Kiel",
+    "state": "Schleswig-Holstein"
   }
 ]
