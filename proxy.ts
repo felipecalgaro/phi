@@ -34,6 +34,38 @@ export async function proxy(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
   const path = req.nextUrl.pathname;
 
+  if (path.startsWith("/admin")) {
+    if (!token) {
+      return withRequestId(
+        NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+        requestId,
+      );
+    }
+
+    try {
+      const { payload } = await verifyToken(token);
+
+      const { userRole } = tokenPayloadSchema.parse(payload);
+
+      if (userRole !== "ADMIN") {
+        return withRequestId(
+          NextResponse.redirect(new URL("/acing-aufnahmetest", req.url)),
+          requestId,
+        );
+      }
+
+      return nextWithRequestId(req, requestId);
+    } catch {
+      const res = withRequestId(
+        NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+        requestId,
+      );
+
+      res.cookies.delete("token");
+      return res;
+    }
+  }
+
   if (token && path === "/acing-aufnahmetest/login") {
     try {
       const { payload } = await verifyToken(token);
