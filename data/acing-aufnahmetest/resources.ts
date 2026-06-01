@@ -43,24 +43,16 @@ export const RESOURCES = {
       slug: "mock-at-uni-heidelberg",
     },
     {
-      name: "Mock Aufnahmetest TUB (1)",
-      slug: "mock-at-tub-1",
-    },
-    {
-      name: "Mock Aufnahmetest TUB (2)",
-      slug: "mock-at-tub-2",
+      name: "Mock Aufnahmetest TUB",
+      slug: "mock-at-tub",
     },
     {
       name: "Mock Aufnahmetest Universität Nordhausen",
       slug: "mock-at-uni-nordhausen",
     },
     {
-      name: "Mock Aufnahmetest KIT (1)",
-      slug: "mock-at-kit-1",
-    },
-    {
-      name: "Mock Aufnahmetest KIT (2)",
-      slug: "mock-at-kit-2",
+      name: "Mock Aufnahmetest KIT",
+      slug: "mock-at-kit",
     },
     {
       name: "Mock Aufnahmetest München",

@@ -4,7 +4,7 @@ import { Price } from '@/components/acing-aufnahmetest/price';
 import { buttonVariants } from '@/components/ui/button';
 import { env } from '@/lib/env';
 import { cn } from '@/lib/utils';
-import { Check, Navigation, Target } from 'lucide-react';
+import { Check, Download, Navigation, Target } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -19,6 +19,12 @@ const modules = {
   'From Zero to Exam-Ready': [['Aufnahmetest full overview', 'Straightforward study plan and resources for preparation', 'Mistakes to avoid before and during exam day'], ['Most common math topics and problems', 'Most common German problems and grammar', 'Approaching C-Tests the right way', 'Useful strategies during the exam']],
   'BONUS': [['Access to direct help via WhatsApp through the whole admission process, answering questions and providing guidance', 'Mock Aufnahmetests from multiple Studienkollegs', 'PDFs of Grammar topics with real examples from Aufnahmetests']],
 }
+
+const mockTests = [
+  "Aufnahmetest of KIT",
+  "Aufnahmetest of Hochschule Kaiserslautern",
+  "Aufnahmetest of TUB",
+]
 
 export default function Home() {
   return (
@@ -140,6 +146,21 @@ export default function Home() {
         </div>
 
         <Image src='/me.png' alt='Picture of me' width={286} height={400} className='rounded-lg' />
+      </section>
+      <section id='mock-tests' className="bg-(image:--gradient-gold) flex justify-center items-center w-full gap-x-10 gap-y-18 py-36 px-3 lg:px-6 flex-nowrap max-[900px]:flex-wrap">
+        <div className="flex flex-col justify-center items-center gap-16 max-w-lg w-full">
+          <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-foreground text-center">
+            (FREE) Mock Aufnahmetests
+          </h2>
+          <div className='flex flex-col justify-center items-center gap-4'>
+            {mockTests.map((test, index) => (
+              <Link download href={`/mock-exams/${test}.pdf`} key={index} className='flex justify-between items-center gap-6 backdrop-blur-sm border border-black/40 hover:bg-white/5 bg-white/10 transition-all duration-200 rounded-xl px-8 py-4 w-full text-foreground'>
+                {test}
+                <Download strokeWidth={1.5} className='size-6 text-foreground shrink-0' />
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
       <section id='contact' className="bg-foreground flex justify-center items-end gap-x-10 gap-y-18 py-36 px-3 lg:px-6 flex-nowrap max-[900px]:flex-wrap">
         <div className="space-y-12 max-w-lg">
