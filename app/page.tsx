@@ -1,6 +1,6 @@
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { ArrowRight, Navigation } from "lucide-react";
+import { ArrowRight, Download, Navigation } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -77,24 +77,42 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="py-24 px-6 lg:px-12 flex justify-center items-center bg-(image:--gradient-hero)">
-        <div className="flex justify-center items-center max-w-7xl gap-x-10 gap-y-18 sm:flex-nowrap flex-wrap">
-          <Image src='/blog-posts.png' alt="Blog Posts" width={800} height={743} className='lg:w-md md:w-sm w-xs shadow-xl shadow-white/15 rounded-lg border border-gray-700' />
+      <div className="bg-(image:--gradient-hero) flex justify-center items-center flex-col py-24 gap-24 px-6 lg:px-12">
+        <section className="flex justify-center items-center">
+          <div className="flex justify-center items-center max-w-7xl gap-x-10 gap-y-18 sm:flex-nowrap flex-wrap">
+            <Image src='/blog-posts.png' alt="Blog Posts" width={800} height={743} className='lg:w-md md:w-sm w-xs shadow-xl shadow-white/15 rounded-lg border border-gray-700' />
 
-          <div className="space-y-6 max-w-lg order-2">
+            <div className="space-y-6 max-w-lg order-2">
+              <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-white">
+                Studienkolleg Blog
+              </h2>
+              <p className={cn("sm:text-xl text-lg leading-relaxed text-white/80")}>
+                Here you will find tutorials, tips, common misunderstandings, and every information you need for Studienkolleg and the admission process.
+              </p>
+              <Link href="/blog" className={cn(buttonVariants({ size: 'lg' }), "group shadow-none text-black bg-white hover:bg-white cursor-pointer")}>
+                View Blog
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+        </section>
+        <hr className='w-full border-gray-700' />
+        <section id="guide" className='w-full flex justify-center items-center flex-col pb-24 gap-12'>
+          <div className="space-y-6 max-w-3xl text-center">
             <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-white">
-              Studienkolleg Blog
+              (FREE PDF) Your Guide to Studienkolleg
             </h2>
             <p className={cn("sm:text-xl text-lg leading-relaxed text-white/80")}>
-              Here you will find tutorials, tips, common misunderstandings, and every information you need for Studienkolleg and the admission process.
+              A comprehensive PDF guidebook covering everything you need to know about Studienkolleg, from the application process to exam preparation and tips for success.
             </p>
-            <Link href="/blog" className={cn(buttonVariants({ size: 'lg' }), "group shadow-none text-black bg-white hover:bg-white cursor-pointer")}>
-              View Blog
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
           </div>
-        </div>
-      </section>
+          <Image src='/guide.png' alt="Guide" width={627} height={500} />
+          <Link download href='/your-guide-to-studienkolleg.pdf' className='flex justify-between items-center gap-6 backdrop-blur-sm border border-white/40 hover:bg-white/5 bg-white/10 transition-all duration-200 rounded-xl px-8 py-4 w-full text-white max-w-xl sm:text-lg text-base font-medium'>
+            <p>Your Guide to Studienkolleg <span className='text-white/60 font-light'>- a comprehensive PDF guidebook</span></p>
+            <Download className='size-6 shrink-0' />
+          </Link>
+        </section>
+      </div>
     </>
   );
 }
