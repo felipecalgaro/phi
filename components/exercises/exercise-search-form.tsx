@@ -8,7 +8,7 @@ import { registerAnalyticsEvent } from '@/lib/google-analytics';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { Command, CommandGroup, CommandItem, CommandList } from '../ui/command';
 import { cn } from '@/lib/utils';
-import stks from '@/data/exercises/studienkollegs.json';
+import stks from '@/data/studienkollegs.json';
 
 interface ExerciseSearchFormProps {
   type: 'MATH' | 'C-TEST'

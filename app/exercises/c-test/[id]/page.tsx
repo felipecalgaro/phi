@@ -1,5 +1,5 @@
 import cTests from '@/data/exercises/c-tests.json'
-import studienkollegs from '@/data/exercises/studienkollegs.json'
+import studienkollegs from '@/data/studienkollegs.json'
 import { Metadata } from 'next'
 import { ExerciseCard } from '@/components/exercises/exercise-card'
 

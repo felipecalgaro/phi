@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '../ui/button';
 import { registerAnalyticsEvent } from '@/lib/google-analytics';
-import stks from '@/data/exercises/studienkollegs.json'
+import stks from '@/data/studienkollegs.json'
 import { formatPublicId } from '@/utils/formatters';
 import { cn } from '@/lib/utils';
 
