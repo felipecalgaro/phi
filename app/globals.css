@@ -45,9 +45,6 @@
 }
 
 :root {
-  --germany-black: hsl(220 15% 12%);
-  --germany-red: hsl(355 65% 42%);
-  --germany-gold: hsl(42 85% 52%);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -55,11 +52,11 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --secondary: hsl(355 65% 42%);
-  --primary: hsl(42 85% 52%);
+  --primary: hsl(47 100% 50%);
+  --secondary: hsl(357, 83%, 53%);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: hsl(220 14% 20%);
+  --accent: hsl(0, 0%, 87%);
   --accent-foreground: hsl(220 15% 12%);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
@@ -85,13 +82,13 @@
   );
   --gradient-red: linear-gradient(
     180deg,
-    hsl(355 55% 35%) 0%,
-    hsl(355 60% 28%) 100%
+    hsl(357, 83%, 53%) 0%,
+    hsl(357, 79%, 46%) 100%
   );
   --gradient-gold: linear-gradient(
     180deg,
-    hsl(42 80% 50%) 0%,
-    hsl(38 85% 45%) 100%
+    hsl(47 100% 50%) 0%,
+    hsl(47, 96%, 48%) 100%
   );
   --gradient-subtle: linear-gradient(
     135deg,
@@ -105,9 +102,11 @@
   );
   --gradient-accent: linear-gradient(
     135deg,
-    hsl(355 65% 42%) 0%,
-    hsl(42 85% 52%) 100%
+    var(--primary) 0%,
+    hsl(22 100% 58%) 50%,
+    var(--secondary) 100%
   );
+  --shadow-accent: 0 20px 60px -20px oklch(0.65 0.22 35 / 0.45);
   --shadow-soft: 0 8px 32px -8px hsl(220 15% 12% / 0.3);
   --shadow-button: 0 12px 40px -8px hsl(355 65% 42% / 0.4);
   --shadow-glow: 0 0 30px hsl(42 85% 52% / 0.3);
@@ -204,4 +203,31 @@
 
 .katex mtd {
   padding: 0.2em 0.2em;
+}
+
+@utility text-gradient-accent {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility hero-background {
+  background-image:
+    radial-gradient(
+      80% 50% at 20% 10%,
+      color(xyz 0.684 0.673 0.208 / 0.549),
+      #0000 60%
+    ),
+    radial-gradient(
+      60% 50% at 100% 30%,
+      color(xyz 0.611 0.44 0.171 / 0.349),
+      #0000 60%
+    ),
+    radial-gradient(
+      80% 50% at 50% 80%,
+      color(xyz 0.611 0.44 0.171 / 0.349),
+      #0000 60%
+    ),
+    radial-gradient(60% 50% at 0 100%, #a1d8624d, #0000 60%);
 }
