@@ -9,6 +9,7 @@ import { Button } from '../ui/button';
 import { useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { registerAnalyticsEvent } from '@/lib/google-analytics';
+import { useSearchParams } from 'next/navigation';
 
 function LoginSubmitButton() {
   const { pending } = useFormStatus()
@@ -22,6 +23,7 @@ function LoginSubmitButton() {
 
 export function LoginForm() {
   const [error, setError] = useState<string>()
+  const searchParams = useSearchParams()
 
   async function handleLogin(data: FormData) {
     registerAnalyticsEvent('send_magic_link_click')
@@ -37,7 +39,12 @@ export function LoginForm() {
       return
     }
 
-    const response = await sendMagicLinkEmail({ email: result.data })
+    const redirectTo = searchParams.get('redirect')
+
+    const response = await sendMagicLinkEmail({
+      email: result.data,
+      redirectTo,
+    })
 
     if (!response.success) {
       toast.error(response.error)

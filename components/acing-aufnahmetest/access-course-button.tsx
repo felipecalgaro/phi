@@ -22,7 +22,23 @@ export function AccessCourseButton() {
     )
   }
 
-  if (isError || !data.isAuthenticated || data.userRole === 'BASIC') {
+  if (isError) {
+    return <CTAButton />
+  }
+
+  if (!data.isAuthenticated) {
+    return (
+      <Link
+        href="/acing-aufnahmetest/login?redirect=purchase"
+        className={cn(buttonVariants({ variant: "gold" }), "sm:text-xl text-base font-bold shadow-button hover:shadow-glow transition-all rounded-xl sm:py-8 py-7 sm:w-72 w-56 cursor-pointer")}
+      >
+        Buy the course
+        <ArrowRight className="sm:ml-4 ml-2 inline-block sm:size-8 size-6" />
+      </Link>
+    )
+  }
+
+  if (data.userRole === 'BASIC') {
     return <CTAButton />
   }
 

@@ -27,6 +27,16 @@ function withRequestId(response: NextResponse, requestId: string) {
   return response;
 }
 
+const ADMIN_ROUTES = ["/admin"];
+
+const PREMIUM_ROUTES = ["/acing-aufnahmetest/lessons", "/community"];
+
+const AUTH_ROUTES = ["/roadmap"];
+
+const BASIC_ONLY_ROUTES = ["/acing-aufnahmetest/purchase"];
+
+const UNAUTH_ONLY_ROUTES = ["/acing-aufnahmetest/login"];
+
 export async function proxy(req: NextRequest) {
   const requestId = getRequestId(req);
   setRequestId(requestId);
@@ -34,7 +44,7 @@ export async function proxy(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
   const path = req.nextUrl.pathname;
 
-  if (path.startsWith("/admin")) {
+  if (ADMIN_ROUTES.some((route) => path.startsWith(route))) {
     if (!token) {
       return withRequestId(
         NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
@@ -66,21 +76,12 @@ export async function proxy(req: NextRequest) {
     }
   }
 
-  if (token && path === "/acing-aufnahmetest/login") {
+  if (token && UNAUTH_ONLY_ROUTES.some((route) => path.startsWith(route))) {
     try {
-      const { payload } = await verifyToken(token);
-
-      const { userRole } = tokenPayloadSchema.parse(payload);
-
-      if (userRole === "BASIC") {
-        return withRequestId(
-          NextResponse.redirect(new URL("/acing-aufnahmetest", req.url)),
-          requestId,
-        );
-      }
+      await verifyToken(token);
 
       return withRequestId(
-        NextResponse.redirect(new URL("/acing-aufnahmetest/lessons", req.url)),
+        NextResponse.redirect(new URL("/", req.url)),
         requestId,
       );
     } catch {
@@ -89,20 +90,46 @@ export async function proxy(req: NextRequest) {
       res.cookies.delete("token");
       return res;
     }
-  } else if (!token && path.startsWith("/acing-aufnahmetest/lessons")) {
+  } else if (!token && PREMIUM_ROUTES.some((route) => path.startsWith(route))) {
     return withRequestId(
       NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
       requestId,
     );
-  } else if (!token && path === "/acing-aufnahmetest/purchase") {
+  } else if (!token && AUTH_ROUTES.some((route) => path.startsWith(route))) {
+    const redirectTo = path.startsWith("/roadmap") ? "roadmap" : undefined;
+
     const res = withRequestId(
-      NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+      NextResponse.redirect(
+        new URL(
+          `/acing-aufnahmetest/login${redirectTo ? `?redirect=${redirectTo}` : ""}`,
+          req.url,
+        ),
+      ),
       requestId,
     );
-
-    res.cookies.set("redirect_to_purchase", "true");
     return res;
-  } else if (token && path === "/acing-aufnahmetest/purchase") {
+  } else if (
+    !token &&
+    BASIC_ONLY_ROUTES.some((route) => path.startsWith(route))
+  ) {
+    const redirectTo = path.startsWith("/acing-aufnahmetest/purchase")
+      ? "purchase"
+      : undefined;
+
+    const res = withRequestId(
+      NextResponse.redirect(
+        new URL(
+          `/acing-aufnahmetest/login${redirectTo ? `?redirect=${redirectTo}` : ""}`,
+          req.url,
+        ),
+      ),
+      requestId,
+    );
+    return res;
+  } else if (
+    token &&
+    BASIC_ONLY_ROUTES.some((route) => path.startsWith(route))
+  ) {
     try {
       const { payload } = await verifyToken(token);
 
@@ -110,9 +137,7 @@ export async function proxy(req: NextRequest) {
 
       if (userRole !== "BASIC") {
         return withRequestId(
-          NextResponse.redirect(
-            new URL("/acing-aufnahmetest/lessons", req.url),
-          ),
+          NextResponse.redirect(new URL("/", req.url)),
           requestId,
         );
       }
