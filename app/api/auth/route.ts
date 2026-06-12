@@ -17,27 +17,22 @@ import {
 const queryParamsSchema = z.jwt({ alg: "HS256" });
 const MAGIC_LINK_MARKER_TTL_SECONDS = 60 * 15;
 
-type MagicLinkConsumeResult = "OK" | "PENDING_MISSING" | "ALREADY_CONSUMED";
-
-const consumeMagicLinkScript = redis.createScript<MagicLinkConsumeResult>(`
-  local pending = redis.call("GET", KEYS[1])
-  if not pending then
-    return "PENDING_MISSING"
-  end
-
-  local claimed = redis.call("SET", KEYS[2], "1", "NX", "EX", ARGV[1])
-  if not claimed then
-    return "ALREADY_CONSUMED"
-  end
-
-  redis.call("DEL", KEYS[1])
-  return "OK"
-`);
+const roadmapAnswersSchema = z.object({
+  countryOfHighschool: z.string().min(1),
+  citizenships: z.array(z.string()).min(1),
+  plannedStudienkollegs: z.array(z.uuid()),
+  plannedAttendance: z.object({
+    year: z.coerce.number().int(),
+    semester: z.enum(["WINTER", "SUMMER"]),
+  }),
+  subscribedToMarketing: z.boolean(),
+});
 
 const temporaryTokenPayloadSchema = z.object({
   email: z.email(),
-  redirectToPurchase: z.boolean(),
+  redirectTo: z.enum(["purchase", "roadmap"]).nullable(),
   jti: z.uuid(),
+  answers: roadmapAnswersSchema.optional(),
 });
 
 export async function GET(request: NextRequest) {
@@ -85,7 +80,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const { email, redirectToPurchase, jti } = parsedPayload;
+  const { email, redirectTo, jti, answers } = parsedPayload;
   setRateLimitContext("email", jti);
 
   const { success } = await applyRateLimiter({
@@ -106,6 +101,70 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  await consumeMagicLink(jti);
+
+  const normalizedEmail = email.trim().toLowerCase();
+
+  let user = await prisma.user.findUnique({
+    where: { email: normalizedEmail },
+  });
+
+  if (!user) {
+    const userData = answers
+      ? {
+          countryOfHighschool: answers.countryOfHighschool,
+          citizenships: answers.citizenships,
+          plannedStudienkollegs: answers.plannedStudienkollegs,
+          plannedAttendanceYear: answers.plannedAttendance.year,
+          plannedAttendanceSemester: answers.plannedAttendance.semester,
+          subscribedToMarketing: answers.subscribedToMarketing,
+        }
+      : {};
+
+    user = await prisma.user.create({
+      data: {
+        email: normalizedEmail,
+        role: "BASIC",
+        ...userData,
+      },
+    });
+  }
+
+  await createCookiesSession({
+    userId: user.id,
+    userRole: user.role,
+  });
+
+  setUserId(user.id);
+
+  const redirectPath =
+    redirectTo === "purchase"
+      ? "/acing-aufnahmetest/purchase"
+      : redirectTo === "roadmap"
+        ? "/roadmap"
+        : "/";
+
+  return NextResponse.redirect(new URL(redirectPath, request.url));
+}
+
+type MagicLinkConsumeResult = "OK" | "PENDING_MISSING" | "ALREADY_CONSUMED";
+
+const consumeMagicLinkScript = redis.createScript<MagicLinkConsumeResult>(`
+  local pending = redis.call("GET", KEYS[1])
+  if not pending then
+    return "PENDING_MISSING"
+  end
+
+  local claimed = redis.call("SET", KEYS[2], "1", "NX", "EX", ARGV[1])
+  if not claimed then
+    return "ALREADY_CONSUMED"
+  end
+
+  redis.call("DEL", KEYS[1])
+  return "OK"
+`);
+
+async function consumeMagicLink(jti: string) {
   const consumedMarkerKey = `magic_link_consumed:${jti}`;
   const pendingKey = `magic_link:${jti}`;
 
@@ -133,39 +192,4 @@ export async function GET(request: NextRequest) {
       { status: 400 },
     );
   }
-
-  const normalizedEmail = email.trim().toLowerCase();
-
-  let user = await prisma.user.findUnique({
-    where: { email: normalizedEmail },
-  });
-
-  if (!user) {
-    user = await prisma.user.create({
-      data: {
-        email: normalizedEmail,
-        role: "BASIC",
-      },
-    });
-  }
-
-  await createCookiesSession({
-    userId: user.id,
-    userRole: user.role,
-  });
-
-  setUserId(user.id);
-
-  if (user.role !== "BASIC") {
-    return NextResponse.redirect(
-      new URL("/acing-aufnahmetest/lessons", request.url),
-    );
-  }
-
-  return NextResponse.redirect(
-    new URL(
-      `/acing-aufnahmetest${redirectToPurchase ? "/purchase" : ""}`,
-      request.url,
-    ),
-  );
 }
