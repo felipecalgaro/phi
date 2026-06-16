@@ -11,7 +11,9 @@ const userSessionSchema = getResponseDataSchema(
   }),
 );
 
-export function useGetClientSession() {
+export function useGetClientSession({
+  enabled = true,
+}: { enabled?: boolean } = {}) {
   return useQuery({
     queryKey: ["user-session"],
     queryFn: async () => {
@@ -30,6 +32,7 @@ export function useGetClientSession() {
 
       return parsedResponse.data;
     },
+    enabled,
     staleTime: Infinity,
   });
 }

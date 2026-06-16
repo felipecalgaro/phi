@@ -37,6 +37,7 @@
     "@types/mdx": "^2.0.13",
     "@upstash/ratelimit": "^2.0.8",
     "@upstash/redis": "^1.36.3",
+    "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -50,6 +51,7 @@
     "radix-ui": "^1.5.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-phone-number-input": "^3.4.17",
     "resend": "^6.5.2",
     "sonner": "^2.0.7",
     "stripe": "^20.3.1",
@@ -58,6 +60,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.19",
+    "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^20.19.25",
     "@types/pg": "^8.15.6",
     "@types/react": "^19",

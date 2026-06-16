@@ -53,15 +53,6 @@ export async function sendMagicLinkEmail(request: unknown) {
   const email = result.data.email.trim().toLowerCase();
   const redirectTo = result.data.redirectTo ?? null;
 
-  if (redirectTo === "roadmap" && !result.data.answers) {
-    Sentry.setTag("error_type", "invalid_payload");
-
-    return {
-      success: false,
-      error: "Invalid request data",
-    };
-  }
-
   const existingUser = await prisma.user.findUnique({
     where: { email },
     select: { id: true },
