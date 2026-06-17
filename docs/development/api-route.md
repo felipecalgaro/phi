@@ -6,7 +6,7 @@ Normal application API routes should use request validation, Sentry context, rat
 
 ## Response Shape
 
-Application API routes should return `NextResponse.json()` typed with `ResponseDataObject` from `@/utils/get-response-data-object`.
+Application API routes should return `NextResponse.json()` typed with `ResponseDataObject` or `ResponseDataObject<TData>` from `@/utils/get-response-data-object`.
 
 ```ts
 return NextResponse.json<ResponseDataObject>(
@@ -21,15 +21,30 @@ return NextResponse.json<ResponseDataObject>(
 `ResponseDataObject` is the standard API response type:
 
 ```ts
-type ResponseDataObject =
+type ResponseDataObject<T = unknown> =
   | {
       success: true;
-      data?: unknown;
+      data?: T;
     }
   | {
       success: false;
       error: string;
     };
+```
+
+Use `ResponseDataObject<TData>` when returning a successful payload that callers should consume with a concrete type:
+
+```ts
+type UserStatusData = {
+  hasAccess: boolean;
+};
+
+return NextResponse.json<ResponseDataObject<UserStatusData>>({
+  success: true,
+  data: {
+    hasAccess: true,
+  },
+});
 ```
 
 Error responses should include an HTTP status:
@@ -340,7 +355,7 @@ Redirect-based routes, such as magic-link consumption, may return `NextResponse.
 ## Implementation Rules
 
 - Import `ResponseDataObject` from `@/utils/get-response-data-object`.
-- Return typed JSON with `NextResponse.json<ResponseDataObject>` for normal application API responses.
+- Return typed JSON with `NextResponse.json<ResponseDataObject>` or `NextResponse.json<ResponseDataObject<TData>>` for normal application API responses.
 - Include an HTTP status in every error response.
 - Set Sentry request context at the start of the route.
 - Apply rate limiting unless explicitly instructed otherwise.

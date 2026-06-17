@@ -37,6 +37,7 @@ model Post {
 model User {
   id                        String    @id @default(uuid())
   email                     String    @unique
+  phoneNumber               String?   @unique
   role                      Role
   countryOfHighschool       String?
   citizenships              String[]  @default([])

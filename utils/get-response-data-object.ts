@@ -1,9 +1,9 @@
 import z from "zod";
 
-export type ResponseDataObject =
+export type ResponseDataObject<T = unknown> =
   | {
       success: true;
-      data: unknown;
+      data?: T;
     }
   | {
       success: false;
@@ -20,6 +20,6 @@ export function getResponseDataSchema<T>(schema: T) {
       z.object({
         success: z.literal(true),
         data: schema,
-      })
+      }),
     );
 }

@@ -1,7 +1,7 @@
 import { LogoutButton } from '@/components/acing-aufnahmetest/logout-button';
 import { env } from '@/lib/env';
 import prisma from '@/lib/prisma';
-import { Download, FileText, MoveLeft } from 'lucide-react';
+import { Download, FileText, MessageCircleMore, MoveLeft } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { RESOURCES } from '@/data/acing-aufnahmetest/resources';
@@ -86,6 +86,26 @@ export default async function Lessons() {
               <p className="text-sm text-muted-foreground">Failed to load lessons. Please try again later.</p>
             </div>
           )}
+        </div>
+        <div className="max-w-5xl px-6 py-10 mt-16">
+          <h1 className="text-2xl font-semibold text-foreground tracking-tight text-center">
+            Community
+          </h1>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Link
+            href="/community"
+            className="text-left rounded-xl overflow-hidden bg-card border border-border"
+          >
+            <div className="aspect-video bg-green-100 relative">
+              <MessageCircleMore className="size-16 text-green-500 absolute inset-0 m-auto" />
+            </div>
+            <div className="px-3 py-4">
+              <p className="text-sm font-medium text-foreground leading-snug line-clamp-2">
+                STK Community
+              </p>
+            </div>
+          </Link>
         </div>
         <div className="max-w-5xl px-6 py-10 mt-16">
           <h1 className="text-2xl font-semibold text-foreground tracking-tight text-center">

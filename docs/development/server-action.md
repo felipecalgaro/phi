@@ -37,25 +37,42 @@ return {
 
 ## Return Type
 
-Server actions should always return `Promise<ResponseDataObject>`, importing `ResponseDataObject` from `@/utils/get-response-data-object`.
+Server actions should always return `Promise<ResponseDataObject>` or `Promise<ResponseDataObject<TData>>`, importing `ResponseDataObject` from `@/utils/get-response-data-object`.
 
 ```ts
 import { ResponseDataObject } from "@/utils/get-response-data-object";
 
-type ResponseDataObject =
+type ResponseDataObject<T = unknown> =
   | {
       success: false;
       error: string;
     }
   | {
       success: true;
-      data?: unknown;
+      data?: T;
     };
 ```
 
 Use `{ success: true }` for successful operations with no meaningful payload.
 
-Use `{ success: true, data }` when the caller needs a successful result payload.
+Use `ResponseDataObject<TData>` and `{ success: true, data }` when the caller needs a typed successful result payload.
+
+```ts
+type SaveProfileData = {
+  displayName: string;
+};
+
+export async function saveProfile(
+  request: unknown,
+): Promise<ResponseDataObject<SaveProfileData>> {
+  return {
+    success: true,
+    data: {
+      displayName: "Ada",
+    },
+  };
+}
+```
 
 Use `{ success: false, error: "..." }` for expected failures that should be shown to the user or handled by the caller.
 
@@ -243,7 +260,7 @@ export async function actionName(
 ## Implementation Rules
 
 - Keep `"use server";` at the top of the file.
-- Import `ResponseDataObject` from `@/utils/get-response-data-object` and return `Promise<ResponseDataObject>`.
+- Import `ResponseDataObject` from `@/utils/get-response-data-object` and return `Promise<ResponseDataObject>` or `Promise<ResponseDataObject<TData>>` when the success branch includes typed `data`.
 - Validate the request before reading from it.
 - Keep the schema close to the action unless it is shared by multiple files.
 - Prefer explicit, user-safe error messages.
