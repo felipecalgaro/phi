@@ -45,11 +45,20 @@ export default function RootLayout({
                   <Link href="/acing-aufnahmetest" className="text-background/70 hover:text-background transition-colors text-sm">
                     Acing Aufnahmetest
                   </Link>
+                  <Link href="/roadmap" className="text-background/70 hover:text-background transition-colors text-sm">
+                    Roadmap
+                  </Link>
                   <Link href="/exercises" className="text-background/70 hover:text-background transition-colors text-sm">
                     Exercises
                   </Link>
                   <Link href="/blog" className="text-background/70 hover:text-background transition-colors text-sm">
                     Blog
+                  </Link>
+                  <Link href="/terms" className="text-background/70 hover:text-background transition-colors text-sm">
+                    Terms of Service
+                  </Link>
+                  <Link href="/privacy" className="text-background/70 hover:text-background transition-colors text-sm">
+                    Privacy Policy
                   </Link>
                   <Link href="/" className="text-background/70 hover:text-background transition-colors text-sm">
                     Home
