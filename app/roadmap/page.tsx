@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Crown, Users, BookOpen, MessageCircle } from "lucide-react";
+import { ArrowRight, Sparkles, Users, BookOpen, MessageCircle } from "lucide-react";
 import { Header } from "@/components/header";
 import { buttonVariants } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
@@ -117,14 +117,21 @@ export default async function RoadmapPage() {
                         <div className="hidden md:block md:w-1/2" />
                       </div>
                     </DialogTrigger>
-                    <DialogContent className="rounded-3xl max-w-lg">
-                      <DialogHeader>
-                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-3" style={{ background: s.color }}>
-                          <Icon className="w-7 h-7 text-foreground" />
-                        </div>
-                        <DialogTitle className="text-2xl font-semibold">{s.title}</DialogTitle>
-                        <DialogDescription className="text-base leading-relaxed pt-2">{s.description}</DialogDescription>
-                      </DialogHeader>
+                    <DialogContent className="max-h-132 max-w-2xl overflow-hidden rounded-3xl p-0">
+                      <div className="max-h-132 overflow-y-auto p-6 pr-8">
+                        <DialogHeader>
+                          <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-3" style={{ background: s.color }}>
+                            <Icon className="w-7 h-7 text-foreground" />
+                          </div>
+                          <DialogTitle className="text-2xl font-semibold">{s.title}</DialogTitle>
+                          <DialogDescription className="sr-only">
+                            Details for {s.title}
+                          </DialogDescription>
+                          <div className="space-y-4 pt-2 text-base leading-relaxed text-muted-foreground [&_a]:text-foreground [&_a]:font-medium [&_b]:text-foreground [&_em]:text-foreground [&_li]:pl-1 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
+                            {s.description}
+                          </div>
+                        </DialogHeader>
+                      </div>
                     </DialogContent>
                   </Dialog>
                 );
@@ -137,10 +144,6 @@ export default async function RoadmapPage() {
               <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full opacity-20" style={{ background: "var(--gradient-accent)" }} />
               <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full opacity-20" style={{ background: "var(--gradient-accent)" }} />
               <div className="relative">
-                <Badge className="mb-4 rounded-full px-4 py-1.5 bg-[#fce4c4] border-border">
-                  <Crown className="w-3 h-3 mr-1.5 opacity-100" />
-                  <p className="opacity-100">Premium</p>
-                </Badge>
                 <h2 className="text-3xl md:text-4xl font-semibold mb-3">
                   Want a <span className="text-gradient-accent">personal guide</span>?
                 </h2>
