@@ -1,3 +1,4 @@
+import { Header } from '@/components/header';
 import { QuestionsCard } from '@/components/questions-card';
 import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
@@ -9,16 +10,17 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <>
-      <section className="hero-background relative flex xl:flex-nowrap flex-wrap items-center justify-center sm:px-8 px-4 pb-24 pt-12 lg:px-12 sm:gap-20 gap-12 min-h-screen">
+      <Header />
+      <section className="hero-background relative flex xl:flex-nowrap flex-wrap items-center justify-center sm:px-8 px-4 pb-24 pt-24 lg:px-12 sm:gap-20 gap-12 min-h-screen">
         <div className="text-center lg:max-w-3xl max-w-5xl shrink w-min">
           <Badge variant="secondary" className="mb-5 rounded-full border-border bg-card px-4 py-1.5 text-xs font-medium">
             <Sparkles className="mr-1.5 h-3 w-3" /> Personalized in 2 min
           </Badge>
           <h1 className="mb-10 sm:text-6xl xs:text-5xl text-4xl font-extrabold leading-[0.95] xl:text-7xl">
-            Your Guide to <span className="text-gradient-accent">Studienkolleg</span>, personalized.
+            Roadmap to <span className="text-gradient-accent">Studienkolleg</span>, personalized.
           </h1>
           <p className="mx-auto max-w-lg text-lg text-muted-foreground">
-            Answer a few questions and get a visual, step-by-step roadmap to study in Germany.
+            Answer a few questions and get a visual, step-by-step roadmap to study in a Studienkolleg in Germany.
           </p>
         </div>
         <QuestionsCard />
@@ -47,7 +49,7 @@ export default function Home() {
 
           <div className="space-y-6 max-w-lg">
             <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-foreground">
-              Acing Aufnahmetest
+              Aufnahmetest Exercises
             </h2>
             <p className="sm:text-xl text-lg leading-relaxed text-foreground/80">
               Access a variety of math exercises and C-Tests from real Aufnahmetests to help you in your preparation.

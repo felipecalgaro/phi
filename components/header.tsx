@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetClose,
@@ -16,7 +17,6 @@ import {
 } from "@/components/ui/sheet";
 
 const NAV_LINKS = [
-  { href: "/acing-aufnahmetest", label: "Acing Aufnahmetest" },
   { href: "/exercises", label: "Exercises" },
   { href: "/roadmap", label: "Roadmap" },
   { href: "/blog", label: "Blog" },
@@ -24,7 +24,7 @@ const NAV_LINKS = [
 
 export function Header() {
   return (
-    <header className="fixed left-1/2 top-4 z-50 flex w-[calc(100%-1.5rem)] max-w-7xl -translate-x-1/2 items-center justify-between rounded-full border border-border bg-card/80 px-3 py-3 shadow-(--shadow-accent) backdrop-blur-sm sm:w-11/12">
+    <header className="pl-3 fixed left-1/2 top-4 z-50 flex max-w-7xl -translate-x-1/2 items-center justify-between rounded-full border border-border bg-card/80 px-2 py-2 shadow-(--shadow-accent) backdrop-blur-sm w-11/12">
       <div className="flex min-w-0 items-center gap-3">
         <Image
           src="/logo.svg"
@@ -34,52 +34,65 @@ export function Header() {
           className="shrink-0 rounded-md"
           priority
         />
-        <Link href="/" className="min-w-0 truncate text-base font-bold sm:text-xl">
+        <Link href="/" className="min-w-0 truncate font-bold text-xl sm:block hidden">
           Guide to Studienkolleg
+        </Link>
+        <Link href="/" className="min-w-0 truncate font-bold text-xl sm:hidden xs:block hidden">
+          GSTK
         </Link>
       </div>
 
-      <nav className="hidden items-center justify-center gap-8 pr-8 text-base font-light lg:flex">
-        {NAV_LINKS.map((link) => (
-          <Link key={link.href} href={link.href}>
-            {link.label}
-          </Link>
-        ))}
-      </nav>
-
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            className="shrink-0 rounded-full lg:hidden"
-            aria-label="Open navigation menu"
-          >
-            <Menu className="size-5" />
-          </Button>
-        </SheetTrigger>
-        <SheetContent className="bg-card" side="right">
-          <SheetHeader className="border-b border-border px-5 py-5 text-left">
-            <SheetTitle>Guide to Studienkolleg</SheetTitle>
-            <SheetDescription className="sr-only">
-              Site navigation
-            </SheetDescription>
-          </SheetHeader>
-          <nav className="flex flex-col gap-1 px-3 py-2">
+      <div className="flex items-center gap-1">
+        <nav className="flex items-center justify-center gap-8 text-base font-light">
+          <div className='justify-center items-center gap-8 lg:flex hidden'>
             {NAV_LINKS.map((link) => (
-              <SheetClose key={link.href} asChild>
-                <Link
-                  href={link.href}
-                  className="rounded-lg px-3 py-3 text-base font-medium transition-colors hover:bg-accent"
-                >
-                  {link.label}
-                </Link>
-              </SheetClose>
+              <Link key={link.href} href={link.href}>
+                {link.label}
+              </Link>
             ))}
-          </nav>
-        </SheetContent>
-      </Sheet>
+          </div>
+          <Link href="/acing-aufnahmetest" className="flex xs:text-base text-sm items-center rounded-full border-primary border bg-primary/40 px-4 h-10 transition-colors hover:bg-primary/50">
+            Acing Aufnahmetest
+          </Link>
+        </nav>
+
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="shrink-0 rounded-full lg:hidden bg-gray-100 size-10"
+              aria-label="Open navigation menu"
+            >
+              <Menu strokeWidth={1.5} className="size-6" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent className="w-72 gap-0 border-border bg-card/95 p-0 shadow-2xl backdrop-blur" side="right">
+            <SheetHeader className="px-6 pb-4 pt-6 text-left">
+              <SheetTitle className="max-w-48 text-lg font-normal leading-tight">
+                Guide to Studienkolleg
+              </SheetTitle>
+              <SheetDescription className="sr-only">
+                Site navigation
+              </SheetDescription>
+            </SheetHeader>
+            <Separator />
+            <nav className="flex flex-col px-3 py-4">
+              {NAV_LINKS.map((link) => (
+                <SheetClose key={link.href} asChild>
+                  <Link
+                    href={link.href}
+                    className="rounded-xl px-3 py-3.5 text-lg font-light transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
+                  >
+                    {link.label}
+                  </Link>
+                </SheetClose>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
+      </div>
     </header>
   );
 }
