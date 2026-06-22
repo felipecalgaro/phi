@@ -7,48 +7,55 @@ import { buttonVariants } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
 import { CTAButton } from './cta-button'
 
-export function AccessCourseButton() {
+type AccessCourseButtonProps = {
+  className?: string;
+}
+
+export function AccessCourseButton({ className }: AccessCourseButtonProps = {}) {
   const { data, isPending, isError } = useGetClientSession()
+
+  const buttonClassNames = cn(buttonVariants({ variant: "gold" }), "shadow-button hover:shadow-glow transition-all rounded-xl sm:py-8 py-7 has-[>svg]:px-6 cursor-pointer", className)
+  const iconClassNames = "inline-block size-6"
 
   if (isPending) {
     return (
       <Link
         href="#"
-        className={cn(buttonVariants({ variant: "gold" }), "sm:text-xl text-base font-bold shadow-button hover:shadow-glow transition-all rounded-xl sm:py-8 py-7 sm:w-72 w-56 cursor-pointer")}
+        className={buttonClassNames}
       >
         Buy the course
-        <ArrowRight className="sm:ml-4 ml-2 inline-block sm:size-8 size-6" />
+        <ArrowRight className={iconClassNames} />
       </Link>
     )
   }
 
   if (isError) {
-    return <CTAButton />
+    return <CTAButton className={cn(buttonClassNames, className)} />
   }
 
   if (!data.isAuthenticated) {
     return (
       <Link
         href="/acing-aufnahmetest/login?redirect=purchase"
-        className={cn(buttonVariants({ variant: "gold" }), "sm:text-xl text-base font-bold shadow-button hover:shadow-glow transition-all rounded-xl sm:py-8 py-7 sm:w-72 w-56 cursor-pointer")}
+        className={buttonClassNames}
       >
         Buy the course
-        <ArrowRight className="sm:ml-4 ml-2 inline-block sm:size-8 size-6" />
+        <ArrowRight className={iconClassNames} />
       </Link>
     )
   }
 
   if (data.userRole === 'BASIC') {
-    return <CTAButton />
+    return <CTAButton className={cn(buttonClassNames, className)} />
   }
 
   return (
     <Link
       href="/acing-aufnahmetest/lessons"
-      className={cn(buttonVariants({ variant: "gold" }), "sm:text-xl text-base font-bold shadow-button hover:shadow-glow transition-all rounded-xl sm:py-8 py-7 sm:w-72 w-56 cursor-pointer")}
+      className={buttonClassNames}
     >
       Access course
-      <ArrowRight className="sm:ml-4 ml-2 inline-block sm:size-8 size-6" />
+      <ArrowRight className={iconClassNames} />
     </Link>
   )
 }

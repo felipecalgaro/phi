@@ -13,7 +13,7 @@ export default function Home() {
       <Header />
       <section className="hero-background relative flex xl:flex-nowrap flex-wrap items-center justify-center sm:px-8 px-4 pb-24 pt-24 lg:px-12 sm:gap-20 gap-12 min-h-screen">
         <div className="text-center lg:max-w-3xl max-w-5xl shrink w-min">
-          <Badge variant="secondary" className="mb-5 rounded-full border-border bg-card px-4 py-1.5 text-xs font-medium">
+          <Badge variant="secondary" className="mb-5 rounded-full border-border bg-card px-4 py-1.5 text-xs font-medium text-foreground">
             <Sparkles className="mr-1.5 h-3 w-3" /> Personalized in 2 min
           </Badge>
           <h1 className="mb-10 sm:text-6xl xs:text-5xl text-4xl font-extrabold leading-[0.95] xl:text-7xl">
@@ -25,60 +25,75 @@ export default function Home() {
         </div>
         <QuestionsCard />
       </section>
-      <section className="py-24 px-6 lg:px-12 flex justify-center items-center bg-(image:--gradient-red)">
-        <div className="flex justify-center items-center max-w-7xl gap-x-10 gap-y-18 sm:flex-nowrap flex-wrap">
-          <Image src='/passing-exam.png' alt="Passing Exam" width={615} height={597} className='lg:w-md md:w-sm w-xs' />
+      <div className="w-full h-100 gradient-separator" />
+      <div className="bg-background">
+        <section className="px-6 py-24 lg:px-12">
+          <div className="mx-auto flex max-w-7xl items-center justify-center gap-x-12 gap-y-16 sm:flex-nowrap flex-wrap">
+            <div className="shrink-0 rounded-3xl border border-border bg-card p-3 shadow-(--shadow-soft)">
+              <Image src='/aat-preview.png' alt="Acing Aufnahmetest preview" width={615} height={525} className='lg:w-md md:w-sm w-xs' />
+            </div>
 
-          <div className="space-y-6 max-w-lg order-2">
-            <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-white">
-              Acing Aufnahmetest
-            </h2>
-            <p className={cn("sm:text-xl text-lg leading-relaxed text-white/80")}>
-              Comprehensive course designed to help you pass your Studienkolleg entrance exam with expert guidance and practice resources.
-            </p>
-            <Link href="/acing-aufnahmetest" className={cn(buttonVariants({ size: 'lg', variant: 'gold' }), "group shadow-none")}>
-              View Course
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <div className="max-w-lg space-y-6 border-l-2 border-gray-200 pl-6 order-2">
+              <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-foreground">
+                Acing Aufnahmetest
+              </h2>
+              <p className="sm:text-xl text-lg leading-relaxed text-muted-foreground">
+                Comprehensive course designed to help you pass your Studienkolleg entrance exam with expert guidance and practice resources.
+              </p>
+              <Link href="/acing-aufnahmetest" className={cn(buttonVariants({ size: 'lg' }), "group h-12 rounded-full bg-foreground px-6 text-background shadow-none hover:bg-foreground/90")}>
+                View Course
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-      <section className="py-24 px-6 lg:px-12 flex justify-center items-center bg-(image:--gradient-gold)">
-        <div className="flex justify-center items-center max-w-7xl gap-x-10 gap-y-18 sm:flex-nowrap flex-wrap">
-          <Image src='/book-germany.png' alt="Book about Germany" width={887} height={863} className='lg:w-md md:w-sm w-xs order-2' />
+        </section>
 
-          <div className="space-y-6 max-w-lg">
-            <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-foreground">
-              Aufnahmetest Exercises
-            </h2>
-            <p className="sm:text-xl text-lg leading-relaxed text-foreground/80">
-              Access a variety of math exercises and C-Tests from real Aufnahmetests to help you in your preparation.
-            </p>
-            <Link href="/acing-aufnahmetest" className={cn(buttonVariants({ size: 'lg', variant: 'secondary' }), "group shadow-none text-white")}>
-              View Course
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </div>
-        </div>
-      </section>
-      <section className="bg-(image:--gradient-hero) flex justify-center items-center flex-col py-24 gap-24 px-6 lg:px-12">
-        <div className="flex justify-center items-center max-w-7xl gap-x-10 gap-y-18 sm:flex-nowrap flex-wrap">
-          <Image src='/blog-posts.png' alt="Blog Posts" width={800} height={743} className='lg:w-md md:w-sm w-xs shadow-xl shadow-white/15 rounded-lg border border-gray-700' />
+        <div className="mx-auto h-px max-w-6xl bg-linear-to-r from-transparent via-border to-transparent" />
 
-          <div className="space-y-6 max-w-lg order-2">
-            <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-white">
-              Studienkolleg Blog
-            </h2>
-            <p className={cn("sm:text-xl text-lg leading-relaxed text-white/80")}>
-              Here you will find tutorials, tips, common misunderstandings, and every information you need for Studienkolleg and the admission process.
-            </p>
-            <Link href="/blog" className={cn(buttonVariants({ size: 'lg' }), "group shadow-none text-black bg-white hover:bg-white cursor-pointer")}>
-              View Blog
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
+        <section className="px-6 py-24 lg:px-12">
+          <div className="mx-auto flex max-w-7xl items-center justify-center gap-x-12 gap-y-16 sm:flex-nowrap flex-wrap">
+            <div className="shrink-0 rounded-3xl border border-border bg-card p-3 shadow-(--shadow-soft) order-2">
+              <Image src='/book-germany.png' alt="Book about Germany" width={887} height={863} className='lg:w-md md:w-sm w-xs' />
+            </div>
+
+            <div className="max-w-lg space-y-6 border-l-2 border-gray-200 pl-6">
+              <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-foreground">
+                Aufnahmetest Exercises
+              </h2>
+              <p className="sm:text-xl text-lg leading-relaxed text-muted-foreground">
+                Access a variety of math exercises and C-Tests from real Aufnahmetests to help you in your preparation.
+              </p>
+              <Link href="/exercises" className={cn(buttonVariants({ size: 'lg' }), "group h-12 rounded-full bg-foreground px-6 text-background shadow-none hover:bg-foreground/90")}>
+                View Exercises
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <div className="mx-auto h-px max-w-6xl bg-linear-to-r from-transparent via-border to-transparent" />
+
+        <section className="px-6 py-24 lg:px-12">
+          <div className="mx-auto flex max-w-7xl items-center justify-center gap-x-12 gap-y-16 sm:flex-nowrap flex-wrap">
+            <div className="shrink-0 rounded-3xl border border-border bg-card p-3 shadow-(--shadow-soft)">
+              <Image src='/blog-posts.png' alt="Blog Posts" width={800} height={743} className='lg:w-md md:w-sm w-xs rounded-2xl' />
+            </div>
+
+            <div className="max-w-lg space-y-6 border-l-2 border-gray-200 pl-6 order-2">
+              <h2 className="sm:text-4xl text-3xl font-black lg:text-5xl text-foreground">
+                Studienkolleg Blog
+              </h2>
+              <p className="sm:text-xl text-lg leading-relaxed text-muted-foreground">
+                Here you will find tutorials, tips, common misunderstandings, and every information you need for Studienkolleg and the admission process.
+              </p>
+              <Link href="/blog" className={cn(buttonVariants({ size: 'lg' }), "group h-12 rounded-full bg-foreground px-6 text-background shadow-none hover:bg-foreground/90")}>
+                View Blog
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

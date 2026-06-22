@@ -46,6 +46,7 @@ Phi is a web platform for Studienkolleg entrance exam (Aufnahmeprüfung) prepara
 
 - Server action convention: `docs/development/server-action.md`
 - API route convention: `docs/development/api-route.md`
+- Styling guide: `docs/development/styling.md`
 
 ## Coding Guidelines
 
@@ -55,10 +56,8 @@ Phi is a web platform for Studienkolleg entrance exam (Aufnahmeprüfung) prepara
 - Treat authentication, authorization, Stripe webhooks, magic links, video access, and redirects as security-sensitive.
 - Do not log secrets, tokens, signed URLs, cookies, or payment data.
 - Use structured APIs and existing helpers instead of ad hoc parsing or duplicated integration logic.
-- Use lucide-react for icons and shadcn components for UI consistency.
 - Keep UI text and layout responsive; verify compact/mobile states for user-facing changes.
 - Do not edit `.env` values or add secrets to tracked files.
-- Avoid concatenating Tailwind classes manually. Use the `cn` utility for conditional or composed class names.
 
 ## Testing And Verification
 

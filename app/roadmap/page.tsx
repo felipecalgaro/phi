@@ -65,7 +65,7 @@ export default async function RoadmapPage() {
       <main className="min-h-screen py-28">
         <section className="px-6 py-10 max-w-6xl mx-auto">
           <div className="mb-10 text-center">
-            <Badge variant="secondary" className="mb-4 rounded-full px-4 py-1.5 bg-card border-border">
+            <Badge variant="secondary" className="mb-4 rounded-full px-4 py-1.5 bg-card border-border text-foreground">
               <Sparkles className="w-3 h-3 mr-1.5" /> Your roadmap is ready
             </Badge>
             <h1 className="text-4xl md:text-6xl font-semibold mb-4">

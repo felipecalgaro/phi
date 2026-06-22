@@ -53,11 +53,13 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: hsl(47 100% 50%);
+  --primary-foreground: hsl(220 15% 12%);
   --secondary: hsl(357, 83%, 53%);
+  --secondary-foreground: oklch(0.985 0 0);
   --tertiary: hsl(22 100% 58%);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: hsl(0, 0%, 87%);
+  --accent: hsl(0, 0%, 26%);
   --accent-foreground: hsl(220 15% 12%);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(80.92% 0.00962 51.73);
@@ -226,10 +228,33 @@
       #0000 60%
     ),
     radial-gradient(
-      80% 50% at 40% 80%,
+      80% 50% at 40% 70%,
       color(xyz 0.611 0.44 0.171 / 0.349),
       #0000 60%
     ),
-    radial-gradient(60% 50% at 0 100%, #a1d8624d, #0000 60%);
-  background-attachment: fixed;
+    radial-gradient(60% 50% at 0 60%, #a1d8624d, #0000 60%);
+}
+
+@utility gradient-separator {
+  background:
+    radial-gradient(
+      53% 55.6% at 50% 100%,
+      #faf9f7 0%,
+      rgba(250, 249, 247, 0) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(251, 250, 248, 0) 0%,
+      rgba(255, 240, 222, 0.3) 18.28%,
+      #ffae53 43.58%,
+      #ff7f47 55.6%,
+      rgba(255, 174, 83, 0) 80.7%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(250, 249, 247, 0) 2.69%,
+      #fff0de 24.16%,
+      #ffae53 56.55%,
+      rgba(255, 174, 83, 0) 98.02%
+    );
 }

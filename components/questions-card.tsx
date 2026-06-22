@@ -130,7 +130,7 @@ export function QuestionsCard() {
           <h2 className="text-2xl font-semibold md:text-3xl">
             Congratulations! Your roadmap is ready 🎉
           </h2>
-          <p className="max-w-md text-sm leading-6 text-muted-foreground">
+          <p className="text-sm leading-6 text-muted-foreground">
             Open your roadmap page to review your personalized plan and continue where you left off.
           </p>
         </div>

@@ -17,14 +17,14 @@ import {
 } from "@/components/ui/sheet";
 
 const NAV_LINKS = [
-  { href: "/exercises", label: "Exercises" },
   { href: "/roadmap", label: "Roadmap" },
+  { href: "/exercises", label: "Exercises" },
   { href: "/blog", label: "Blog" },
 ];
 
 export function Header() {
   return (
-    <header className="pl-3 fixed left-1/2 top-4 z-50 flex max-w-7xl -translate-x-1/2 items-center justify-between rounded-full border border-border bg-card/80 px-2 py-2 shadow-(--shadow-accent) backdrop-blur-sm w-11/12">
+    <header className="pl-3 fixed left-1/2 top-4 z-50 flex max-w-7xl -translate-x-1/2 items-center justify-between rounded-full border border-border bg-card/80 px-2 py-2 shadow-lg/5 backdrop-blur-sm w-11/12">
       <div className="flex min-w-0 items-center gap-3">
         <Image
           src="/logo.svg"
@@ -62,7 +62,7 @@ export function Header() {
               type="button"
               variant="ghost"
               size="icon"
-              className="shrink-0 rounded-full lg:hidden bg-gray-100 size-10"
+              className="shrink-0 rounded-full lg:hidden bg-gray-100 hover:bg-gray-200 size-10"
               aria-label="Open navigation menu"
             >
               <Menu strokeWidth={1.5} className="size-6" />
@@ -83,7 +83,7 @@ export function Header() {
                 <SheetClose key={link.href} asChild>
                   <Link
                     href={link.href}
-                    className="rounded-xl px-3 py-3.5 text-lg font-light transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
+                    className="rounded-xl px-3 py-3.5 text-lg font-light transition-colors hover:bg-gray-200 hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
                   >
                     {link.label}
                   </Link>

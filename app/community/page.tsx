@@ -5,13 +5,7 @@ import prisma from '@/lib/prisma';
 import { MessageCircle } from 'lucide-react';
 import { redirect } from 'next/navigation';
 
-async function getCommunityUser() {
-  const { userId } = await verifySession();
-
-  if (!userId) {
-    redirect("/acing-aufnahmetest/login");
-  }
-
+async function getCommunityUser(userId: string) {
   const user = await prisma.user.findUnique({
     where: {
       id: userId,
@@ -29,7 +23,17 @@ async function getCommunityUser() {
 }
 
 export default async function Community() {
-  const user = await getCommunityUser();
+  const { userId, userRole } = await verifySession();
+
+  if (userRole === 'BASIC') {
+    redirect("/acing-aufnahmetest/login?redirect=purchase");
+  }
+
+  if (!userId) {
+    redirect("/acing-aufnahmetest/login");
+  }
+
+  const user = await getCommunityUser(userId);
 
   return (
     <main className="min-h-screen flex flex-col hero-background">

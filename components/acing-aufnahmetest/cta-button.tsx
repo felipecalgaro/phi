@@ -5,7 +5,11 @@ import { ArrowRight } from 'lucide-react'
 import { registerAnalyticsEvent } from '@/lib/google-analytics'
 import { useRouter } from 'next/navigation'
 
-export function CTAButton() {
+type CTAButtonProps = {
+  className?: string;
+}
+
+export function CTAButton({ className }: CTAButtonProps = {}) {
   const router = useRouter()
 
   return (
@@ -16,10 +20,10 @@ export function CTAButton() {
         router.push('/acing-aufnahmetest/purchase')
       }}
       variant="gold"
-      className="sm:text-xl text-base font-bold shadow-button hover:shadow-glow transition-all rounded-xl sm:py-8 py-7 sm:w-72 w-56 cursor-pointer"
+      className={className}
     >
       Buy the course
-      <ArrowRight className="sm:ml-4 ml-2 inline-block sm:size-8 size-6" />
+      <ArrowRight className="ml-2 inline-block size-6" />
     </Button>
   )
 }
