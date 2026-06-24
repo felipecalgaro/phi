@@ -20,6 +20,7 @@ import { toast } from "sonner"
 import { z } from "zod"
 import { getResponseDataSchema } from '@/utils/get-response-data-object'
 import { updateUserWithRoadmapAnswers } from '@/actions/roadmap/update-user-with-roadmap-answers'
+import { registerAnalyticsEvent } from "@/lib/google-analytics"
 
 const formDataSchema = z.object({
   countryOfHighschool: z.string().min(1),
@@ -217,6 +218,8 @@ export function QuestionsCard() {
 
       const answers: RoadmapAnswers = answersResult.data
 
+      registerAnalyticsEvent("roadmap_generate_click")
+
       let response: Awaited<ReturnType<typeof sendMagicLinkEmail>>
       if (session?.isAuthenticated) {
         response = await updateUserWithRoadmapAnswers(answers)
@@ -235,6 +238,10 @@ export function QuestionsCard() {
         return
       }
 
+      if (session?.isAuthenticated !== true) {
+        registerAnalyticsEvent("roadmap_magic_link_sent")
+      }
+
       toast.success("Check your e-mail!")
     } finally {
       setIsSubmitting(false)
@@ -242,7 +249,14 @@ export function QuestionsCard() {
   }
 
   async function handlePrimaryAction() {
+    if (!canContinue || isSubmitting) {
+      return
+    }
+
     if (step < questions.length - 1) {
+      registerAnalyticsEvent("roadmap_question_completed", {
+        question_key: currentQuestion.key,
+      })
       next()
       return
     }
