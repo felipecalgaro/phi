@@ -29,7 +29,10 @@ function withRequestId(response: NextResponse, requestId: string) {
 
 const ADMIN_ROUTES = ["/admin"];
 
-const PREMIUM_ROUTES = ["/acing-aufnahmetest/lessons", "/community"];
+const PREMIUM_ROUTES = [
+  "/acing-aufnahmetest/lessons",
+  "/acing-aufnahmetest/community",
+];
 
 const AUTH_ROUTES = ["/roadmap"];
 
@@ -44,7 +47,29 @@ export async function proxy(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
   const path = req.nextUrl.pathname;
 
-  if (ADMIN_ROUTES.some((route) => path.startsWith(route))) {
+  if (token && path === "/acing-aufnahmetest") {
+    try {
+      const { payload } = await verifyToken(token);
+
+      const { userRole } = tokenPayloadSchema.parse(payload);
+
+      if (userRole === "PREMIUM") {
+        return withRequestId(
+          NextResponse.redirect(
+            new URL("/acing-aufnahmetest/lessons", req.url),
+          ),
+          requestId,
+        );
+      }
+
+      return nextWithRequestId(req, requestId);
+    } catch {
+      const res = nextWithRequestId(req, requestId);
+
+      res.cookies.delete("token");
+      return res;
+    }
+  } else if (ADMIN_ROUTES.some((route) => path.startsWith(route))) {
     if (!token) {
       return withRequestId(
         NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
@@ -74,9 +99,10 @@ export async function proxy(req: NextRequest) {
       res.cookies.delete("token");
       return res;
     }
-  }
-
-  if (token && UNAUTH_ONLY_ROUTES.some((route) => path.startsWith(route))) {
+  } else if (
+    token &&
+    UNAUTH_ONLY_ROUTES.some((route) => path.startsWith(route))
+  ) {
     try {
       await verifyToken(token);
 

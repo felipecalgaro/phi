@@ -1,6 +1,7 @@
 import { LessonsSidebar } from '@/components/acing-aufnahmetest/lessons-sidebar'
 import { LessonsSidebarTrigger } from '@/components/acing-aufnahmetest/lessons-sidebar-trigger'
-import { MoveLeft } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { MoveLeft, PlayCircle } from 'lucide-react'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import prisma from '@/lib/prisma';
@@ -41,7 +42,6 @@ export default async function Lesson({ params }: { params: Promise<{ slug: strin
     select: {
       title: true,
       description: true,
-      module: true,
     },
   })
 
@@ -52,48 +52,59 @@ export default async function Lesson({ params }: { params: Promise<{ slug: strin
   const signedVideoUrl = await getVideoUrl(slug);
 
   return (
-    <div className="flex flex-col bg-background min-h-screen justify-center items-center">
-      <header className="h-12 flex items-center sm:px-20 xs:px-8 px-4 gap-3 shrink-0 justify-between max-w-360 w-full">
-        <Link href="/acing-aufnahmetest/lessons" className="flex items-center gap-2">
-          <MoveLeft className="size-5" />
-        </Link>
-        <span className="text-sm font-semibold text-foreground tracking-tight">
-          Acing Aufnahmetest
-        </span>
-        <Suspense fallback={<div className='size-5' />}>
-          <LessonsSidebarTrigger />
-        </Suspense>
-        <div className='lg:block hidden size-5' />
+    <div className="min-h-screen bg-background">
+      <header className="sticky top-0 z-40 border-b border-border bg-card/85 backdrop-blur">
+        <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-3 px-4 sm:px-8 lg:px-12">
+          <Link
+            href="/acing-aufnahmetest/lessons"
+            aria-label="Back to lessons"
+            className="flex size-10 items-center justify-center rounded-full border border-border bg-background transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
+          >
+            <MoveLeft className="size-5" />
+          </Link>
+          <div className="min-w-0 text-center">
+            <p className="truncate text-sm font-semibold text-foreground">
+              Acing Aufnahmetest
+            </p>
+            <p className="hidden text-xs text-muted-foreground xs:block">
+              Lesson workspace
+            </p>
+          </div>
+          <Suspense fallback={<div className="size-10" />}>
+            <LessonsSidebarTrigger />
+          </Suspense>
+        </div>
       </header>
 
-      <hr className="w-full border-border" />
+      <main className="mx-auto flex w-full max-w-7xl gap-6 px-4 pb-14 pt-6 sm:px-8 lg:px-12">
+        <section className="min-w-0 flex-1">
+          <div className="overflow-hidden rounded-3xl border border-border bg-card p-2 shadow-sm">
+            {signedVideoUrl ? (
+              <LessonVideoPlayer slug={slug} initialSignedUrl={signedVideoUrl.url} initialExpiresAt={signedVideoUrl.expiresAt} />
+            ) : (
+              <div className="flex aspect-video w-full items-center justify-center rounded-2xl bg-black/85">
+                <p className="text-sm font-medium text-white">Failed to load video</p>
+              </div>
+            )}
+          </div>
 
-      <div className="flex relative flex-1 overflow-hidden md:px-12 sm:px-8 px-0 justify-center max-w-480 w-full">
-        <div className="flex-1 flex flex-col min-w-0 max-w-240">
-          {signedVideoUrl ? (
-            <LessonVideoPlayer slug={slug} initialSignedUrl={signedVideoUrl.url} initialExpiresAt={signedVideoUrl.expiresAt} />
-          ) : (
-            <div className='bg-black/80 aspect-video w-full flex items-center justify-center'>
-              <p className="text-white font-medium">Failed to load video</p>
-            </div>
-          )}
+          <div className="mt-5 rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8">
+            <Badge variant="outline" className="mb-4 rounded-full bg-background px-3 py-1 text-foreground">
+              <PlayCircle className="mr-1 size-3" /> Video lesson
+            </Badge>
 
-          <div className="px-5 md:px-8 py-14 flex-1 min-h-80 flex flex-col justify-start items-start gap-1.5">
-            <span className="px-2 py-0.5 rounded-full bg-primary/80 text-foreground/70 font-medium text-xs mb-3">
-              {lesson.module}
-            </span>
-
-            <h1 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+            <h1 className="max-w-3xl text-3xl font-semibold leading-tight sm:text-4xl">
               {lesson.title}
             </h1>
 
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
               {lesson.description}
             </p>
           </div>
-        </div>
+        </section>
+
         <LessonsSidebar currentLessonSlug={slug} />
-      </div>
+      </main>
     </div>
   )
 }

@@ -13,7 +13,12 @@ export function LogoutButton() {
   }
 
   return (
-    <button onClick={handleLogout}>
+    <button
+      type="button"
+      aria-label="Log out"
+      className="flex size-10 items-center justify-center rounded-full border border-border bg-background transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
+      onClick={handleLogout}
+    >
       <LogOut className="size-5 cursor-pointer" />
     </button>
   )

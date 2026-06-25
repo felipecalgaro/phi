@@ -36,7 +36,7 @@ export default async function Community() {
   const user = await getCommunityUser(userId);
 
   return (
-    <main className="min-h-screen flex flex-col hero-background">
+    <main className="min-h-screen flex flex-col bg-background">
       <Header />
       <div className='px-6 pt-32 pb-12 h-full flex justify-center items-center'>
         <div className="w-full max-w-md">

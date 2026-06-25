@@ -194,7 +194,7 @@ export default function Home() {
             <p className="my-3 text-muted-foreground">
               The WhatsApp community is for students who want a place to share their experiences and get support throughout their journey.
             </p>
-            <Link href='/community' className='group flex justify-start items-center gap-4 rounded-md hover:bg-accent/10 transition-all w-full mt-6 px-4 py-3 cursor-pointer'>
+            <Link href='/acing-aufnahmetest/community' className='group flex justify-start items-center gap-4 rounded-md hover:bg-accent transition-all w-full mt-6 px-4 py-3 cursor-pointer'>
               <Image src="/germany-flag.svg" alt="Germany flag" width={60} height={60} className='p-2 bg-primary/40 rounded-lg border border-border' />
               <p className='text-lg font-semibold'>STK Community</p>
               <ChevronRight className='size-5 text-muted-foreground transition-transform group-hover:translate-x-1' />

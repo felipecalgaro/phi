@@ -45,7 +45,6 @@ export async function GET() {
     select: {
       slug: true,
       title: true,
-      module: true,
       id: true,
     },
   });

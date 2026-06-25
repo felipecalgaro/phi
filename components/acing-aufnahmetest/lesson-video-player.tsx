@@ -239,19 +239,19 @@ export function LessonVideoPlayer({
 
   if (hasFatalError) {
     return (
-      <div className='bg-black/80 aspect-video w-full flex items-center justify-center'>
-        <p className='text-white font-medium'>Failed to load video</p>
+      <div className="flex aspect-video w-full items-center justify-center rounded-2xl bg-black/85">
+        <p className="text-sm font-medium text-white">Failed to load video</p>
       </div>
     );
   }
 
   return (
-    <AspectRatio ratio={16 / 9} className='bg-black/80 w-full'>
+    <AspectRatio ratio={16 / 9} className="w-full overflow-hidden rounded-2xl bg-black/85">
       <video
         ref={videoRef}
         disablePictureInPicture
         controlsList='nodownload noremoteplayback'
-        className='size-full'
+        className="size-full bg-black"
         controls
         playsInline
         src={videoSrc}
