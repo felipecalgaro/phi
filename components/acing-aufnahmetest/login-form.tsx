@@ -1,6 +1,6 @@
 'use client'
 
-import { sendMagicLinkEmail } from '../../actions/acing-aufnahmetest/send-magic-link-email';
+import { sendLoginEmail } from '../../actions/acing-aufnahmetest/send-login-email';
 import { toast } from 'sonner';
 import z from 'zod';
 import { Label } from '../ui/label';
@@ -26,7 +26,7 @@ export function LoginForm() {
   const searchParams = useSearchParams()
 
   async function handleLogin(data: FormData) {
-    registerAnalyticsEvent('send_magic_link_click')
+    registerAnalyticsEvent('send_login_email_click')
 
     const result = z.email('Please provide a valid e-mail').safeParse(data.get('email'))
 
@@ -39,9 +39,9 @@ export function LoginForm() {
       return
     }
 
-    const redirectTo = searchParams.get('redirect')
+    const redirectTo = searchParams.get('redirect') === 'purchase' ? 'purchase' : null
 
-    const response = await sendMagicLinkEmail({
+    const response = await sendLoginEmail({
       email: result.data,
       redirectTo,
     })

@@ -6,6 +6,13 @@ import { verifyToken } from "@/lib/jwt";
 import { ResponseDataObject } from "@/utils/get-response-data-object";
 import { applyRateLimiter } from "@/utils/apply-rate-limiter";
 import { redis } from "@/lib/redis";
+import { MAGIC_LINK_MARKER_TTL_SECONDS } from "@/lib/magic-link";
+import {
+  deletePendingRoadmapAnswers,
+  getPendingRoadmapAnswers,
+  getRoadmapUserData,
+  type RoadmapAnswers,
+} from "@/lib/roadmap-generation";
 import * as Sentry from "@sentry/nextjs";
 import { captureCriticalPathError } from "@/lib/sentry-errors";
 import {
@@ -15,24 +22,11 @@ import {
 } from "@/lib/sentry-context";
 
 const queryParamsSchema = z.jwt({ alg: "HS256" });
-const MAGIC_LINK_MARKER_TTL_SECONDS = 60 * 15;
-
-const roadmapAnswersSchema = z.object({
-  countryOfHighschool: z.string().min(1),
-  citizenships: z.array(z.string()).min(1),
-  plannedStudienkollegs: z.array(z.uuid()),
-  plannedAttendance: z.object({
-    year: z.coerce.number().int(),
-    semester: z.enum(["WINTER", "SUMMER"]),
-  }),
-  subscribedToMarketing: z.boolean(),
-});
 
 const temporaryTokenPayloadSchema = z.object({
   email: z.email(),
   redirectTo: z.enum(["purchase", "roadmap"]).nullable(),
   jti: z.uuid(),
-  answers: roadmapAnswersSchema.optional(),
 });
 
 export async function GET(request: NextRequest) {
@@ -80,7 +74,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const { email, redirectTo, jti, answers } = parsedPayload;
+  const { email, redirectTo, jti } = parsedPayload;
   setRateLimitContext("email", jti);
 
   const { success } = await applyRateLimiter({
@@ -101,7 +95,51 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  await consumeMagicLink(jti);
+  const consumeErrorResponse = await consumeMagicLink(jti);
+
+  if (consumeErrorResponse) {
+    return consumeErrorResponse;
+  }
+
+  let roadmapAnswers: RoadmapAnswers | null = null;
+
+  if (redirectTo === "roadmap") {
+    try {
+      roadmapAnswers = await getPendingRoadmapAnswers(jti);
+    } catch (error) {
+      captureCriticalPathError({
+        error,
+        path: "auth_consume_magic_link",
+        requestId,
+        tags: {
+          flow: "roadmap_generation",
+        },
+      });
+
+      return NextResponse.json<ResponseDataObject>(
+        {
+          success: false,
+          error: "Error processing request",
+        },
+        { status: 500 },
+      );
+    }
+
+    if (!roadmapAnswers) {
+      Sentry.setTag("error_type", "invalid_token");
+      Sentry.captureMessage("roadmap_generation_missing", {
+        level: "warning",
+      });
+
+      return NextResponse.json<ResponseDataObject>(
+        {
+          success: false,
+          error: "Invalid token",
+        },
+        { status: 400 },
+      );
+    }
+  }
 
   const normalizedEmail = email.trim().toLowerCase();
 
@@ -110,24 +148,35 @@ export async function GET(request: NextRequest) {
   });
 
   if (!user) {
-    const userData = answers
-      ? {
-          countryOfHighschool: answers.countryOfHighschool,
-          citizenships: answers.citizenships,
-          plannedStudienkollegs: answers.plannedStudienkollegs,
-          plannedAttendanceYear: answers.plannedAttendance.year,
-          plannedAttendanceSemester: answers.plannedAttendance.semester,
-          subscribedToMarketing: answers.subscribedToMarketing,
-        }
-      : {};
-
     user = await prisma.user.create({
       data: {
         email: normalizedEmail,
         role: "BASIC",
-        ...userData,
+        ...(roadmapAnswers ? getRoadmapUserData(roadmapAnswers) : {}),
       },
     });
+  } else if (roadmapAnswers) {
+    user = await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: getRoadmapUserData(roadmapAnswers),
+    });
+  }
+
+  if (roadmapAnswers) {
+    try {
+      await deletePendingRoadmapAnswers(jti);
+    } catch (error) {
+      captureCriticalPathError({
+        error,
+        path: "auth_consume_magic_link",
+        requestId,
+        tags: {
+          flow: "roadmap_generation_cleanup",
+        },
+      });
+    }
   }
 
   await createCookiesSession({

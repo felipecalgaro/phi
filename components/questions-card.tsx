@@ -1,6 +1,7 @@
 'use client'
 
-import { sendMagicLinkEmail } from "@/actions/acing-aufnahmetest/send-magic-link-email"
+import { generateRoadmap as generateRoadmapAction } from "@/actions/roadmap/generate-roadmap"
+import { sendRoadmapEmail } from "@/actions/roadmap/send-roadmap-email"
 import { MultiCombobox, type MultiComboboxOption } from "@/components/multi-combobox"
 import { Button, buttonVariants } from "@/components/ui/button"
 import COUNTRIES from "@/data/countries.json"
@@ -19,7 +20,6 @@ import { useState } from "react"
 import { toast } from "sonner"
 import { z } from "zod"
 import { getResponseDataSchema } from '@/utils/get-response-data-object'
-import { updateUserWithRoadmapAnswers } from '@/actions/roadmap/update-user-with-roadmap-answers'
 import { registerAnalyticsEvent } from "@/lib/google-analytics"
 
 const formDataSchema = z.object({
@@ -191,7 +191,7 @@ export function QuestionsCard() {
     }
   }
 
-  async function generateRoadmap() {
+  async function submitRoadmap() {
     if (!canContinue || isSubmitting) {
       return
     }
@@ -220,17 +220,14 @@ export function QuestionsCard() {
 
       registerAnalyticsEvent("roadmap_generate_click")
 
-      let response: Awaited<ReturnType<typeof sendMagicLinkEmail>>
-      if (session?.isAuthenticated) {
-        response = await updateUserWithRoadmapAnswers(answers)
-      } else {
-        response = await sendMagicLinkEmail({
-          email: data.email || null,
-          redirectTo: "roadmap",
+      const response = session?.isAuthenticated
+        ? await generateRoadmapAction({
           answers,
         })
-      }
-
+        : await sendRoadmapEmail({
+          email: data.email,
+          answers,
+        })
 
       if (!response.success) {
         toast.error(response.error)
@@ -239,7 +236,7 @@ export function QuestionsCard() {
       }
 
       if (session?.isAuthenticated !== true) {
-        registerAnalyticsEvent("roadmap_magic_link_sent")
+        registerAnalyticsEvent("roadmap_email_sent")
       }
 
       toast.success("Check your e-mail!")
@@ -261,7 +258,7 @@ export function QuestionsCard() {
       return
     }
 
-    await generateRoadmap()
+    await submitRoadmap()
   }
 
   return (

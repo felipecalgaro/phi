@@ -27,8 +27,9 @@ const secretKey = encoder.encode(process.env.JWT_SECRET);
 const attempts = Number(process.env.MAGIC_LINK_REPLAY_ATTEMPTS ?? "10");
 const baseUrl = process.env.NEXT_PUBLIC_URL.replace(/\/$/, "");
 const email = process.env.MAGIC_LINK_REPLAY_EMAIL ?? "replay-test@example.com";
-const redirectToPurchase =
+const shouldUsePurchaseRedirect =
   process.env.MAGIC_LINK_REPLAY_REDIRECT_TO_PURCHASE !== "false";
+const redirectTo = shouldUsePurchaseRedirect ? "purchase" : null;
 const jti = crypto.randomUUID();
 const pendingKey = `magic_link:${jti}`;
 const consumedKey = `magic_link_consumed:${jti}`;
@@ -45,7 +46,7 @@ async function main() {
   const token = await createToken(
     {
       email,
-      redirectToPurchase,
+      redirectTo,
       jti,
     },
     "15min",

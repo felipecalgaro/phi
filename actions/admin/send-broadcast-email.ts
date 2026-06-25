@@ -3,7 +3,7 @@
 import { verifyAdminAccess } from "@/lib/admin";
 import { env } from "@/lib/env";
 import prisma from "@/lib/prisma";
-import { resend } from "@/lib/resend";
+import { emailService } from "@/services/email-service-instance";
 import z from "zod";
 
 const broadcastEmailSchema = z
@@ -97,7 +97,7 @@ export async function sendBroadcastEmail(
 
     const sendResults = await Promise.allSettled(
       recipientEmails.map(function (email) {
-        return resend.emails.send({
+        return emailService.sendEmail({
           from: `Felipe Calgaro <onboarding@${env.NEXT_PUBLIC_EMAIL_DOMAIN}>`,
           to: email,
           subject: validation.data.subject,

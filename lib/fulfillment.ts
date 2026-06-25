@@ -1,8 +1,8 @@
 import prisma from "./prisma";
-import { resend } from "./resend";
 import { env } from "./env";
 import Stripe from "stripe";
 import { z } from "zod";
+import { emailService } from "@/services/email-service-instance";
 
 const checkoutSessionMetadataSchema = z.object({
   userId: z.uuid(),
@@ -121,7 +121,7 @@ export async function sendPurchaseConfirmationEmail(
   userEmail: string,
 ): Promise<void> {
   try {
-    await resend.emails.send({
+    await emailService.sendEmail({
       from: `Acing Aufnahmetest <onboarding@${env.NEXT_PUBLIC_EMAIL_DOMAIN}>`,
       to: userEmail,
       subject: "Welcome to Acing Aufnahmetest!",

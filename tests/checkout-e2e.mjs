@@ -32,7 +32,7 @@ const redis = new Redis({
 const runId =
   process.env.CHECKOUT_E2E_RUN_ID ?? crypto.randomUUID().slice(0, 8);
 const email = process.env.CHECKOUT_E2E_EMAIL ?? createDefaultTestEmail(runId);
-const redirectToPurchase =
+const shouldUsePurchaseRedirect =
   process.env.CHECKOUT_E2E_REDIRECT_TO_PURCHASE !== "false";
 const providedPaidSessionId = process.env.CHECKOUT_E2E_PAID_SESSION_ID;
 const maxPollAttempts = Number(process.env.CHECKOUT_E2E_POLL_ATTEMPTS ?? "10");
@@ -72,7 +72,7 @@ async function main() {
     );
   }
 
-  const login = await loginWithMagicLink(email, redirectToPurchase);
+  const login = await loginWithMagicLink(email, shouldUsePurchaseRedirect);
 
   const initialUserSession = await getUserSession(login.cookieHeader);
   if (!initialUserSession.data?.isAuthenticated) {
@@ -316,15 +316,16 @@ async function createCheckoutSession(userId, userEmail, uiMode) {
   });
 }
 
-async function loginWithMagicLink(userEmail, shouldRedirectToPurchase) {
+async function loginWithMagicLink(userEmail, shouldUsePurchaseRedirect) {
   const jti = crypto.randomUUID();
   const pendingKey = `magic_link:${jti}`;
   const consumedKey = `magic_link_consumed:${jti}`;
+  const redirectTo = shouldUsePurchaseRedirect ? "purchase" : null;
 
   const token = await createToken(
     {
       email: userEmail,
-      redirectToPurchase: shouldRedirectToPurchase,
+      redirectTo,
       jti,
     },
     "15min",
