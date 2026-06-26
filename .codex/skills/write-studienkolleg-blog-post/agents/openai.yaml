@@ -1,0 +1,12 @@
+interface:
+  display_name: "Write Studienkolleg Blog Post"
+  short_description: "Draft and publish Studienkolleg blog posts"
+  default_prompt: "Use $write-studienkolleg-blog-post to write a Studienkolleg blog post about preparing for the Aufnahmepruefung."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "neon"
+      description: "Neon MCP server for production Post table inserts"
+      transport: "streamable_http"
+      url: "https://mcp.neon.tech/mcp"
