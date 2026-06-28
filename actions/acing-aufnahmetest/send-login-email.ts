@@ -62,7 +62,7 @@ export async function sendLoginEmail(
     });
 
     await emailService.sendEmail({
-      from: `Felipe Calgaro <onboarding@${env.NEXT_PUBLIC_EMAIL_DOMAIN}>`,
+      from: `Guide to Studienkolleg <info@${env.NEXT_PUBLIC_EMAIL_DOMAIN}>`,
       to: email,
       subject: "Login to Guide to Studienkolleg",
       html: `

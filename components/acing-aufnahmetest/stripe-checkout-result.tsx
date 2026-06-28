@@ -14,7 +14,7 @@ interface StripeCheckoutResultProps {
 }
 
 export function StripeCheckoutResult({ result, sessionId }: StripeCheckoutResultProps) {
-  const supportEmail = `onboarding@${process.env.NEXT_PUBLIC_EMAIL_DOMAIN}`;
+  const supportEmail = `contact@${process.env.NEXT_PUBLIC_EMAIL_DOMAIN}`;
 
   useEffect(() => {
     const eventName = result === 'SUCCESS' ? 'checkout_success' : 'checkout_failure';

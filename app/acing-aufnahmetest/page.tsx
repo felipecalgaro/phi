@@ -77,7 +77,7 @@ const mockTests = [
   "Aufnahmetest of TUB",
 ];
 
-const contactEmail = `onboarding@${env.NEXT_PUBLIC_EMAIL_DOMAIN}`;
+const contactEmail = `contact@${env.NEXT_PUBLIC_EMAIL_DOMAIN}`;
 
 export default function Home() {
   return (

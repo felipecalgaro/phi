@@ -122,7 +122,7 @@ export async function sendPurchaseConfirmationEmail(
 ): Promise<void> {
   try {
     await emailService.sendEmail({
-      from: `Acing Aufnahmetest <onboarding@${env.NEXT_PUBLIC_EMAIL_DOMAIN}>`,
+      from: `Guide to Studienkolleg <info@${env.NEXT_PUBLIC_EMAIL_DOMAIN}>`,
       to: userEmail,
       subject: "Welcome to Acing Aufnahmetest!",
       html: `

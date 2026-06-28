@@ -98,7 +98,7 @@ export async function sendBroadcastEmail(
     const sendResults = await Promise.allSettled(
       recipientEmails.map(function (email) {
         return emailService.sendEmail({
-          from: `Felipe Calgaro <onboarding@${env.NEXT_PUBLIC_EMAIL_DOMAIN}>`,
+          from: `Felipe Calgaro <contact@${env.NEXT_PUBLIC_EMAIL_DOMAIN}>`,
           to: email,
           subject: validation.data.subject,
           html: validation.data.htmlBody,
