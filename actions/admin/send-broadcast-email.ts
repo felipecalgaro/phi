@@ -2,9 +2,12 @@
 
 import { verifyAdminAccess } from "@/lib/admin";
 import { env } from "@/lib/env";
+import { createMarketingUnsubscribeUrl } from "@/lib/marketing-unsubscribe";
 import prisma from "@/lib/prisma";
 import { emailService } from "@/services/email-service-instance";
 import z from "zod";
+
+const bodyClosingTagRegex = /<\/body\s*>/i;
 
 const broadcastEmailSchema = z
   .object({
@@ -69,25 +72,33 @@ export async function sendBroadcastEmail(
     const recipientRows = await prisma.user.findMany({
       where: {
         role: validation.data.recipientRole,
+        OR: [
+          {
+            subscribedToMarketing: true,
+          },
+          {
+            subscribedToMarketing: null,
+          },
+        ],
       },
       select: {
+        id: true,
         email: true,
       },
     });
 
-    const recipientEmails = Array.from(
-      new Set(
-        recipientRows
-          .map(function (row) {
-            return row.email.trim().toLowerCase();
-          })
-          .filter(function (email) {
-            return email.length > 0;
-          }),
-      ),
-    );
+    const recipients = recipientRows
+      .map(function (row) {
+        return {
+          userId: row.id,
+          email: row.email.trim().toLowerCase(),
+        };
+      })
+      .filter(function (recipient) {
+        return recipient.email.length > 0;
+      });
 
-    if (recipientEmails.length === 0) {
+    if (recipients.length === 0) {
       return {
         success: false,
         error: "No recipients were found for the selected role.",
@@ -96,12 +107,17 @@ export async function sendBroadcastEmail(
     }
 
     const sendResults = await Promise.allSettled(
-      recipientEmails.map(function (email) {
+      recipients.map(async function (recipient) {
+        const unsubscribeUrl = await createMarketingUnsubscribeUrl(recipient);
+
         return emailService.sendEmail({
           from: `Felipe Calgaro <contact@${env.NEXT_PUBLIC_EMAIL_DOMAIN}>`,
-          to: email,
+          to: recipient.email,
           subject: validation.data.subject,
-          html: validation.data.htmlBody,
+          html: appendMarketingUnsubscribeFooter({
+            htmlBody: validation.data.htmlBody,
+            unsubscribeUrl,
+          }),
         });
       }),
     );
@@ -120,8 +136,8 @@ export async function sendBroadcastEmail(
 
     return {
       success: true,
-      recipientCount: recipientEmails.length,
-      sentCount: recipientEmails.length,
+      recipientCount: recipients.length,
+      sentCount: recipients.length,
     } satisfies BroadcastEmailActionState;
   } catch {
     return {
@@ -130,4 +146,27 @@ export async function sendBroadcastEmail(
       code: "unexpected_error",
     } satisfies BroadcastEmailActionState;
   }
+}
+
+function appendMarketingUnsubscribeFooter({
+  htmlBody,
+  unsubscribeUrl,
+}: {
+  htmlBody: string;
+  unsubscribeUrl: string;
+}) {
+  const footerHtml = `
+    <div style="margin-top:32px;padding-top:16px;border-top:1px solid #e5e7eb;color:#6b7280;font-family:Arial,sans-serif;font-size:12px;line-height:1.5;">
+      <p style="margin:0;">
+        You are receiving this email because you signed up for Guide to Studienkolleg updates.
+        You can <a href="${unsubscribeUrl}" style="color:#374151;text-decoration:underline;">unsubscribe from these emails</a> at any time.
+      </p>
+    </div>
+  `;
+
+  if (bodyClosingTagRegex.test(htmlBody)) {
+    return htmlBody.replace(bodyClosingTagRegex, `${footerHtml}$&`);
+  }
+
+  return `${htmlBody}${footerHtml}`;
 }

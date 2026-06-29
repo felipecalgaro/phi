@@ -37,7 +37,7 @@ return {
 
 ## Return Type
 
-Server actions should always return `Promise<ResponseDataObject>` or `Promise<ResponseDataObject<TData>>`, importing `ResponseDataObject` from `@/utils/get-response-data-object`.
+When not redirecting, server actions should always return `Promise<ResponseDataObject>` or `Promise<ResponseDataObject<TData>>`, importing `ResponseDataObject` from `@/utils/get-response-data-object`.
 
 ```ts
 import { ResponseDataObject } from "@/utils/get-response-data-object";
