@@ -16,7 +16,7 @@ async function getCommunityUser(userId: string) {
   });
 
   if (!user) {
-    redirect("/acing-aufnahmetest/login");
+    redirect("/login");
   }
 
   return user;
@@ -26,11 +26,11 @@ export default async function Community() {
   const { userId, userRole } = await verifySession();
 
   if (userRole === 'BASIC') {
-    redirect("/acing-aufnahmetest/login?redirect=purchase");
+    redirect("/login?redirect=purchase");
   }
 
   if (!userId) {
-    redirect("/acing-aufnahmetest/login");
+    redirect("/login");
   }
 
   const user = await getCommunityUser(userId);

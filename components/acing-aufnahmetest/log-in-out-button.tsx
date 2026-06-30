@@ -36,7 +36,7 @@ export function LogInOutButton({
 
   if (isError) {
     return (
-      <Link href="/acing-aufnahmetest/login" className={buttonClasses}>
+      <Link href="/login" className={buttonClasses}>
         Login
         <LogIn className="size-5" />
       </Link>
@@ -53,7 +53,7 @@ export function LogInOutButton({
   }
 
   return (
-    <Link href="/acing-aufnahmetest/login" className={buttonClasses}>
+    <Link href="/login" className={buttonClasses}>
       Login
       <LogIn className="size-5" />
     </Link>

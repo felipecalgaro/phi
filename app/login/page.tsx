@@ -1,6 +1,11 @@
 import { LoginForm } from '@/components/acing-aufnahmetest/login-form';
 import { Skeleton } from '@/components/ui/skeleton';
+import type { Metadata } from 'next';
 import { Suspense } from 'react';
+
+export const metadata: Metadata = {
+  title: 'Login',
+};
 
 export default async function Login() {
   return (

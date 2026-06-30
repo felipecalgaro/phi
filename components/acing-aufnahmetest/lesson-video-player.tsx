@@ -137,7 +137,7 @@ export function LessonVideoPlayer({
 
       if (response.error) {
         if (response.error.message === 'Unauthenticated') {
-          router.push('/acing-aufnahmetest/login');
+          router.push('/login');
           return;
         }
 

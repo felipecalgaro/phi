@@ -36,7 +36,7 @@ export function AccessCourseButton({ className }: AccessCourseButtonProps = {}) 
   if (!data.isAuthenticated) {
     return (
       <Link
-        href="/acing-aufnahmetest/login?redirect=purchase"
+        href="/login?redirect=purchase"
         className={buttonClassNames}
       >
         Buy the course

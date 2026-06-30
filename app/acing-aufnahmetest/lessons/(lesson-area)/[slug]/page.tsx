@@ -14,7 +14,7 @@ async function getVideoUrl(slug: string) {
   const { isAuthenticated, userRole } = await verifySession();
 
   if (!isAuthenticated) {
-    redirect("/acing-aufnahmetest/login");
+    redirect("/login");
   }
 
   if (userRole === "BASIC") {

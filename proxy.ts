@@ -38,7 +38,7 @@ const AUTH_ROUTES = ["/roadmap"];
 
 const BASIC_ONLY_ROUTES = ["/acing-aufnahmetest/purchase"];
 
-const UNAUTH_ONLY_ROUTES = ["/acing-aufnahmetest/login"];
+const UNAUTH_ONLY_ROUTES = ["/login"];
 
 export async function proxy(req: NextRequest) {
   const requestId = getRequestId(req);
@@ -72,7 +72,7 @@ export async function proxy(req: NextRequest) {
   } else if (ADMIN_ROUTES.some((route) => path.startsWith(route))) {
     if (!token) {
       return withRequestId(
-        NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+        NextResponse.redirect(new URL("/login", req.url)),
         requestId,
       );
     }
@@ -92,7 +92,7 @@ export async function proxy(req: NextRequest) {
       return nextWithRequestId(req, requestId);
     } catch {
       const res = withRequestId(
-        NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+        NextResponse.redirect(new URL("/login", req.url)),
         requestId,
       );
 
@@ -118,7 +118,7 @@ export async function proxy(req: NextRequest) {
     }
   } else if (!token && PREMIUM_ROUTES.some((route) => path.startsWith(route))) {
     return withRequestId(
-      NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+      NextResponse.redirect(new URL("/login", req.url)),
       requestId,
     );
   } else if (!token && AUTH_ROUTES.some((route) => path.startsWith(route))) {
@@ -127,7 +127,7 @@ export async function proxy(req: NextRequest) {
     const res = withRequestId(
       NextResponse.redirect(
         new URL(
-          `/acing-aufnahmetest/login${redirectTo ? `?redirect=${redirectTo}` : ""}`,
+          `/login${redirectTo ? `?redirect=${redirectTo}` : ""}`,
           req.url,
         ),
       ),
@@ -145,7 +145,7 @@ export async function proxy(req: NextRequest) {
     const res = withRequestId(
       NextResponse.redirect(
         new URL(
-          `/acing-aufnahmetest/login${redirectTo ? `?redirect=${redirectTo}` : ""}`,
+          `/login${redirectTo ? `?redirect=${redirectTo}` : ""}`,
           req.url,
         ),
       ),
@@ -171,7 +171,7 @@ export async function proxy(req: NextRequest) {
       return nextWithRequestId(req, requestId);
     } catch {
       const res = withRequestId(
-        NextResponse.redirect(new URL("/acing-aufnahmetest/login", req.url)),
+        NextResponse.redirect(new URL("/login", req.url)),
         requestId,
       );
 
