@@ -7,9 +7,17 @@ import { RoadmapStepDialog } from "@/components/roadmap/roadmap-step-dialog";
 import { verifySession } from '@/lib/dal';
 import prisma from '@/lib/prisma';
 import { Roadmap } from '@/lib/roadmap';
+import { NO_INDEX_NO_FOLLOW } from '@/lib/seo';
 import { cn } from '@/lib/utils';
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Personal Studienkolleg Roadmap",
+  description: "A private personalized Studienkolleg roadmap for logged-in users.",
+  robots: NO_INDEX_NO_FOLLOW,
+};
 
 async function getRoadmap() {
   const { isAuthenticated, userId } = await verifySession();

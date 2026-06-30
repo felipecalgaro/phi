@@ -1,4 +1,12 @@
 import { BroadcastEmailForm } from "@/components/admin/broadcast-email-form";
+import { NO_INDEX_NO_FOLLOW } from "@/lib/seo";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Broadcast Email",
+  description: "Private admin broadcast email tool.",
+  robots: NO_INDEX_NO_FOLLOW,
+};
 
 export default async function BroadcastPage() {
   return (

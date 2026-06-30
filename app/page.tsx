@@ -3,13 +3,60 @@ import { QuestionsCard } from '@/components/questions-card';
 import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import {
+  DEFAULT_IMAGE_PATH,
+  HOME_DESCRIPTION,
+  HOME_PATH,
+  SITE_KEYWORDS,
+  SITE_NAME,
+  createJsonLdGraph,
+  createOrganizationJsonLd,
+  createPageMetadata,
+  createWebPageJsonLd,
+  createWebSiteJsonLd,
+  stringifyJsonLd,
+} from '@/lib/seo';
 import { ArrowRight, Sparkles } from "lucide-react";
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
+export const metadata: Metadata = {
+  ...createPageMetadata({
+    title: SITE_NAME,
+    description: HOME_DESCRIPTION,
+    path: HOME_PATH,
+    keywords: SITE_KEYWORDS,
+    image: {
+      path: DEFAULT_IMAGE_PATH,
+      alt: "Guide to Studienkolleg platform preview",
+    },
+  }),
+  title: {
+    absolute: SITE_NAME,
+  },
+};
+
 export default function Home() {
+  const jsonLd = createJsonLdGraph([
+    createOrganizationJsonLd(),
+    createWebSiteJsonLd(),
+    createWebPageJsonLd({
+      path: HOME_PATH,
+      title: SITE_NAME,
+      description: HOME_DESCRIPTION,
+      imagePath: DEFAULT_IMAGE_PATH,
+    }),
+  ]);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: stringifyJsonLd(jsonLd),
+        }}
+      />
       <Header />
       <section className="hero-background relative flex xl:flex-nowrap flex-wrap items-center justify-center sm:px-8 px-4 pb-24 pt-24 lg:px-12 sm:gap-20 gap-12 min-h-screen">
         <div className="text-center lg:max-w-3xl max-w-5xl shrink w-min">

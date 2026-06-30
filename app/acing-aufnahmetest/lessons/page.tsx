@@ -8,12 +8,20 @@ import Link from 'next/link';
 import { RESOURCES } from '@/data/acing-aufnahmetest/resources';
 import { redirect } from 'next/navigation';
 import { verifySession } from '@/lib/dal';
+import { NO_INDEX_NO_FOLLOW } from '@/lib/seo';
+import type { Metadata } from 'next';
 
 type CourseLesson = {
   id: string;
   slug: string;
   title: string;
   description: string;
+};
+
+export const metadata: Metadata = {
+  title: "Acing Aufnahmetest Lessons",
+  description: "Private Acing Aufnahmetest course workspace for enrolled students.",
+  robots: NO_INDEX_NO_FOLLOW,
 };
 
 async function getLessons(): Promise<CourseLesson[] | undefined> {

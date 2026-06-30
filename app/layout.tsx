@@ -8,12 +8,46 @@ import Link from 'next/link';
 import { Navigation } from 'lucide-react';
 import { Toaster } from 'sonner';
 import QueryProvider from '@/components/query-provider';
+import {
+  AUTHOR_NAME,
+  AUTHOR_URL,
+  DEFAULT_IMAGE_PATH,
+  HOME_DESCRIPTION,
+  SITE_KEYWORDS,
+  SITE_NAME,
+  SITE_URL,
+} from '@/lib/seo';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Guide to Studienkolleg",
-  description: "Tailor-made support from a former Studienkolleg student to your admission.",
+  metadataBase: SITE_URL,
+  applicationName: SITE_NAME,
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: HOME_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  authors: [{ name: AUTHOR_NAME, url: AUTHOR_URL }],
+  creator: AUTHOR_NAME,
+  publisher: SITE_NAME,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: HOME_DESCRIPTION,
+    url: "/",
+    images: [
+      {
+        url: DEFAULT_IMAGE_PATH,
+        alt: "Guide to Studienkolleg platform preview",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

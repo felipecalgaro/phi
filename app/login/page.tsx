@@ -1,10 +1,13 @@
 import { LoginForm } from '@/components/acing-aufnahmetest/login-form';
 import { Skeleton } from '@/components/ui/skeleton';
+import { NO_INDEX_NO_FOLLOW } from '@/lib/seo';
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Login',
+  description: "Log in to Guide to Studienkolleg with a secure magic link.",
+  robots: NO_INDEX_NO_FOLLOW,
 };
 
 export default async function Login() {

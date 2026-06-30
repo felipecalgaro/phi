@@ -2,8 +2,16 @@ import { Header } from '@/components/header';
 import { CommunityPhoneForm } from '@/components/community/community-phone-form';
 import { verifySession } from '@/lib/dal';
 import prisma from '@/lib/prisma';
+import { NO_INDEX_NO_FOLLOW } from '@/lib/seo';
 import { MessageCircle } from 'lucide-react';
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+
+export const metadata: Metadata = {
+  title: "STK Community",
+  description: "Private Studienkolleg community access page for course members.",
+  robots: NO_INDEX_NO_FOLLOW,
+};
 
 async function getCommunityUser(userId: string) {
   const user = await prisma.user.findUnique({

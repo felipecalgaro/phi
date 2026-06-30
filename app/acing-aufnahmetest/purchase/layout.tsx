@@ -1,5 +1,13 @@
 import { MoveLeft } from 'lucide-react';
+import { NO_INDEX_NO_FOLLOW } from '@/lib/seo';
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Acing Aufnahmetest Purchase",
+  description: "Private checkout flow for Acing Aufnahmetest.",
+  robots: NO_INDEX_NO_FOLLOW,
+};
 
 export default function PaymentResultLayout({
   children,

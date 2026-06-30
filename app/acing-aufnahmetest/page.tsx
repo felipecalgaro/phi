@@ -4,6 +4,18 @@ import { Header } from '@/components/header';
 import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
 import { env } from '@/lib/env';
+import {
+  COURSE_DESCRIPTION,
+  COURSE_IMAGE_PATH,
+  COURSE_PATH,
+  createBreadcrumbJsonLd,
+  createCourseJsonLd,
+  createJsonLdGraph,
+  createOrganizationJsonLd,
+  createWebPageJsonLd,
+  createWebSiteJsonLd,
+  stringifyJsonLd,
+} from '@/lib/seo';
 import { cn } from '@/lib/utils';
 import {
   BookOpen,
@@ -80,8 +92,30 @@ const mockTests = [
 const contactEmail = `contact@${env.NEXT_PUBLIC_EMAIL_DOMAIN}`;
 
 export default function Home() {
+  const jsonLd = createJsonLdGraph([
+    createOrganizationJsonLd(),
+    createWebSiteJsonLd(),
+    createWebPageJsonLd({
+      path: COURSE_PATH,
+      title: "Acing Aufnahmetest",
+      description: COURSE_DESCRIPTION,
+      imagePath: COURSE_IMAGE_PATH,
+    }),
+    createBreadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Acing Aufnahmetest", path: COURSE_PATH },
+    ]),
+    ...createCourseJsonLd(),
+  ]);
+
   return (
     <main className="min-h-screen hero-background">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: stringifyJsonLd(jsonLd),
+        }}
+      />
       <Header />
 
       <section id="course" className="px-4 pb-20 pt-32 sm:px-8 lg:px-12">

@@ -1,4 +1,5 @@
 import { env } from "@/lib/env";
+import { NO_INDEX_FOLLOW } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -68,6 +69,10 @@ const sections = [
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Terms of Service for Guide to Studienkolleg, the independent Studienkolleg study platform.",
+  alternates: {
+    canonical: "/terms",
+  },
+  robots: NO_INDEX_FOLLOW,
 };
 
 export default function TermsPage() {

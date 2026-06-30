@@ -1,4 +1,5 @@
 import { env } from "@/lib/env";
+import { NO_INDEX_FOLLOW } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -66,6 +67,10 @@ const sections = [
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Privacy Policy for Guide to Studienkolleg, including email collection, analytics, and marketing emails.",
+  alternates: {
+    canonical: "/privacy",
+  },
+  robots: NO_INDEX_FOLLOW,
 };
 
 export default function PrivacyPage() {

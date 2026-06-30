@@ -1,9 +1,33 @@
 import { PostCard } from '@/components/blog/post-card';
 import { buttonVariants } from '@/components/ui/button';
 import prisma from '@/lib/prisma';
+import { BLOG_DESCRIPTION, BLOG_KEYWORDS, SITE_NAME } from '@/lib/seo';
 import { cn } from '@/lib/utils';
 import { ArrowRight, Navigation } from 'lucide-react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Studienkolleg Blog",
+  description: BLOG_DESCRIPTION,
+  keywords: BLOG_KEYWORDS,
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: "Studienkolleg Blog",
+    description: BLOG_DESCRIPTION,
+    url: "/blog",
+    images: [
+      {
+        url: "/blog-posts.png",
+        alt: "Studienkolleg Blog post previews",
+      },
+    ],
+  },
+};
 
 export default async function Home() {
   const latestPosts = await prisma.post.findMany({
