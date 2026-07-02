@@ -1,49 +1,76 @@
 "use client";
 
-import { sendBroadcastEmail } from "@/actions/admin/send-broadcast-email";
-import type { BroadcastEmailActionState } from "@/actions/admin/send-broadcast-email";
+import {
+  sendBroadcastEmail,
+  type BroadcastEmailRequest,
+} from "@/actions/admin/send-broadcast-email";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { useActionState, useEffect, useRef } from "react";
-import { useFormStatus } from "react-dom";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 
-const recipientRoles = ["BASIC", "PREMIUM"] as const;
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <Button type="submit" className="w-full sm:w-auto" disabled={pending}>
-      {pending ? "Sending..." : "Send broadcast"}
-    </Button>
-  );
-}
+const recipientRoles = ["BASIC", "PREMIUM", "ADMIN"] as const;
+type RecipientRole = (typeof recipientRoles)[number];
 
 export function BroadcastEmailForm() {
-  const formRef = useRef<HTMLFormElement>(null);
-  const [state, formAction] = useActionState(
-    sendBroadcastEmail,
-    null as BroadcastEmailActionState | null,
-  );
+  const [recipientRole, setRecipientRole] = useState<RecipientRole>("BASIC");
+  const [
+    sendToMarketingSubscribersOnly,
+    setSendToMarketingSubscribersOnly,
+  ] = useState(true);
+  const [subject, setSubject] = useState("");
+  const [htmlBody, setHtmlBody] = useState("");
+  const sendBroadcastEmailMutation = useMutation({
+    mutationFn: async (request: BroadcastEmailRequest) => {
+      return sendBroadcastEmail(request);
+    },
+    onSuccess: (result) => {
+      if (result.success) {
+        setRecipientRole("BASIC");
+        setSendToMarketingSubscribersOnly(true);
+        setSubject("");
+        setHtmlBody("");
+      }
 
-  useEffect(function () {
-    if (state?.success) {
-      formRef.current?.reset();
-    }
-  }, [state]);
+      return result;
+    },
+  });
+
+  const result = sendBroadcastEmailMutation.data;
+  const sentCount = result?.success ? result.data?.sentCount ?? 0 : 0;
+  const canSubmit =
+    subject.trim().length > 0 &&
+    htmlBody.trim().length > 0 &&
+    !sendBroadcastEmailMutation.isPending;
 
   return (
-    <form ref={formRef} action={formAction} className="space-y-6">
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        sendBroadcastEmailMutation.mutate({
+          recipientRole,
+          sendToMarketingSubscribersOnly,
+          subject,
+          htmlBody,
+        });
+      }}
+      className="space-y-6"
+    >
       <div className="grid gap-5 md:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="recipientRole">Recipient role</Label>
           <select
             id="recipientRole"
             name="recipientRole"
-            defaultValue="BASIC"
+            value={recipientRole}
+            onChange={(event) => {
+              setRecipientRole(event.target.value as RecipientRole);
+            }}
+            disabled={sendBroadcastEmailMutation.isPending}
             className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]"
           >
             {recipientRoles.map(function (role) {
@@ -61,10 +88,38 @@ export function BroadcastEmailForm() {
           <Input
             id="subject"
             name="subject"
+            value={subject}
+            onChange={(event) => {
+              setSubject(event.target.value);
+            }}
             placeholder="Enter the email subject"
             maxLength={120}
             className="h-10"
+            disabled={sendBroadcastEmailMutation.isPending}
           />
+        </div>
+      </div>
+
+      <div className="flex items-start gap-3 rounded-md border border-border px-4 py-3">
+        <Checkbox
+          id="sendToMarketingSubscribersOnly"
+          checked={sendToMarketingSubscribersOnly}
+          onCheckedChange={(checked) => {
+            setSendToMarketingSubscribersOnly(checked === true);
+          }}
+          disabled={sendBroadcastEmailMutation.isPending}
+          className="mt-0.5"
+        />
+        <div className="space-y-1">
+          <Label
+            htmlFor="sendToMarketingSubscribersOnly"
+            className="text-sm font-medium leading-none"
+          >
+            Send only to marketing subscribers
+          </Label>
+          <p className="text-sm text-muted-foreground">
+            Uncheck to send to everyone with the selected role.
+          </p>
         </div>
       </div>
 
@@ -73,27 +128,38 @@ export function BroadcastEmailForm() {
         <Textarea
           id="htmlBody"
           name="htmlBody"
+          value={htmlBody}
+          onChange={(event) => {
+            setHtmlBody(event.target.value);
+          }}
           placeholder="<p>Write your HTML email body here.</p>"
           className="min-h-56 font-mono text-sm"
+          disabled={sendBroadcastEmailMutation.isPending}
         />
       </div>
 
-      {state ? (
+      {result ? (
         <div
           className={cn(
             "rounded-lg border px-4 py-3 text-sm",
-            state.success
+            result.success
               ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-700"
               : "border-destructive/30 bg-destructive/10 text-destructive",
           )}
         >
-          {state.success ? (
+          {result.success ? (
             <p>
-              Broadcast sent to {state.sentCount} recipient{state.sentCount === 1 ? "" : "s"}.
+              Broadcast sent to {sentCount} recipient{sentCount === 1 ? "" : "s"}.
             </p>
           ) : (
-            <p>{state.error}</p>
+            <p>{result.error}</p>
           )}
+        </div>
+      ) : null}
+
+      {sendBroadcastEmailMutation.isError ? (
+        <div className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          Something went wrong while sending the broadcast.
         </div>
       ) : null}
 
@@ -101,7 +167,9 @@ export function BroadcastEmailForm() {
         <p className="text-sm text-muted-foreground">
           Each recipient gets an individual email for privacy.
         </p>
-        <SubmitButton />
+        <Button type="submit" className="w-full sm:w-auto" disabled={!canSubmit}>
+          {sendBroadcastEmailMutation.isPending ? "Sending..." : "Send broadcast"}
+        </Button>
       </div>
     </form>
   );
